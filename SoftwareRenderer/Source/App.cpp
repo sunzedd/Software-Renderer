@@ -50,11 +50,10 @@ namespace Core
 
 	void App::receiveWindowEvent()
 	{
-		m_pWindow->pollEvent( m_windowEvent );
-		
-		if( m_windowEvent.type == sf::Event::Closed )
+		while (m_pWindow->pollEvent(m_windowEvent))
 		{
-			m_pWindow->close();
+			if (m_windowEvent.type == sf::Event::Closed)
+				m_pWindow->close();
 		}
 
 		ImGui::SFML::ProcessEvent(m_windowEvent);
@@ -78,12 +77,15 @@ namespace Core
 
 	void App::updateGraphics( unsigned int dtime )
 	{
-		char strBuf[64];
 		unsigned int fps = 1 / ( static_cast<double>(dtime) / 1000 );
+
+		static const std::string resWidth = std::to_string(m_windowProps.width);
+		static const std::string resHeight = std::to_string(m_windowProps.height);
 
 		test();
 
 		ImGui::Begin( "Properties" );
+		ImGui::Text( "Resolution: %s x %s", resWidth.c_str(), resHeight.c_str() );
 		ImGui::Text( "FPS: %s", std::to_string(fps).c_str() );
 		ImGui::End();
 	}
