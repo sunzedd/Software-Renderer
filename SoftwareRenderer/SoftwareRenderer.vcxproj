@@ -83,7 +83,30 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Source\App.cpp" />
+    <ClCompile Include="Source\Graphics\Color.cpp" />
     <ClCompile Include="Source\Main.cpp" />
+    <ClCompile Include="Source\Math\Mat4.cpp" />
+    <ClCompile Include="Source\Math\MathFunc.cpp" />
+    <ClCompile Include="Source\Math\Vec2.cpp" />
+    <ClCompile Include="Source\Math\Vec2i.cpp" />
+    <ClCompile Include="Source\Math\Vec3.cpp" />
+    <ClCompile Include="Source\Math\Vec4.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Source\App.h" />
+    <ClInclude Include="Source\Graphics\Buffer.hpp" />
+    <ClInclude Include="Source\Graphics\Buffer.h" />
+    <ClInclude Include="Source\Graphics\Color.h" />
+    <ClInclude Include="Source\Graphics\DepthBuffer.h" />
+    <ClInclude Include="Source\Graphics\FrameBuffer.h" />
+    <ClInclude Include="Source\Math\Mat4.h" />
+    <ClInclude Include="Source\Math\Math.h" />
+    <ClInclude Include="Source\Math\MathFunc.h" />
+    <ClInclude Include="Source\Math\Vec2.h" />
+    <ClInclude Include="Source\Math\Vec2i.h" />
+    <ClInclude Include="Source\Math\Vec3.h" />
+    <ClInclude Include="Source\Math\Vec4.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

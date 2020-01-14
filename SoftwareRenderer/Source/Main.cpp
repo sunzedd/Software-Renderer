@@ -1,9 +1,10 @@
-#include <iostream>
-#include <SFML/Graphics.hpp>
+#include "App.h"
+
 
 int main()
 {
+	Core::App a;
+	a.run();
 
-	system("pause");
 	return 0;
 }
