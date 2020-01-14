@@ -3,6 +3,8 @@
 #include <memory>
 #include <exception>
 #include <SFML/Graphics.hpp>
+#include <imgui.h>
+#include <imgui-SFML.h>
 
 #include "Graphics/FrameBuffer.h"
 
@@ -33,8 +35,8 @@ namespace Core
 	protected:
 		void receiveWindowEvent();
 		void updateWindow();
-		virtual void updateScene();
-		virtual void updateGraphics();
+		virtual void updateScene( unsigned int dtime );
+		virtual void updateGraphics( unsigned int dtime );
 
 	private:
 		void createGraphics( bool fullscreen );
@@ -53,5 +55,6 @@ namespace Core
 		std::unique_ptr<sf::Sprite> m_pBackBufferSprite;
 
 		sf::Event m_windowEvent;
+		sf::Clock m_timer;
 	};
 }

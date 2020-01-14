@@ -19,7 +19,9 @@ namespace Core
 	}
 
 	App::~App()
-	{ }
+	{ 
+		ImGui::SFML::Shutdown();
+	}
 
 	void App::run()
 	{
@@ -27,19 +29,22 @@ namespace Core
 		{
 			receiveWindowEvent();
 
-			updateScene();
-			updateGraphics();
+			sf::Time dtime = m_timer.restart();
+
+			ImGui::SFML::Update( *m_pWindow, dtime );
+			updateScene( dtime.asMilliseconds() );
+			updateGraphics( dtime.asMilliseconds() );
 			updateWindow();
 		}
 	}
 
 	void App::test()
 	{
-		m_frameBuffer.fill( Color( 255, 0, 0 ) );
+		m_frameBuffer.fill( Color( 0, 0, 0 ) );
 
 		for( int i = 0; i < 100; i++ )
 		{
-			m_frameBuffer.setPixel( i, 100, Vec4( 0.6, 1.0, 0.8, 1 ) );
+			m_frameBuffer.setPixel( i, 100, Vec4( 0, 0, 1, 1 ) );
 		}
 	}
 
@@ -51,6 +56,8 @@ namespace Core
 		{
 			m_pWindow->close();
 		}
+
+		ImGui::SFML::ProcessEvent(m_windowEvent);
 	}
 
 	void App::updateWindow()
@@ -58,20 +65,30 @@ namespace Core
 		m_backBufferTex.update( ( unsigned char* )m_frameBuffer.pixels() );
 		m_pBackBufferSprite->setTexture( m_backBufferTex );
 		m_pWindow->draw( *m_pBackBufferSprite );
+
+		ImGui::SFML::Render( *m_pWindow );
+
 		m_pWindow->display();
 	}
 
-	void App::updateScene()
+	void App::updateScene( unsigned int dtime )
 	{
 
 	}
 
-	void App::updateGraphics()
+	void App::updateGraphics( unsigned int dtime )
 	{
+		char strBuf[64];
+		unsigned int fps = 1 / ( static_cast<double>(dtime) / 1000 );
+
 		test();
+
+		ImGui::Begin( "Properties" );
+		ImGui::Text( "FPS: %s", std::to_string(fps).c_str() );
+		ImGui::End();
 	}
 
-	void App::createGraphics(bool fullscreen)
+	void App::createGraphics( bool fullscreen )
 	{
 		if( fullscreen )
 		{
@@ -92,5 +109,7 @@ namespace Core
 
 		if (!m_pWindow) throw Exception( "Could not create window" );
 		if (!m_pBackBufferSprite) throw Exception( "Could not create backbuffer sprite" );
+
+		ImGui::SFML::Init(*m_pWindow);
 	}
 }
