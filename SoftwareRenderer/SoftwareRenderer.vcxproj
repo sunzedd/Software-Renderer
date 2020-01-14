@@ -96,6 +96,10 @@
     <ClCompile Include="Source\Math\Vec2i.cpp" />
     <ClCompile Include="Source\Math\Vec3.cpp" />
     <ClCompile Include="Source\Math\Vec4.cpp" />
+    <ClCompile Include="Vendor\imgui-SFML.cpp" />
+    <ClCompile Include="Vendor\imgui.cpp" />
+    <ClCompile Include="Vendor\imgui_draw.cpp" />
+    <ClCompile Include="Vendor\imgui_widgets.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\App.h" />
@@ -107,6 +111,7 @@
     <ClInclude Include="Source\Graphics\IShaderProgram.h" />
     <ClInclude Include="Source\Graphics\Rasterizer.h" />
     <ClInclude Include="Source\Graphics\RenderPipeline.h" />
+    <ClInclude Include="Source\Graphics\Triangle.h" />
     <ClInclude Include="Source\Graphics\Vertex.h" />
     <ClInclude Include="Source\Math\Mat4.h" />
     <ClInclude Include="Source\Math\Math.h" />
