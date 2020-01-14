@@ -10,6 +10,10 @@
     <ClCompile Include="Source\Math\Vec3.cpp" />
     <ClCompile Include="Source\Math\Vec4.cpp" />
     <ClCompile Include="Source\Graphics\Color.cpp" />
+    <ClCompile Include="Source\Graphics\Vertex.cpp" />
+    <ClCompile Include="Source\Graphics\IShaderProgram.cpp" />
+    <ClCompile Include="Source\Graphics\Rasterizer.cpp" />
+    <ClCompile Include="Source\Graphics\RenderPipeline.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\App.h" />
@@ -25,5 +29,9 @@
     <ClInclude Include="Source\Math\Vec3.h" />
     <ClInclude Include="Source\Math\Vec4.h" />
     <ClInclude Include="Source\Graphics\DepthBuffer.h" />
+    <ClInclude Include="Source\Graphics\Vertex.h" />
+    <ClInclude Include="Source\Graphics\RenderPipeline.h" />
+    <ClInclude Include="Source\Graphics\IShaderProgram.h" />
+    <ClInclude Include="Source\Graphics\Rasterizer.h" />
   </ItemGroup>
 </Project>

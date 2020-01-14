@@ -85,6 +85,10 @@
   <ItemGroup>
     <ClCompile Include="Source\App.cpp" />
     <ClCompile Include="Source\Graphics\Color.cpp" />
+    <ClCompile Include="Source\Graphics\IShaderProgram.cpp" />
+    <ClCompile Include="Source\Graphics\Rasterizer.cpp" />
+    <ClCompile Include="Source\Graphics\RenderPipeline.cpp" />
+    <ClCompile Include="Source\Graphics\Vertex.cpp" />
     <ClCompile Include="Source\Main.cpp" />
     <ClCompile Include="Source\Math\Mat4.cpp" />
     <ClCompile Include="Source\Math\MathFunc.cpp" />
@@ -100,6 +104,10 @@
     <ClInclude Include="Source\Graphics\Color.h" />
     <ClInclude Include="Source\Graphics\DepthBuffer.h" />
     <ClInclude Include="Source\Graphics\FrameBuffer.h" />
+    <ClInclude Include="Source\Graphics\IShaderProgram.h" />
+    <ClInclude Include="Source\Graphics\Rasterizer.h" />
+    <ClInclude Include="Source\Graphics\RenderPipeline.h" />
+    <ClInclude Include="Source\Graphics\Vertex.h" />
     <ClInclude Include="Source\Math\Mat4.h" />
     <ClInclude Include="Source\Math\Math.h" />
     <ClInclude Include="Source\Math\MathFunc.h" />
