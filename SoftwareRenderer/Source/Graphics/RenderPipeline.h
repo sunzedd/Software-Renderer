@@ -4,6 +4,7 @@
 #include "IShaderProgram.h"
 #include "FrameBuffer.h"
 #include "Rasterizer.h"
+#include "Triangle.h"
 
 namespace Core
 {
@@ -22,12 +23,17 @@ namespace Core
 		RenderPipeline( FrameBuffer& frameBuf );
 
 		void backFaceCulling( bool enabled );
+		void wireframeRendering( bool enabled );
 		void bindShaderProgram( std::shared_ptr<IShaderProgram> shader );
 
 		// Renderer entry point
 		void run( const std::vector<Vertex>& vertexBuf,  const std::vector<unsigned short>& indexBuf );
 	private:
-		
+		bool backFaceTest( Triangle<VSO>& polygon ) const;
+		void clip( Triangle<VSO>& polygon ) const;
+		void perspectiveDivide( Triangle<VSO>& polygon ) const;
+		void viewport( VSO& vso ) const;
+		void callRasterizer( Triangle<VSO>& polygon );
 
 	private:
 		Rasterizer m_rasterizer;
@@ -36,6 +42,7 @@ namespace Core
 		struct 
 		{
 			bool backfaceCullingFlag;
+			bool wireframeFlag;
 		}
 		m_properties;
 

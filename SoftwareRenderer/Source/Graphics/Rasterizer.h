@@ -16,6 +16,7 @@ namespace Core
 		void line( const Vec2& p0, const Vec2& p1, const Vec4& color );
 		void line( const Vertex& v0, const Vertex& v1 );
 
+		void triangleWireframe();
 		void triangle();
 	protected:
 		FrameBuffer& m_frameBuf;

@@ -23,6 +23,11 @@ namespace Core
 		throw std::exception("Not implemented yet");
 	}
 
+	void Rasterizer::triangleWireframe()
+	{
+		throw std::exception("Not implemented yet");
+	}
+
 	void Rasterizer::triangle()
 	{
 		throw std::exception("Not implemented yet");

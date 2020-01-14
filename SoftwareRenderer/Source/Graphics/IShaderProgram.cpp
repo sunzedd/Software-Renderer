@@ -9,6 +9,7 @@ namespace Core
 		uv += rhs.uv;
 		color += rhs.color;
 		posWorld += rhs.posWorld;
+		intensity += rhs.intensity;
 
 		return *this;
 	}
@@ -20,6 +21,7 @@ namespace Core
 		uv -= rhs.uv;
 		color -= rhs.color;
 		posWorld -= rhs.posWorld;
+		intensity -= rhs.intensity;
 
 		return *this;
 	}
@@ -31,6 +33,7 @@ namespace Core
 		uv *= val;
 		color *= val;
 		posWorld *= val;
+		intensity *= val;
 
 		return *this;
 	}
@@ -42,6 +45,7 @@ namespace Core
 		uv /= val;
 		color /= val;
 		posWorld /= val;
+		intensity /= val;
 
 		return *this;
 	}
