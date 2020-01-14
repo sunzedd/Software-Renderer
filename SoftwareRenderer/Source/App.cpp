@@ -36,6 +36,11 @@ namespace Core
 	void App::test()
 	{
 		m_frameBuffer.fill( Color( 255, 0, 0 ) );
+
+		for( int i = 0; i < 100; i++ )
+		{
+			m_frameBuffer.setPixel( i, 100, Vec4( 0.6, 1.0, 0.8, 1 ) );
+		}
 	}
 
 	void App::receiveWindowEvent()
