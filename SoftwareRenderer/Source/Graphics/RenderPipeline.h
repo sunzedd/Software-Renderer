@@ -12,13 +12,16 @@ namespace Core
 		RenderPipeline( FrameBuffer& frameBuf );
 
 		void backFaceCulling( bool enabled );
+		void bindShaderProgram( std::shared_ptr<IShaderProgram> shader );
 
 		// Renderer entry point
 		void run( const std::vector<Vertex>& vertexBuf,  const std::vector<unsigned short>& indexBuf );
 	private:
+		
 
 	private:
 		Rasterizer m_rasterizer;
+		std::shared_ptr<IShaderProgram> m_shader;
 
 		struct 
 		{
