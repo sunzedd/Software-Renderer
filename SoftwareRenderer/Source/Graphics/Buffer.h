@@ -11,6 +11,9 @@ namespace Core
 		Buffer(int width, int height);
 		virtual ~Buffer();
 
+		int width() const { return m_width; }
+		int height() const { return m_height; }
+
 		T get(int x, int y) const;
 		void set(int x, int y, T value);
 
