@@ -5,7 +5,8 @@ namespace Core
 	App::App()
 		:
 		m_windowProps{ DEFAULT_WIDTH, DEFAULT_HEIGHT, "App" },
-		m_frameBuffer( DEFAULT_WIDTH, DEFAULT_HEIGHT )
+		m_frameBuffer( DEFAULT_WIDTH, DEFAULT_HEIGHT ),
+		m_renderer( m_frameBuffer )
 	{
 		createGraphics( false );
 	}
@@ -13,7 +14,8 @@ namespace Core
 	App::App( int width, int height, const std::string& title, bool fullscreen )
 		:
 		m_windowProps{ width, height, title },
-		m_frameBuffer( width, height )
+		m_frameBuffer( width, height ),
+		m_renderer( m_frameBuffer )
 	{
 		createGraphics( fullscreen );
 	}
@@ -71,9 +73,7 @@ namespace Core
 	}
 
 	void App::updateScene( unsigned int dtime )
-	{
-
-	}
+	{ }
 
 	void App::updateGraphics( unsigned int dtime )
 	{

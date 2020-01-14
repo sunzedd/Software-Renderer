@@ -13,9 +13,6 @@ namespace Core
 		Vec4 color;
 
 	public:
-		Vertex();
-		Vertex( const Vec3& pos, const Vec3& n, const Vec2& uv, const Vec4& color );
-
 		Vertex& operator += ( const Vertex& rhs );
 		Vertex& operator -= ( const Vertex& rhs );
 		Vertex& operator *= ( float val );

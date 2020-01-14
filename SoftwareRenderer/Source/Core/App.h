@@ -7,6 +7,7 @@
 #include <imgui-SFML.h>
 
 #include "Graphics/FrameBuffer.h"
+#include "Graphics/RenderPipeline.h"
 
 #define DEFAULT_WIDTH  800
 #define DEFAULT_HEIGHT 600
@@ -33,12 +34,12 @@ namespace Core
 		void test();
 
 	protected:
-		void receiveWindowEvent();
-		void updateWindow();
+		virtual void receiveWindowEvent();
 		virtual void updateScene( unsigned int dtime );
 		virtual void updateGraphics( unsigned int dtime );
 
 	private:
+		void updateWindow();
 		void createGraphics( bool fullscreen );
 	
 	protected:
@@ -56,5 +57,7 @@ namespace Core
 
 		sf::Event m_windowEvent;
 		sf::Clock m_timer;
+
+		RenderPipeline m_renderer;
 	};
 }

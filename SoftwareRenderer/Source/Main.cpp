@@ -1,13 +1,12 @@
 #include <iostream>
-#include "App.h"
+#include "Sandbox/DemoApp.h"
 
-using namespace Core;
 
 int main()
 {
 	try
 	{
-		Core::App a;
+		DemoApp a;
 		a.run();
 	}
 	catch ( const std::exception & e )

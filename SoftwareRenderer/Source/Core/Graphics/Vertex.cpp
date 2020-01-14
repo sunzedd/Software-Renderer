@@ -2,17 +2,6 @@
 
 namespace Core
 {
-	Vertex::Vertex()
-	{ }
-
-	Vertex::Vertex( const Vec3& pos, const Vec3& n, const Vec2& uv, const Vec4& color )
-		:
-		pos(pos), 
-		n(n, 0.0f),
-		uv(uv),
-		color(color)
-	{ }
-
 	Vertex& Vertex::operator += ( const Vertex& rhs )
 	{
 		pos += rhs.pos;
