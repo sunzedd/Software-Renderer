@@ -5,7 +5,7 @@ namespace Core
 	RenderPipeline::RenderPipeline( FrameBuffer& frameBuf )
 		:
 		m_rasterizer(frameBuf),
-		m_properties{ true },
+		m_properties{ true, false },
 		m_viewport{ 0, 0, frameBuf.width(), frameBuf.height() }
 	{ }
 
