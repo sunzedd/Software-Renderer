@@ -23,6 +23,7 @@ namespace Core
 	// Renderer entry point
 	void RenderPipeline::run( const std::vector<Vertex>& vertexBuf, const std::vector<unsigned short>& indexBuf )
 	{
-		throw std::exception("Not implemented yet");
+		if (!m_shader)
+			throw Exception("No shader binded");
 	}
 }

@@ -1,5 +1,6 @@
 #pragma once
 #include <vector>
+#include <string>
 #include "IShaderProgram.h"
 #include "FrameBuffer.h"
 #include "Rasterizer.h"
@@ -8,6 +9,15 @@ namespace Core
 {
 	class RenderPipeline final
 	{
+	public:
+		class Exception : public std::exception
+		{
+		public:
+			Exception(const std::string& msg)
+				:
+				exception(msg.c_str()) { }
+		};
+
 	public:
 		RenderPipeline( FrameBuffer& frameBuf );
 
