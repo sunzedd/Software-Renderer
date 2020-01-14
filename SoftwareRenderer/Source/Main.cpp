@@ -1,6 +1,8 @@
 #include <iostream>
 #include "App.h"
 
+using namespace Core;
+
 int main()
 {
 	try
