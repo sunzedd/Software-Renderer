@@ -230,37 +230,17 @@ namespace Core {
 
 	Mat4 Mat4::perspective(float fov, float aspectRatio, float near, float far)
 	{
-		//const float fovRad = MathFunc::toRadians(fov);
-		//
-		//const float yScale = 1/tan(fovRad / 2);
-		//const float xScale = yScale / aspectRatio;
-		//const float q = near - far;
-		//
-		//return {
-		//	xScale,		0,		0,				0,
-		//	0,			yScale, 0,				0,
-		//	0,			0,		near / q,	    -1,
-		//	0,			0,		-far*near / q,	0
-		//};
-
-		float const tanHalfFovy = tan(fov / static_cast<float>(2));
-
+		const float fovRad = MathFunc::toRadians(fov);
+		const float tanHalfFovy = ( tan(fovRad) / 2.0f );
 		Mat4 result;
-		result.m[0][0] = static_cast<float>(1) / (aspectRatio * tanHalfFovy);
-		result.m[1][1] = static_cast<float>(1) / (tanHalfFovy);
-		result.m[2][2] = far / (far - near);
-		result.m[2][3] = static_cast<float>(-1);
-		result.m[3][2] = -(far * near) / (far - near);
-		return result;
 
-		//const float fov_rad = MathFunc::toRadians(fov);
-		//const float w = 1.0f / std::tan(fov_rad / 2.0);
-		//const float h = w * aspectRatio;
-		//return {
-		//	w,		0.0,	0.0,						0.0,
-		//	0.0,	h,		0.0,						0.0,
-		//	0.0,	0.0,	far / (far - near),		    1.0,
-		//	0.0,	0.0,	-near * far / (far - near),	0.0,
-		//};
+		result.m[0][0] = 1 / (aspectRatio * tanHalfFovy);
+		result.m[1][1] = 1 / tanHalfFovy;
+		result.m[2][2] = -(far + near) / (far - near);
+		result.m[2][3] = -1;
+		result.m[3][2] = -2 * (far * near) / (far - near);
+		result.m[3][3] = 0;
+
+		return result;
 	}
 }
