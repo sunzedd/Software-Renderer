@@ -26,6 +26,14 @@ namespace Core {
 		w(1.0f)
 	{ }
 
+	Vec4::Vec4(const Vec3& vec3, float w)
+		:
+		x(vec3.x),
+		y(vec3.y),
+		z(vec3.z),
+		w(w)
+	{ }
+
 	Vec4& Vec4::operator = (const Vec3& rhs)
 	{
 		x = rhs.x;

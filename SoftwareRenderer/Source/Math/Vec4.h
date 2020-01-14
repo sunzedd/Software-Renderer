@@ -16,6 +16,7 @@ namespace Core {
 		Vec4();
 		Vec4(float x, float y, float z, float w);
 		Vec4(const Vec3& vec3);
+		Vec4(const Vec3& vec3, float w);
 
 		Vec4& operator = (const Vec3& rhs);
 
