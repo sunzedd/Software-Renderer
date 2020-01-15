@@ -17,8 +17,8 @@ namespace Core
 			uv_x = std::min(uv_x, 1.0f);
 			uv_y = std::min(uv_y, 1.0f);
 
-			int x = abs(( m_pTexture->getSize().x * uv_x - 1 ));
-			int y = abs(( m_pTexture->getSize().y * uv_y - 1 ));
+			int x = abs( m_pTexture->getSize().x * uv_x - 1 );
+			int y = abs( m_pTexture->getSize().y * uv_y - 1 );
 
 			sf::Color texel = m_pTexture->getPixel( x, y );
 			Color c( texel.r, texel.g, texel.b, texel.a );
