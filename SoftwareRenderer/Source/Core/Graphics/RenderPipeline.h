@@ -27,13 +27,14 @@ namespace Core
 		void bindShaderProgram( std::shared_ptr<IShaderProgram> shader );
 
 		// Renderer entry point
+		void beginFrame();
 		void run( const std::vector<Vertex>& vertexBuf,  const std::vector<unsigned short>& indexBuf );
 	private:
 		bool backFaceTest( Triangle<VSO>& polygon ) const;
-		void clip( Triangle<VSO>& polygon ) const;
-		void perspectiveDivide( Triangle<VSO>& polygon ) const;
+		void clip( Triangle<VSO>& polygon );
+		void renderClippedPolygon( Triangle<VSO>& polygon );
+		void perspectiveDivide( VSO& vso ) const;
 		void viewport( VSO& vso ) const;
-		void callRasterizer( Triangle<VSO>& polygon );
 
 	private:
 		Rasterizer m_rasterizer;
@@ -41,7 +42,7 @@ namespace Core
 
 		struct 
 		{
-			bool backfaceCullingFlag;
+			bool backFaceCullingFlag;
 			bool wireframeFlag;
 		}
 		m_properties;

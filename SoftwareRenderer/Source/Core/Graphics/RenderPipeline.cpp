@@ -11,7 +11,7 @@ namespace Core
 
 	void RenderPipeline::backFaceCulling( bool enabled )
 	{
-		m_properties.backfaceCullingFlag = enabled;
+		m_properties.backFaceCullingFlag = enabled;
 	}
 	void RenderPipeline::wireframeRendering( bool enabled )
 	{
@@ -22,6 +22,11 @@ namespace Core
 	{
 		m_shader = shader;
 		m_rasterizer.bindShaderProgram(shader);
+	}
+
+	void RenderPipeline::beginFrame()
+	{
+		m_rasterizer.clearBuffers();
 	}
 
 	// Renderer entry point
@@ -52,38 +57,156 @@ namespace Core
 
 	bool RenderPipeline::backFaceTest( Triangle<VSO>& polygon ) const
 	{
-		throw std::exception( "Not implemented yet!" );
+		if ( !m_properties.backFaceCullingFlag )
+			return true;
+
+		const Vec3 u = polygon.v1.posView - polygon.v0.posView;
+		const Vec3 v = polygon.v2.posView - polygon.v0.posView;
+		const Vec3 n = ( u.cross(v) ).normalize();
+
+		const Vec3 lookDir = { 0, 0, -1 };
+		float d = lookDir.dot(n);
+
+		return ( d < 0 );
 	}
 
-	void RenderPipeline::clip( Triangle<VSO>& polygon ) const
+	void RenderPipeline::clip( Triangle<VSO>& polygon )
 	{
-		throw std::exception( "Not implemented yet!" );
+		// cull tests
+		if (polygon.v0.pos.x > polygon.v0.pos.w&&
+			polygon.v1.pos.x > polygon.v1.pos.w&&
+			polygon.v2.pos.x > polygon.v2.pos.w)
+		{
+			return;
+		}
+		if (polygon.v0.pos.x < -polygon.v0.pos.w &&
+			polygon.v1.pos.x < -polygon.v1.pos.w &&
+			polygon.v2.pos.x < -polygon.v2.pos.w)
+		{
+			return;
+		}
+		if (polygon.v0.pos.y > polygon.v0.pos.w&&
+			polygon.v1.pos.y > polygon.v1.pos.w&&
+			polygon.v2.pos.y > polygon.v2.pos.w)
+		{
+			return;
+		}
+		if (polygon.v0.pos.y < -polygon.v0.pos.w &&
+			polygon.v1.pos.y < -polygon.v1.pos.w &&
+			polygon.v2.pos.y < -polygon.v2.pos.w)
+		{
+			return;
+		}
+		if (polygon.v0.pos.z > polygon.v0.pos.w&&
+			polygon.v1.pos.z > polygon.v1.pos.w&&
+			polygon.v2.pos.z > polygon.v2.pos.w)
+		{
+			return;
+		}
+		if (polygon.v0.pos.z < -polygon.v0.pos.w &&
+			polygon.v1.pos.z < -polygon.v1.pos.w &&
+			polygon.v2.pos.z < -polygon.v2.pos.w )
+		{
+			return;
+		}
+
+		const auto Clip1 = [this](VSO& v0, VSO& v1, VSO& v2)
+		{
+			const float alphaA = (-v0.pos.z) / (v1.pos.z - v0.pos.z);
+			const float alphaB = (-v0.pos.z) / (v2.pos.z - v0.pos.z);
+
+			const auto v0a = MathFunc::linearInterpolation(v0, v1, alphaA);
+			const auto v0b = MathFunc::linearInterpolation(v0, v2, alphaB);
+
+			Triangle<VSO> clippedTri1( v0a, v1, v2 );
+			Triangle<VSO> clippedTri2( v0a, v1, v2 );
+
+			renderClippedPolygon(clippedTri1);
+			renderClippedPolygon(clippedTri2);
+		};
+
+		const auto Clip2 = [this](VSO& v0, VSO& v1, VSO& v2)
+		{
+			const float alpha0 = (-v0.pos.z) / (v2.pos.z - v0.pos.z);
+			const float alpha1 = (-v1.pos.z) / (v2.pos.z - v1.pos.z);
+
+			v0 = MathFunc::linearInterpolation(v0, v2, alpha0);
+			v1 = MathFunc::linearInterpolation(v1, v2, alpha1);
+
+			Triangle<VSO> clippedTri( v0, v1, v2 );
+
+			renderClippedPolygon(clippedTri);
+		};
+
+		// near clipping
+		if (polygon.v0.pos.z < -1.0f)
+		{
+			if (polygon.v1.pos.z < -1.0f)
+			{
+				Clip2(polygon.v0, polygon.v1, polygon.v2);
+			}
+			else if (polygon.v2.pos.z < -1.0f)
+			{
+				Clip2(polygon.v0, polygon.v2, polygon.v1);
+			}
+			else
+			{
+				Clip1(polygon.v0, polygon.v1, polygon.v2);
+			}
+		}
+		else if (polygon.v1.pos.z < -1.0f)
+		{
+			if (polygon.v2.pos.z < -1.0f)
+			{
+				Clip2(polygon.v1, polygon.v2, polygon.v0);
+			}
+			else
+			{
+				Clip1(polygon.v1, polygon.v0, polygon.v2);
+			}
+		}
+		else if (polygon.v2.pos.z < -1.0f)
+		{
+			Clip1(polygon.v2, polygon.v0, polygon.v1);
+		}
+		else // no near clipping necessary
+		{
+			renderClippedPolygon(polygon);
+		}
 	}
 
-	void RenderPipeline::perspectiveDivide( Triangle<VSO>& polygon ) const
+	void RenderPipeline::renderClippedPolygon( Triangle<VSO>& polygon ) 
 	{
-		throw std::exception( "Not implemented yet!" );
+		perspectiveDivide( polygon.v0 );
+		perspectiveDivide( polygon.v1 );
+		perspectiveDivide( polygon.v2 );
+
+		viewport( polygon.v0 );
+		viewport( polygon.v1 );
+		viewport( polygon.v2 );
+
+		if (m_properties.wireframeFlag)
+			m_rasterizer.triangleWireframe(polygon.v0.pos, polygon.v1.pos, polygon.v2.pos, Vec4(1.0f, 1.0f, 1.0f, 1.0f));
+		else
+			m_rasterizer.triangle( polygon );
+	}
+
+	void RenderPipeline::perspectiveDivide( VSO& vso ) const
+	{
+		const float wInv = 1 / vso.pos.w;
+
+		vso.pos.x *= wInv;
+		vso.pos.y *= wInv;
+		vso.pos.z *= wInv;
+		vso.pos.w  = wInv;
+
+		vso.uv *= wInv;		// for perspective correction.
+		vso.color *= wInv;
 	}
 
 	void RenderPipeline::viewport( VSO& vso ) const
 	{
-		vso.pos.x = m_viewport.width * 0.5f + m_viewport.topLeftX;
-		vso.pos.y = ( 1 - m_viewport.height ) * m_viewport.topLeftY;
-
-		throw std::exception( "Not implemented yet!" );
-	}
-
-	void RenderPipeline::callRasterizer( Triangle<VSO>& polygon )
-	{
-		viewport(polygon.v0);
-		viewport(polygon.v1);
-		viewport(polygon.v2);
-
-		if( m_properties.wireframeFlag )
-			m_rasterizer.triangleWireframe();
-		else
-			m_rasterizer.triangle();
-
-		throw std::exception( "Not implemented yet!" );
+		vso.pos.x = ( vso.pos.x + 1 ) * m_viewport.width * 0.5f + m_viewport.topLeftX;
+		vso.pos.y = ( 1 - vso.pos.y ) * m_viewport.height * 0.5f + m_viewport.topLeftY;
 	}
 }
