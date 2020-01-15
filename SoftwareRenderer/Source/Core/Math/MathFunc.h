@@ -11,7 +11,7 @@ namespace Core {
 	{
 	public:
 		template<typename T>
-		static T linterp(const T& src, const T& dst, float linterpFactor)
+		static T linearInterpolation(const T& src, const T& dst, float linterpFactor)
 		{
 			return src + (dst - src) * linterpFactor;
 		}
