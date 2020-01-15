@@ -11,7 +11,9 @@ namespace Core
 		DepthBuffer( int width, int height )
 			:
 			Buffer( width,height )
-		{ }
+		{
+			clear();
+		}
 
 		void clear() override
 		{
