@@ -19,6 +19,7 @@
     <ClCompile Include="Source\Core\Math\Vec4.cpp" />
     <ClCompile Include="Source\Core\App.cpp" />
     <ClCompile Include="Source\Core\Graphics\Shaders\DefaultShader.cpp" />
+    <ClCompile Include="Source\Core\Graphics\Mesh.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Core\Graphics\Buffer.h" />
@@ -41,5 +42,7 @@
     <ClInclude Include="Source\Core\App.h" />
     <ClInclude Include="Source\Sandbox\DemoApp.h" />
     <ClInclude Include="Source\Core\Graphics\Shaders\DefaultShader.h" />
+    <ClInclude Include="Source\Core\Graphics\Shaders\TextureShader.h" />
+    <ClInclude Include="Source\Core\Graphics\Mesh.h" />
   </ItemGroup>
 </Project>

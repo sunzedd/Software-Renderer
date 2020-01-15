@@ -73,6 +73,10 @@
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(SolutionDir)Deps\imgui\;$(SolutionDir)Deps\imgui-sfml\;$(SolutionDir)Deps\SFML-2.5.1\include\</AdditionalIncludeDirectories>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
+      <FloatingPointModel>Fast</FloatingPointModel>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -86,6 +90,7 @@
     <ClCompile Include="Source\Core\App.cpp" />
     <ClCompile Include="Source\Core\Graphics\Color.cpp" />
     <ClCompile Include="Source\Core\Graphics\IShaderProgram.cpp" />
+    <ClCompile Include="Source\Core\Graphics\Mesh.cpp" />
     <ClCompile Include="Source\Core\Graphics\Rasterizer.cpp" />
     <ClCompile Include="Source\Core\Graphics\RenderPipeline.cpp" />
     <ClCompile Include="Source\Core\Graphics\Shaders\DefaultShader.cpp" />
@@ -110,9 +115,11 @@
     <ClInclude Include="Source\Core\Graphics\DepthBuffer.h" />
     <ClInclude Include="Source\Core\Graphics\FrameBuffer.h" />
     <ClInclude Include="Source\Core\Graphics\IShaderProgram.h" />
+    <ClInclude Include="Source\Core\Graphics\Mesh.h" />
     <ClInclude Include="Source\Core\Graphics\Rasterizer.h" />
     <ClInclude Include="Source\Core\Graphics\RenderPipeline.h" />
     <ClInclude Include="Source\Core\Graphics\Shaders\DefaultShader.h" />
+    <ClInclude Include="Source\Core\Graphics\Shaders\TextureShader.h" />
     <ClInclude Include="Source\Core\Graphics\Triangle.h" />
     <ClInclude Include="Source\Core\Graphics\Vertex.h" />
     <ClInclude Include="Source\Core\Math\Mat4.h" />
