@@ -40,16 +40,6 @@ namespace Core
 		}
 	}
 
-	void App::test()
-	{
-		m_frameBuffer.fill( Color( 0, 0, 0 ) );
-
-		for( int i = 0; i < 100; i++ )
-		{
-			m_frameBuffer.setPixel( i, 100, Vec4( 0, 0, 1, 1 ) );
-		}
-	}
-
 	void App::receiveWindowEvent()
 	{
 		while (m_pWindow->pollEvent(m_windowEvent))
@@ -75,7 +65,9 @@ namespace Core
 	}
 
 	void App::updateScene( unsigned int dtime )
-	{ }
+	{
+		m_scene.update(dtime);
+	}
 
 	void App::updateGraphics( unsigned int dtime )
 	{
@@ -84,7 +76,7 @@ namespace Core
 		static const std::string resWidth = std::to_string(m_windowProps.width);
 		static const std::string resHeight = std::to_string(m_windowProps.height);
 
-		test();
+		m_scene.render(m_renderer);
 
 		ImGui::Begin( "Properties" );
 		ImGui::Text( "Resolution: %s x %s", resWidth.c_str(), resHeight.c_str() );

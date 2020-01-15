@@ -1,67 +1,32 @@
 #pragma once
 #include "../Core/App.h"
 #include "../Core/Graphics/Vertex.h"
-#include "../Core/Graphics/Shaders/DefaultShader.h"
+#include "../Core/Graphics/Shaders/TextureShader.h"
+#include "../Core/Graphics/Mesh.h"
+#include "../Core/Scene/Scene.h"
 
 namespace cr = Core;
 
 class DemoApp : public Core::App
 {
-private:
-	std::vector<cr::Vertex> vertexBuffer;
-	std::vector<unsigned short> indexBuffer;
-	std::shared_ptr<cr::IShaderProgram> shader;
-
-	cr::Vec3 rot;
-	cr::Vec3 pos = {0, 0, -3};
-
 public:
 	DemoApp()
 		:
 		App()
 	{ 
-		m_pWindow->setSize(sf::Vector2u(1280, 720));
-
-		vertexBuffer =  
-		{
-			//  pos		  // normal	    // uv	// color
-			{ {  0,    0.5, 0 },  { 0, 0, 0, 0 }, { 0, 0 }, { 1, 0, 0, 1 } },
-			{ {  0.5, -0.5, 0 },  { 0, 0, 0, 0 }, { 0, 0 }, { 0, 1, 0, 1 } },
-			{ { -0.5, -0.5, 0 },  { 0, 0, 0, 0 }, { 0, 0 }, { 0, 0, 1, 1 } }
-		};
-
-		indexBuffer =
-		{
-			2, 1, 0
-		};
-
-		shader = std::make_shared<cr::DefaultShader>();
-
-		std::dynamic_pointer_cast<cr::DefaultShader>(shader)->bindViewMatrix(cr::Mat4());
-		std::dynamic_pointer_cast<cr::DefaultShader>(shader)->bindProjectionMatrix(cr::Mat4::perspective(50.0f, 16.0 / 9.0, 0.1, 10.0f));
+		m_pWindow->setSize(sf::Vector2u(1600, 900));
+		initScene();
 	} 
-
-	void render()
-	{
-		m_renderer.bindShaderProgram(shader);
-		m_renderer.wireframeRendering(false);
-		m_renderer.backFaceCulling(false);
-
-		cr::Mat4 rotM = cr::Mat4::rotationX(rot.x) * cr::Mat4::rotationY(rot.y) * cr::Mat4::rotationZ(rot.z);
-		cr::Mat4 posM = cr::Mat4::translation(pos);
-
-		cr::Mat4 modelM = rotM * posM;
-		std::dynamic_pointer_cast<cr::DefaultShader>( shader )->bindModelMatrix( modelM );
-
-		m_renderer.beginFrame();
-		m_renderer.run(vertexBuffer, indexBuffer);
-	}
 
 	void updateScene(unsigned int dtime) override
 	{
-		rot.x += dtime * 0.05;
-		rot.y += dtime * 0.05;
-		rot.z += dtime * 0.05;
+		//if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))	 rot.x += dtime * 0.035;
+		//if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))	 rot.x -= dtime * 0.035;
+		//if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) rot.z += dtime * 0.035;
+		//if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))	 rot.z -= dtime * 0.035;
+		//
+		//if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) pos.z += dtime * 0.003;
+		//if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) pos.z -= dtime * 0.003;
 	}
 
 	void updateGraphics(unsigned int dtime) override
@@ -71,11 +36,43 @@ public:
 		static const std::string resWidth = std::to_string(m_windowProps.width);
 		static const std::string resHeight = std::to_string(m_windowProps.height);
 
-		render();
+		m_scene.render(m_renderer);
 
 		ImGui::Begin("Properties");
 		ImGui::Text("Resolution: %s x %s", resWidth.c_str(), resHeight.c_str());
 		ImGui::Text("FPS: %s", std::to_string(fps).c_str());
 		ImGui::End();
+	}
+
+private:
+	void initScene()
+	{
+		// Texture loading
+		auto boxTexture  = std::make_shared<sf::Image>();
+		auto metalTexture = std::make_shared<sf::Image>();
+		boxTexture->loadFromFile("assets/box.jpg");
+		metalTexture->loadFromFile("assets/metal.jpg");
+
+		// Texture shader setup
+		auto texShader1 = std::make_shared<cr::TextureShader>();
+		auto texShader2 = std::make_shared<cr::TextureShader>();
+		texShader1->bindTexture(boxTexture);
+		texShader1->bindTexture(metalTexture);
+
+		// Meshes creation
+		auto cubeMesh1 = cr::Mesh::cube();
+		auto cubeMesh2 = cr::Mesh::cube();
+
+		// Entities creation
+		auto cube1 = std::make_shared<cr::Entity>(cubeMesh1, cr::Vec3());
+		auto cube2 = std::make_shared<cr::Entity>(cubeMesh2, cr::Vec3(2, 0, -3));
+
+		// Attach shaders to entities
+		cube1->attachShader(texShader1);
+		cube2->attachShader(texShader2);
+
+		// Insert entities to the scene;
+		m_scene.add("cube1", cube1);
+		m_scene.add("cube2", cube2);
 	}
 };

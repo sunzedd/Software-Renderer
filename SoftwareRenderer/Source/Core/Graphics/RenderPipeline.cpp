@@ -62,9 +62,12 @@ namespace Core
 
 		const Vec3 u = polygon.v1.posView - polygon.v0.posView;
 		const Vec3 v = polygon.v2.posView - polygon.v0.posView;
-		const Vec3 n = ( u.cross(v) ).normalize();
+		Vec3 n = u.cross(v);
+		n.normalize();
 
-		const Vec3 lookDir = { 0, 0, -1 };
+		Vec3 lookDir = polygon.v0.posView;
+		lookDir.normalize();
+
 		float d = lookDir.dot(n);
 
 		return ( d < 0 );

@@ -9,6 +9,8 @@
 #include "Graphics/FrameBuffer.h"
 #include "Graphics/RenderPipeline.h"
 
+#include "Scene/Scene.h"
+
 #define DEFAULT_WIDTH  800
 #define DEFAULT_HEIGHT 600
 
@@ -31,7 +33,6 @@ namespace Core
 		virtual ~App();
 
 		void run();
-		void test();
 
 	protected:
 		virtual void receiveWindowEvent();
@@ -48,7 +49,8 @@ namespace Core
 			int width;
 			int height;
 			std::string title;
-		} m_windowProps;
+		}
+		m_windowProps;
 
 		std::unique_ptr<sf::RenderWindow> m_pWindow;
 		FrameBuffer m_frameBuffer;
@@ -57,6 +59,8 @@ namespace Core
 
 		sf::Event m_windowEvent;
 		sf::Clock m_timer;
+
+		Scene m_scene;
 
 		RenderPipeline m_renderer;
 	};

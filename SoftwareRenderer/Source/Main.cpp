@@ -4,6 +4,7 @@
 
 int main()
 {
+	
 	try
 	{
 		DemoApp a;
@@ -13,6 +14,7 @@ int main()
 	{
 		std::cout << e.what() << std::endl;
 	}
-
+	
+	//system("pause");
 	return 0;
 }

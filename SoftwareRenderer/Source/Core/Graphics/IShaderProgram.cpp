@@ -2,6 +2,21 @@
 
 namespace Core
 {
+	void IShaderProgram::bindModelMatrix(const Mat4& m)
+	{
+		model = m;
+	}
+
+	void IShaderProgram::bindViewMatrix(const Mat4& m)
+	{
+		view = m;
+	}
+
+	void IShaderProgram::bindProjectionMatrix(const Mat4& m)
+	{
+		proj = m;
+	}
+
 	VSO::VSO(const Vertex& v)
 	{
 		pos = v.pos;

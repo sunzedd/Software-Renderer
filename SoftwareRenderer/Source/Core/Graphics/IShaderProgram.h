@@ -10,6 +10,15 @@ namespace Core
 	public:
 		virtual VSO vertexShader(const Vertex& v) = 0;
 		virtual Vec4 pixelShader(const VSO& interpolated) = 0;
+
+		void bindModelMatrix(const Mat4& m);
+		void bindViewMatrix(const Mat4& m);
+		void bindProjectionMatrix(const Mat4& m);
+
+	protected:
+		Mat4 model;
+		Mat4 view;
+		Mat4 proj;
 	};
 
 	// Vertex shader output data structure.

@@ -19,19 +19,4 @@ namespace Core
 	{
 		return interpolated.color;
 	}
-
-	void DefaultShader::bindModelMatrix( const Mat4& m )
-	{
-		model = m;
-	}
-
-	void DefaultShader::bindViewMatrix( const Mat4& m )
-	{
-		view = m;
-	}
-
-	void DefaultShader::bindProjectionMatrix( const Mat4& m ) 
-	{
-		proj = m;
-	}
 }
