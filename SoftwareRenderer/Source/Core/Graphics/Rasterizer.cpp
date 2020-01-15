@@ -168,7 +168,7 @@ namespace Core
 			}
 		}
 	}
-	// does flat *TOP* tri-specific calculations and calls DrawFlatTriangle
+
 	void Rasterizer::triangleFlatTop( const VSO& it0, const VSO& it1, const VSO& it2 )
 	{
 		// calulcate dVertex / dy
@@ -198,55 +198,42 @@ namespace Core
 		// call the flat triangle render routine
 		triangleFlat(it0, it1, it2, dit0, dit1, itEdge1);
 	}
-	// does processing common to both flat top and flat bottom tris
-	// scan over triangle in screen space, interpolate attributes,
-	// depth cull, invoke ps and write pixel to screen
+
 	void Rasterizer::triangleFlat(const VSO& it0, const VSO& it1, const VSO& it2, const VSO& dv0, const VSO& dv1, VSO itEdge1)
 	{
-		// create edge interpolant for left edge (always v0)
 		auto itEdge0 = it0;
 
-		// calculate start and end scanlines
 		const int yStart = std::max((int)ceil(it0.pos.y - 0.5f), 0);
-		const int yEnd = std::min((int)ceil(it2.pos.y - 0.5f), (int)m_frameBuf.height() - 1); // the scanline AFTER the last line drawn
+		const int yEnd = std::min((int)ceil(it2.pos.y - 0.5f), (int)m_frameBuf.height() - 1);
 
-		// do interpolant prestep
 		itEdge0 += dv0 * (float(yStart) + 0.5f - it0.pos.y);
 		itEdge1 += dv1 * (float(yStart) + 0.5f - it0.pos.y);
 
 		for (int y = yStart; y < yEnd; y++, itEdge0 += dv0, itEdge1 += dv1)
 		{
-			// calculate start and end pixels
 			const int xStart = std::max((int)ceil(itEdge0.pos.x - 0.5f), 0);
-			const int xEnd = std::min((int)ceil(itEdge1.pos.x - 0.5f), (int)m_frameBuf.width() - 1); // the pixel AFTER the last pixel drawn
+			const int xEnd = std::min((int)ceil(itEdge1.pos.x - 0.5f), (int)m_frameBuf.width() - 1);
 
-			// create scanline interpolant startpoint
-			// (some waste for interpolating x,y,z, but makes life easier not having
-			//  to split them off, and z will be needed in the future anyways...)
 			auto iLine = itEdge0;
 
-			// calculate delta scanline interpolant / dx
 			const float dx = itEdge1.pos.x - itEdge0.pos.x;
 			const auto diLine = (itEdge1 - iLine) / dx;
 
-			// prestep scanline interpolant
 			iLine += diLine * (float(xStart) + 0.5f - itEdge0.pos.x);
 
 			for (int x = xStart; x < xEnd; x++, iLine += diLine)
 			{
-				// do z rejection / update of z buffer
-				// skip shading step if z rejected (early z)
 				if (m_depthBuf.testAndSet(x, y, iLine.pos.z))
 				{
 					// recover interpolated z from interpolated 1/z
 					const float w = 1.0f / iLine.pos.w;
-					// recover interpolated attributes
-					// (wasted effort in multiplying pos (x,y,z) here, but
-					//  not a huge deal, not worth the code complication to fix)
-					const auto attr = iLine * w;
-					// invoke pixel shader with interpolated vertex attributes
-					// and use result to set the pixel color on the screen
-					m_frameBuf.setPixel(x, y, m_shader->pixelShader(attr));
+
+					VSO interpolated = iLine;
+					interpolated.uv *= w;
+					interpolated.color *= w;
+					interpolated.intensity *= w;
+
+					m_frameBuf.setPixel(x, y, m_shader->pixelShader(interpolated));
 				}
 			}
 		}
