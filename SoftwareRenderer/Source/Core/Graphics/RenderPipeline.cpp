@@ -119,7 +119,7 @@ namespace Core
 			const auto v0b = MathFunc::linearInterpolation(v0, v2, alphaB);
 
 			Triangle<VSO> clippedTri1( v0a, v1, v2 );
-			Triangle<VSO> clippedTri2( v0a, v1, v2 );
+			Triangle<VSO> clippedTri2( v0b, v0a, v2 );
 
 			renderClippedPolygon(clippedTri1);
 			renderClippedPolygon(clippedTri2);
@@ -139,13 +139,13 @@ namespace Core
 		};
 
 		// near clipping
-		if (polygon.v0.pos.z < -1.0f)
+		if (polygon.v0.pos.z < -polygon.v0.pos.w)
 		{
-			if (polygon.v1.pos.z < -1.0f)
+			if (polygon.v1.pos.z < -polygon.v1.pos.w)
 			{
 				Clip2(polygon.v0, polygon.v1, polygon.v2);
 			}
-			else if (polygon.v2.pos.z < -1.0f)
+			else if (polygon.v2.pos.z < -polygon.v2.pos.w)
 			{
 				Clip2(polygon.v0, polygon.v2, polygon.v1);
 			}
@@ -154,9 +154,9 @@ namespace Core
 				Clip1(polygon.v0, polygon.v1, polygon.v2);
 			}
 		}
-		else if (polygon.v1.pos.z < -1.0f)
+		else if (polygon.v1.pos.z < -polygon.v1.pos.w)
 		{
-			if (polygon.v2.pos.z < -1.0f)
+			if (polygon.v2.pos.z < -polygon.v2.pos.w)
 			{
 				Clip2(polygon.v1, polygon.v2, polygon.v0);
 			}
@@ -165,7 +165,7 @@ namespace Core
 				Clip1(polygon.v1, polygon.v0, polygon.v2);
 			}
 		}
-		else if (polygon.v2.pos.z < -1.0f)
+		else if (polygon.v2.pos.z < -polygon.v2.pos.w)
 		{
 			Clip1(polygon.v2, polygon.v0, polygon.v1);
 		}
@@ -202,6 +202,7 @@ namespace Core
 
 		vso.uv *= wInv;		// for perspective correction.
 		vso.color *= wInv;
+		vso.intensity *= wInv;
 	}
 
 	void RenderPipeline::viewport( VSO& vso ) const
