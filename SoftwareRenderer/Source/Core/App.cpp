@@ -65,6 +65,8 @@ namespace Core
 	{
 		m_backBufferTex.update( ( unsigned char* )m_frameBuffer.pixels() );
 		m_pBackBufferSprite->setTexture( m_backBufferTex );
+
+		m_pWindow->clear();
 		m_pWindow->draw( *m_pBackBufferSprite );
 
 		ImGui::SFML::Render( *m_pWindow );
