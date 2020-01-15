@@ -2,6 +2,14 @@
 
 namespace Core
 {
+	VSO::VSO(const Vertex& v)
+	{
+		pos = v.pos;
+		n = v.n;
+		uv = v.uv;
+		color = v.color;
+	}
+
 	VSO& VSO::operator += (const VSO& rhs)
 	{
 		pos += rhs.pos;
@@ -9,6 +17,7 @@ namespace Core
 		uv += rhs.uv;
 		color += rhs.color;
 		posWorld += rhs.posWorld;
+		posView += rhs.posView;
 		intensity += rhs.intensity;
 
 		return *this;
@@ -21,6 +30,7 @@ namespace Core
 		uv -= rhs.uv;
 		color -= rhs.color;
 		posWorld -= rhs.posWorld;
+		posView -= rhs.posView;
 		intensity -= rhs.intensity;
 
 		return *this;
@@ -33,6 +43,7 @@ namespace Core
 		uv *= val;
 		color *= val;
 		posWorld *= val;
+		posView *= val;
 		intensity *= val;
 
 		return *this;
@@ -45,6 +56,7 @@ namespace Core
 		uv /= val;
 		color /= val;
 		posWorld /= val;
+		posView /= val;
 		intensity /= val;
 
 		return *this;

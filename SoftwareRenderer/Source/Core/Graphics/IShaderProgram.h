@@ -22,9 +22,12 @@ namespace Core
 		Vec4 color;
 
 		Vec4 posWorld;
+		Vec4 posView;
 		Vec4 intensity;
 
 	public:
+		VSO(const Vertex& v);
+
 		VSO& operator += (const VSO& rhs);
 		VSO& operator -= (const VSO& rhs);
 		VSO& operator *= (float val);
