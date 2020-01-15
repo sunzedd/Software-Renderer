@@ -88,6 +88,7 @@
     <ClCompile Include="Source\Core\Graphics\IShaderProgram.cpp" />
     <ClCompile Include="Source\Core\Graphics\Rasterizer.cpp" />
     <ClCompile Include="Source\Core\Graphics\RenderPipeline.cpp" />
+    <ClCompile Include="Source\Core\Graphics\Shaders\DefaultShader.cpp" />
     <ClCompile Include="Source\Core\Graphics\Vertex.cpp" />
     <ClCompile Include="Source\Main.cpp" />
     <ClCompile Include="Source\Core\Math\Mat4.cpp" />
@@ -111,6 +112,7 @@
     <ClInclude Include="Source\Core\Graphics\IShaderProgram.h" />
     <ClInclude Include="Source\Core\Graphics\Rasterizer.h" />
     <ClInclude Include="Source\Core\Graphics\RenderPipeline.h" />
+    <ClInclude Include="Source\Core\Graphics\Shaders\DefaultShader.h" />
     <ClInclude Include="Source\Core\Graphics\Triangle.h" />
     <ClInclude Include="Source\Core\Graphics\Vertex.h" />
     <ClInclude Include="Source\Core\Math\Mat4.h" />

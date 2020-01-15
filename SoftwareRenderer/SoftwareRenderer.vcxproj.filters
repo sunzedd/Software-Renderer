@@ -18,6 +18,7 @@
     <ClCompile Include="Source\Core\Math\Vec3.cpp" />
     <ClCompile Include="Source\Core\Math\Vec4.cpp" />
     <ClCompile Include="Source\Core\App.cpp" />
+    <ClCompile Include="Source\Core\Graphics\Shaders\DefaultShader.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Core\Graphics\Buffer.h" />
@@ -39,5 +40,6 @@
     <ClInclude Include="Source\Core\Math\Vec4.h" />
     <ClInclude Include="Source\Core\App.h" />
     <ClInclude Include="Source\Sandbox\DemoApp.h" />
+    <ClInclude Include="Source\Core\Graphics\Shaders\DefaultShader.h" />
   </ItemGroup>
 </Project>
