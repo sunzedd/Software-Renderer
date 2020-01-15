@@ -20,7 +20,6 @@
     <ClCompile Include="Source\Core\App.cpp" />
     <ClCompile Include="Source\Core\Graphics\Shaders\DefaultShader.cpp" />
     <ClCompile Include="Source\Core\Graphics\Mesh.cpp" />
-    <ClCompile Include="Source\Core\Scene\Scene.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Core\Graphics\Buffer.h" />
@@ -45,10 +44,5 @@
     <ClInclude Include="Source\Core\Graphics\Shaders\DefaultShader.h" />
     <ClInclude Include="Source\Core\Graphics\Shaders\TextureShader.h" />
     <ClInclude Include="Source\Core\Graphics\Mesh.h" />
-    <ClInclude Include="Source\Core\Scene\Scene.h" />
-    <ClInclude Include="Source\Core\Scene\Entity.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Source\Core\Scene\Entity.cpp" />
   </ItemGroup>
 </Project>

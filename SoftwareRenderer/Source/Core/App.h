@@ -9,10 +9,8 @@
 #include "Graphics/FrameBuffer.h"
 #include "Graphics/RenderPipeline.h"
 
-#include "Scene/Scene.h"
-
-#define DEFAULT_WIDTH  800
-#define DEFAULT_HEIGHT 600
+#define DEFAULT_WIDTH  640
+#define DEFAULT_HEIGHT 480
 
 namespace Core 
 {
@@ -59,8 +57,6 @@ namespace Core
 
 		sf::Event m_windowEvent;
 		sf::Clock m_timer;
-
-		Scene m_scene;
 
 		RenderPipeline m_renderer;
 	};

@@ -95,7 +95,6 @@
     <ClCompile Include="Source\Core\Graphics\RenderPipeline.cpp" />
     <ClCompile Include="Source\Core\Graphics\Shaders\DefaultShader.cpp" />
     <ClCompile Include="Source\Core\Graphics\Vertex.cpp" />
-    <ClCompile Include="Source\Core\Scene\Scene.cpp" />
     <ClCompile Include="Source\Main.cpp" />
     <ClCompile Include="Source\Core\Math\Mat4.cpp" />
     <ClCompile Include="Source\Core\Math\MathFunc.cpp" />
@@ -130,12 +129,7 @@
     <ClInclude Include="Source\Core\Math\Vec2i.h" />
     <ClInclude Include="Source\Core\Math\Vec3.h" />
     <ClInclude Include="Source\Core\Math\Vec4.h" />
-    <ClInclude Include="Source\Core\Scene\Entity.h" />
-    <ClInclude Include="Source\Core\Scene\Scene.h" />
     <ClInclude Include="Source\Sandbox\DemoApp.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Source\Core\Scene\Entity.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

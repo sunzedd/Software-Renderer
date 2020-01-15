@@ -66,7 +66,7 @@ namespace Core
 
 	void App::updateScene( unsigned int dtime )
 	{
-		m_scene.update(dtime);
+	
 	}
 
 	void App::updateGraphics( unsigned int dtime )
@@ -75,8 +75,6 @@ namespace Core
 
 		static const std::string resWidth = std::to_string(m_windowProps.width);
 		static const std::string resHeight = std::to_string(m_windowProps.height);
-
-		m_scene.render(m_renderer);
 
 		ImGui::Begin( "Properties" );
 		ImGui::Text( "Resolution: %s x %s", resWidth.c_str(), resHeight.c_str() );
