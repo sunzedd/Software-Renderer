@@ -32,7 +32,7 @@ namespace Core
 
 		Vec4 posWorld;
 		Vec4 posView;
-		Vec4 intensity;
+		float intensity;
 
 	public:
 		VSO(const Vertex& v);
