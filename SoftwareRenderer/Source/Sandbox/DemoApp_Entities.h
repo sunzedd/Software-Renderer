@@ -18,7 +18,7 @@ public:
 
 		cube_shader = std::make_shared<cr::GouraudTextureShader>();
 		cube_entity = std::make_shared<cr::Entity>(cr::Mesh::cube(), cube_shader);
-		std::shared_ptr<sf::Image> cube_tex = std::make_shared<sf::Image>();
+		auto cube_tex = std::make_shared<sf::Image>();
 
 		cube_tex->loadFromFile("assets/box.jpg");
 
@@ -26,7 +26,7 @@ public:
 
 		cube_shader->bindProjectionMatrix(proj);
 		cube_shader->bindLightDirection(cr::Vec3(0, 0, 1));
-		cube_shader->bindTexture(cube_tex);
+		cube_shader->bindTexture(std::move(cube_tex));
 
 		cube_entity->setPosition(cr::Vec3(0, 0, -2));
 	}
