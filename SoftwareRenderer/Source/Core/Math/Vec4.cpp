@@ -131,4 +131,26 @@ namespace Core {
 		
 		return v;
 	}
+
+	Vec4 Vec4::getHadamard(const Vec4& rhs) const
+	{
+		Vec4 out(*this);
+
+		out.x *= rhs.x;
+		out.y *= rhs.y;
+		out.z *= rhs.z;
+		out.w *= rhs.w;
+
+		return out;
+	}
+
+	Vec4& Vec4::saturate()
+	{
+		x = std::min(1.0f, std::max(0.0f, x));
+		y = std::min(1.0f, std::max(0.0f, y));
+		z = std::min(1.0f, std::max(0.0f, z));
+		w = std::min(1.0f, std::max(0.0f, w));
+	
+		return *this;
+	}
 }
