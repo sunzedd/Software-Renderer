@@ -71,6 +71,10 @@ namespace Core
 		m_isTransformed = true;
 	}
 
+	void Entity::update(unsigned int dtime)
+	{
+	}
+
 	void Entity::recalcModelMatrix()
 	{
 		m_modelMatrix = Mat4::scale(m_scale) * Mat4::rotationXYZ(m_rot) * Mat4::translation(m_pos);

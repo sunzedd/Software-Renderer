@@ -24,6 +24,8 @@ namespace Core
 		void rotate(const Vec3& delta);
 		void scale(const Vec3& scaleFactor);
 
+		virtual void update(unsigned int dtime);
+
 	protected:
 		void recalcModelMatrix();
 
