@@ -9,7 +9,7 @@ namespace Core
 	class TextureShader : public DefaultShader
 	{
 	public:
-		Vec4 pixelShader( const VSO& interpolated ) override
+		virtual Vec4 pixelShader( const VSO& interpolated ) override
 		{
 			// clamp texture
 			float uv_x = std::max(0.0f, interpolated.uv.x);
@@ -31,7 +31,7 @@ namespace Core
 			m_pTexture = texture;
 		}
 
-	private:
+	protected:
 		std::shared_ptr<sf::Image> m_pTexture;
 	};
 }

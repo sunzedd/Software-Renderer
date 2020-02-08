@@ -1,6 +1,7 @@
 #pragma once
 #include <memory>
 #include "GouraudShader.h"
+#include "TextureShader.h"
 
 namespace Core
 {
@@ -29,7 +30,7 @@ namespace Core
 			m_pTexture = texture;
 		}
 
-	private:
+	protected:
 		std::shared_ptr<sf::Image> m_pTexture;
 	};
 }
