@@ -11,7 +11,18 @@ namespace Core
 
 		virtual void render(RenderPipeline& renderer);
 
+		const Vec3& getPosition() const { return m_pos; }
+		const Vec3& getRotation() const { return m_rot; }
+		const Vec3& getScale() const { return m_scale; }
+
 		void setActivity(bool enabled);
+		void setPosition(const Vec3& pos);
+		void setRotation(const Vec3& rot);
+		void setScale(const Vec3& scale);
+
+		void move(const Vec3& delta);
+		void rotate(const Vec3& delta);
+		void scale(const Vec3& scaleFactor);
 
 	protected:
 		void recalcModelMatrix();

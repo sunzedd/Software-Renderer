@@ -6,8 +6,9 @@ namespace Core
 		:
 		m_pMesh(mesh),
 		m_pShader(shader),
-		m_isActive (true),
-		m_isTransformed (true)
+		m_scale(Vec3(1, 1, 1)),
+		m_isActive(true),
+		m_isTransformed(true)
 	{ }
 
 	Entity::~Entity()
@@ -34,6 +35,41 @@ namespace Core
 		m_isActive = enabled;
 	}
 
+	void Entity::setPosition(const Vec3& pos)
+	{
+		m_pos = pos;
+		m_isTransformed = true;
+	}
+	void Entity::setRotation(const Vec3& rot)
+	{
+		m_rot = rot;
+		m_isTransformed = true;
+	}
+	void Entity::setScale(const Vec3& scale)
+	{
+		m_scale = scale;
+		m_isTransformed = true;
+	}
+
+	void Entity::move(const Vec3& delta)
+	{
+		m_pos += delta;
+		m_isTransformed = true;
+	}
+
+	void Entity::rotate(const Vec3& delta)
+	{
+		m_rot += delta;
+		m_isTransformed = true;
+	}
+
+	void Entity::scale(const Vec3& scaleFactor)
+	{
+		m_scale.x *= scaleFactor.x;
+		m_scale.y *= scaleFactor.y;
+		m_scale.z *= scaleFactor.z;
+		m_isTransformed = true;
+	}
 
 	void Entity::recalcModelMatrix()
 	{
