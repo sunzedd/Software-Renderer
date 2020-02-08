@@ -1,5 +1,6 @@
 #include <iostream>
 #include "Sandbox/DemoApp.h"
+#include "Sandbox/DemoApp_Entities.h"
 
 
 int main()
@@ -7,7 +8,7 @@ int main()
 	
 	try
 	{
-		DemoApp a;
+		DemoApp_Entities a;
 		a.run();
 	}
 	catch ( const std::exception & e )
