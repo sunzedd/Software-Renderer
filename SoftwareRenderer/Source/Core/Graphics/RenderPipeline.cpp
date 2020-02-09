@@ -70,7 +70,7 @@ namespace Core
 
 		float d = lookDir.dot(n);
 
-		return ( d < 0 );
+		return ( d <= 0 );
 	}
 
 	void RenderPipeline::clip( Triangle<VSO>& polygon )
