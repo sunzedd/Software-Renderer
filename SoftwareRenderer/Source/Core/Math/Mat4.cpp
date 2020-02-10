@@ -32,6 +32,8 @@ namespace Core {
 
 	Mat4& Mat4::operator *= (const Mat4& rhs)
 	{
+		Mat4 tmp(*this);
+
 		for (int32_t row = 0; row < 4; row++)
 		{
 			for (int32_t col = 0; col < 4; col++)
@@ -41,9 +43,11 @@ namespace Core {
 				{
 					sum += m[row][e] * rhs.m[e][col];
 				}
-				m[row][col] = sum;
+				tmp.m[row][col] = sum;
 			}
 		}
+
+		*this = tmp;
 
 		return *this;
 	}
