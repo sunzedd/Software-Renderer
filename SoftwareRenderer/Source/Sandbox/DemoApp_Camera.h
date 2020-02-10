@@ -4,18 +4,20 @@
 #include "../Core/Graphics/Shaders/PointLightShader.h"
 #include "../Core/Graphics/Shaders/PointLightTextureShader.h"
 #include "../Core/World/World.h"
+#include "../Core/World/Camera.h"
 
 namespace cr = Core;
 
-class DemoApp_Scene : public cr::App
+class DemoApp_Camera : public cr::App
 {
 private:
 	std::shared_ptr<cr::Entity> cube_entity;
 	std::shared_ptr<cr::PointLightTextureShader> cube_shader;
 	cr::World level;
+	cr::Camera camera;
 
 public:
-	DemoApp_Scene()
+	DemoApp_Camera()
 	{
 		m_pWindow->setSize(sf::Vector2u(1280, 720));
 
@@ -25,11 +27,11 @@ public:
 
 		cube_tex->loadFromFile("assets/box.jpg");
 
-		cr::Mat4 proj = cr::Mat4::perspective(40.0f, (float)16 / (float)9, 0.001f, 100.0f);
-		cr::Mat4 view = cr::Mat4::translation(cr::Vec3(0, 0, -1));
+		// camera 
+		camera.setup(45.0f, 0.001f, 100.0f, 16.0f / 9.0f);
+		cube_shader->bindProjectionMatrix(camera.getProjMatrix());
+		cube_shader->bindViewMatrix(camera.getViewMatrix());
 
-		cube_shader->bindProjectionMatrix(proj);
-		cube_shader->bindViewMatrix(view);
 		cube_shader->bindLightPosition(cr::Vec3(0, 0, 0));
 		cube_shader->bindTexture(std::move(cube_tex));
 
@@ -55,20 +57,35 @@ public:
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))		level.getScene()[0]->rotate(cr::Vec3(0, -(dRot), 0));
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))	level.getScene()[0]->rotate(cr::Vec3(dRot, 0, 0));
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))		level.getScene()[0]->rotate(cr::Vec3(-(dRot), 0, 0));
-																
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))		level.getScene()[0]->move(cr::Vec3(-(dMove), 0, 0));
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))		level.getScene()[0]->move(cr::Vec3((dMove), 0, 0));
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))		level.getScene()[0]->move(cr::Vec3(0, 0, (dMove)));
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))		level.getScene()[0]->move(cr::Vec3(0, 0, -(dMove)));
 
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Add))		level.getScene()[0]->move(cr::Vec3(0, -(dMove), 0));
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Subtract))	level.getScene()[0]->move(cr::Vec3(0,  (dMove), 0));
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))		camera.move(cr::Direction::Left, dMove);
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))		camera.move(cr::Direction::Right, dMove);
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))		camera.move(cr::Direction::Forward, dMove);
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))		camera.move(cr::Direction::Backward, dMove);
+
+		// mouse movement
+		if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Right))
+		{
+			static int lastMouseX = sf::Mouse::getPosition().x;
+			static int lastMouseY = sf::Mouse::getPosition().y;
+			
+			int curMouseX = sf::Mouse::getPosition().x;
+			int curMouseY = sf::Mouse::getPosition().y;
+		
+			camera.rotate(cr::Vec2(lastMouseX - curMouseX, lastMouseY - curMouseY));
+
+			lastMouseX = curMouseX;
+			lastMouseY = curMouseY;
+		}
 
 		level.update(dtime);
+		camera.update(dtime);
 	}
 
 	void updateGraphics(unsigned int dtime) override
 	{
+		cube_shader->bindViewMatrix(camera.getViewMatrix());
+
 		render();
 	}
 };

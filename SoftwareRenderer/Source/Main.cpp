@@ -1,14 +1,12 @@
 #include <iostream>
-#include "Sandbox/DemoApp.h"
-#include "Sandbox/DemoApp_Scene.h"
-
+#include "Sandbox/DemoApp_Camera.h"
 
 int main()
 {
 	
 	try
 	{
-		DemoApp_Scene a;
+		DemoApp_Camera a;
 		a.run();
 	}
 	catch ( const std::exception & e )
@@ -16,6 +14,5 @@ int main()
 		std::cout << e.what() << std::endl;
 	}
 	
-	//system("pause");
 	return 0;
 }
