@@ -12,33 +12,17 @@ namespace cr = Core;
 class DemoApp_Camera : public cr::App
 {
 private:
-	std::shared_ptr<cr::Entity> cube_entity;
-	std::shared_ptr<cr::PointLightTextureShader> cube_shader;
 	cr::World level;
 	cr::Camera camera;
+
+	std::shared_ptr<cr::PointLightTextureShader> tex_shader;
+	std::shared_ptr<cr::PointLightShader> color_shader;
 
 public:
 	DemoApp_Camera()
 	{
 		m_pWindow->setSize(sf::Vector2u(1024, 768));
-
-		auto cube_mesh = cr::AssetsLoader::loadMesh("assets/cylinder_s.obj");
-		cube_shader = std::make_shared<cr::PointLightTextureShader>();
-
-		cube_entity = std::make_shared<cr::Entity>(cube_mesh, cube_shader);
-		auto cube_tex = std::make_shared<sf::Image>();
-		cube_tex->loadFromFile("assets/Cube.png");
-
-		camera.setPosition(cr::Vec3(0, 0, 3));
-		cube_shader->bindProjectionMatrix(camera.getProjMatrix());
-		cube_shader->bindViewMatrix(camera.getViewMatrix());
-
-		cube_shader->bindLightPosition(cr::Vec3(0, 0, 0));
-		cube_shader->bindTexture(std::move(cube_tex));
-
-		cube_entity->setPosition(cr::Vec3(0, 0, -2));
-
-		level.getScene().push_back(cube_entity);
+		initScene();
 
 		m_renderer.backFaceCulling(true);
 		m_renderer.wireframeRendering(false);
@@ -84,14 +68,57 @@ public:
 
 		level.update(dtime);
 		camera.update(dtime);
-		cube_shader->bindLightPosition(camera.getPosition());
 		
+		color_shader->bindLightPosition(camera.getPosition());
+		tex_shader->bindLightPosition(camera.getPosition());
 	}
 
 	void updateGraphics(unsigned int dtime) override
 	{
-		cube_shader->bindViewMatrix(camera.getViewMatrix());
+		color_shader->bindLightPosition(camera.getPosition());
+		tex_shader->bindLightPosition(camera.getPosition());
+
+		color_shader->bindViewMatrix(camera.getViewMatrix());
+		tex_shader->bindViewMatrix(camera.getViewMatrix());
 
 		render();
+	}
+
+	void initScene()
+	{
+		// camera
+		camera.setPosition(cr::Vec3(0, 0, 3));
+
+		// meshes
+		auto cube_mesh = cr::Mesh::cube();
+		auto sphere_mesh = cr::AssetsLoader::loadMesh("assets/sphere.obj");
+
+		// textures
+		auto cube_texture = cr::AssetsLoader::loadImage("assets/box.jpg");
+		
+		// shaders
+		tex_shader = std::make_shared<cr::PointLightTextureShader>();
+		color_shader = std::make_shared<cr::PointLightShader>();
+
+		tex_shader->bindTexture(cube_texture);
+		tex_shader->bindProjectionMatrix(camera.getProjMatrix());
+		color_shader->bindProjectionMatrix(camera.getProjMatrix());
+
+		// entities
+		auto cube1 = std::make_shared<cr::Entity>(cube_mesh, tex_shader);
+		auto cube2 = std::make_shared<cr::Entity>(cube_mesh, color_shader);
+		auto sphere = std::make_shared<cr::Entity>(sphere_mesh, color_shader);
+
+		cube1->setPosition(cr::Vec3(2, 0, -7));
+		cube2->setPosition(cr::Vec3(-2, 0, -7));
+		sphere->setPosition(cr::Vec3(0, 0, -5));
+		
+		// light
+		color_shader->bindLightPosition(camera.getPosition());
+		tex_shader->bindLightPosition(camera.getPosition());
+
+		level.getScene().push_back(cube1);
+		level.getScene().push_back(cube2);
+		level.getScene().push_back(sphere);
 	}
 };
