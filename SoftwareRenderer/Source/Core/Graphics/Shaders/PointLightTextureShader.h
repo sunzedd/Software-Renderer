@@ -17,14 +17,16 @@ namespace Core
 			out.posView = out.posWorld * view;
 			out.pos = out.posView * proj;
 			out.n *= model;
+			out.n.getNormalized();
 
 			Vec3 v_to_light = Vec4(light_pos) - out.posWorld;
-			float dist = v_to_light.length();
-			Vec3 dir = v_to_light / dist;
+			float distance = v_to_light.length();
+			Vec3 light_unit_vec = v_to_light / distance;
 
-			float att = 1 / (dist * linear_attentuation);
+			float att = 1 / (distance * linear_attentuation + 2);
+			float d = Vec3(out.n).dot(light_unit_vec);
 				
-			out.intensity = att * std::max(0.0f, Vec3(-out.n).dot(dir));
+			out.intensity = att * std::max(0.0f, d);
 
 			return out;
 		}

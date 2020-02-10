@@ -19,8 +19,10 @@ namespace Core
 			float dist = v_to_light.length();
 			Vec3 dir = v_to_light / dist;
 
-			float attentuation = 1.0f / (const_attentuation + linear_attentuation * dist + quadratic_attentuation * dist);
-			out.intensity = attentuation * std::max(0.0f, Vec3(-out.n).dot(dir));
+			//float attentuation = 1.0f / (const_attentuation + linear_attentuation * dist + quadratic_attentuation * dist);
+			float attentuation = 1;
+			
+			out.intensity = attentuation * std::max(0.0f, Vec3(out.n).dot(dir));
 
 			return out;
 		}

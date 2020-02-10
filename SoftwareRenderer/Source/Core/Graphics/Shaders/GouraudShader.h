@@ -19,7 +19,7 @@ namespace Core
 
 			out.n *= model;
 
-			out.intensity = std::max(0.0f, -(Vec3(out.n).dot(light_dir)));
+			out.intensity = std::max(0.0f, (Vec3(out.n).dot(light_dir)));
 
 			return out;
 		}
