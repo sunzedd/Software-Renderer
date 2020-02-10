@@ -4,6 +4,8 @@ namespace Core
 {
 	std::shared_ptr<Mesh> AssetsLoader::loadMesh(const std::string& filepath)
 	{
+		int i = 0;
+
 		std::vector<Vec3> positions;
 		std::vector<Vec2> uvs;
 		std::vector<Vec3> normals;
@@ -44,8 +46,6 @@ namespace Core
 			}
 			else if (!strcmp(lineHeader, "f"))
 			{
-				static int i = 0;
-
 				unsigned int posIndex[3], uvIndex[3], normalIndex[3];
 
 				int cn = fscanf_s(file, "%d/%d/%d %d/%d/%d %d/%d/%d\n",
@@ -56,7 +56,7 @@ namespace Core
 				if (cn != 9)
 				{
 					fclose(file);
-					throw Exception("File could not been readed: " + filepath);
+					throw Exception("File could not been read: " + filepath);
 				}
 
 				for (int i = 0; i < 3; i++)
@@ -91,9 +91,23 @@ namespace Core
 			}
 		}
 
+		for (auto& e : vertices)
+			e.color = { 0.42f, 0.60f, 0.8f, 1.0f };
+
 		mesh->setVertexBuffer(vertices);
 		mesh->setIndexBuffer(indices);
 
 		return std::move(mesh);
+	}
+	
+	std::shared_ptr<sf::Image> AssetsLoader::loadImage(const std::string& filepath)
+	{
+		auto img = std::make_shared<sf::Image>();
+		img->loadFromFile(filepath);
+
+		if (img->getSize().x == 0 || img->getSize().y == 0)
+			throw Exception("Could not load image");
+
+		return std::move(img);
 	}
 }
