@@ -3,6 +3,7 @@
 #include "../Core/Graphics/Shaders/GouraudTextureShader.h"
 #include "../Core/Graphics/Shaders/PointLightShader.h"
 #include "../Core/Graphics/Shaders/PointLightTextureShader.h"
+#include "../Core/AssetsLoader.h"
 #include "../Core/World/World.h"
 #include "../Core/World/Camera.h"
 
@@ -19,16 +20,16 @@ private:
 public:
 	DemoApp_Camera()
 	{
-		m_pWindow->setSize(sf::Vector2u(1280, 720));
+		m_pWindow->setSize(sf::Vector2u(1024, 768));
 
+		auto cube_mesh = cr::AssetsLoader::loadMesh("assets/cylinder_s.obj");
 		cube_shader = std::make_shared<cr::PointLightTextureShader>();
-		cube_entity = std::make_shared<cr::Entity>(cr::Mesh::cube(), cube_shader);
+
+		cube_entity = std::make_shared<cr::Entity>(cube_mesh, cube_shader);
 		auto cube_tex = std::make_shared<sf::Image>();
+		cube_tex->loadFromFile("assets/Cube.png");
 
-		cube_tex->loadFromFile("assets/box.jpg");
-
-		// camera 
-		camera.setup(45.0f, 0.001f, 100.0f, 16.0f / 9.0f);
+		camera.setPosition(cr::Vec3(0, 0, 3));
 		cube_shader->bindProjectionMatrix(camera.getProjMatrix());
 		cube_shader->bindViewMatrix(camera.getViewMatrix());
 
@@ -38,6 +39,9 @@ public:
 		cube_entity->setPosition(cr::Vec3(0, 0, -2));
 
 		level.getScene().push_back(cube_entity);
+
+		m_renderer.backFaceCulling(true);
+		m_renderer.wireframeRendering(false);
 	}
 
 	void render()
@@ -80,6 +84,8 @@ public:
 
 		level.update(dtime);
 		camera.update(dtime);
+		cube_shader->bindLightPosition(camera.getPosition());
+		
 	}
 
 	void updateGraphics(unsigned int dtime) override
