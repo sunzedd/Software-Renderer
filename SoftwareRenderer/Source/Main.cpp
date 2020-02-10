@@ -3,7 +3,6 @@
 
 int main()
 {
-	
 	try
 	{
 		DemoApp_Camera a;
@@ -13,6 +12,7 @@ int main()
 	{
 		std::cout << e.what() << std::endl;
 	}
+	
 	
 	return 0;
 }
