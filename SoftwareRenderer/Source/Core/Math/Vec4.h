@@ -35,7 +35,10 @@ namespace Core {
 		Vec4& operator *= (const Mat4& mat4);
 		Vec4 friend operator * (const Vec4& vec4, const Mat4& mat4);
 
+		float length() const;
+
 		Vec4 getHadamard(const Vec4& rhs) const;
+		Vec4 getNormalized() const;
 		Vec4& saturate();
 	};
 }

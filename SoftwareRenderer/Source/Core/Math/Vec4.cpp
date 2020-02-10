@@ -132,6 +132,11 @@ namespace Core {
 		return v;
 	}
 
+	float Vec4::length() const
+	{
+		return sqrt(x * x + y * y + z * z + w * w);
+	}
+
 	Vec4 Vec4::getHadamard(const Vec4& rhs) const
 	{
 		Vec4 out(*this);
@@ -140,6 +145,16 @@ namespace Core {
 		out.y *= rhs.y;
 		out.z *= rhs.z;
 		out.w *= rhs.w;
+
+		return out;
+	}
+
+	Vec4 Vec4::getNormalized() const
+	{
+		Vec4 out(*this);
+
+		const float l = out.length();
+		out /= l;
 
 		return out;
 	}
