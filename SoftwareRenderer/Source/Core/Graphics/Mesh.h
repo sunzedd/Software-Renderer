@@ -12,11 +12,12 @@ namespace Core
 
 		static std::shared_ptr<Mesh> quad();
 		static std::shared_ptr<Mesh> cube();
-		static std::shared_ptr<Mesh> sphere();
-		static std::shared_ptr<Mesh> cylinder();
 
 		const std::vector<Vertex>& vertices() const { return m_vertices; }
 		const std::vector<unsigned short>& indices() const { return m_indices; }
+
+		void setVertexBuffer(const std::vector<Vertex>& vertices);
+		void setIndexBuffer(const std::vector<unsigned short>& indices);
 
 		virtual void render(RenderPipeline& renderer) const;
 

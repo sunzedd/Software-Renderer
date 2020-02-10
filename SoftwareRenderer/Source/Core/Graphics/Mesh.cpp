@@ -89,4 +89,14 @@ namespace Core
 	{
 		renderer.run(m_vertices, m_indices);
 	}
+
+	void Mesh::setVertexBuffer(const std::vector<Vertex>& vertices)
+	{
+		m_vertices = vertices;
+	}
+
+	void Mesh::setIndexBuffer(const std::vector<unsigned short>& indices)
+	{
+		m_indices = indices;
+	}
 }
