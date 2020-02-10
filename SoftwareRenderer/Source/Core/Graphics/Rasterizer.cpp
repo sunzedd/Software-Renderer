@@ -223,7 +223,7 @@ namespace Core
 
 			for (int x = xStart; x < xEnd; x++, iLine += diLine)
 			{
-				if (m_depthBuf.testAndSet(x, y, iLine.pos.z))
+				if (m_depthBuf.testAndSet(x, y, iLine.pos.w))
 				{
 					// recover interpolated z from interpolated 1/z
 					const float w = 1.0f / iLine.pos.w;
