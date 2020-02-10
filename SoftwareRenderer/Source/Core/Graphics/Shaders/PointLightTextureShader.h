@@ -23,7 +23,7 @@ namespace Core
 			float distance = v_to_light.length();
 			Vec3 light_unit_vec = v_to_light / distance;
 
-			float att = 1 / (distance * linear_attentuation + 2);
+			float att = 1 / (distance * linear_attentuation + quadratic_attentuation * distance * distance + const_attentuation);
 			float d = Vec3(out.n).dot(light_unit_vec);
 				
 			out.intensity = att * std::max(0.0f, d);
@@ -62,9 +62,9 @@ namespace Core
 
 	protected:
 		Vec3 light_pos;
-		float linear_attentuation = 1.0f;
-		float quadratic_attentuation = 0.2f;
-		float const_attentuation = 1.0f;
+		float linear_attentuation = 0.7f;
+		float quadratic_attentuation = 0.619f;
+		float const_attentuation = 0.382f;
 		Vec4 ambient = { 0.05, 0.05, 0.05, 1.0 };
 
 		std::shared_ptr<sf::Image> m_pTexture;

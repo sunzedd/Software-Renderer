@@ -19,8 +19,8 @@ namespace Core
 			float dist = v_to_light.length();
 			Vec3 dir = v_to_light / dist;
 
-			//float attentuation = 1.0f / (const_attentuation + linear_attentuation * dist + quadratic_attentuation * dist);
-			float attentuation = 1;
+			float attentuation = 1.0f / (dist * linear_attentuation + quadratic_attentuation * dist * dist + const_attentuation);
+			//float attentuation = 1;
 			
 			out.intensity = attentuation * std::max(0.0f, Vec3(out.n).dot(dir));
 
@@ -41,7 +41,7 @@ namespace Core
 
 	protected:
 		Vec3 light_pos;
-		float linear_attentuation = 0.1f;
+		float linear_attentuation = 0.7f;
 		float quadratic_attentuation = 0.619f;
 		float const_attentuation = 0.382f;
 		Vec4 ambient = { 0.1, 0.1, 0.1, 1.0 };
