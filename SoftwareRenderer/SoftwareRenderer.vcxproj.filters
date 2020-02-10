@@ -20,6 +20,11 @@
     <ClCompile Include="Source\Core\App.cpp" />
     <ClCompile Include="Source\Core\Graphics\Shaders\DefaultShader.cpp" />
     <ClCompile Include="Source\Core\Graphics\Mesh.cpp" />
+    <ClCompile Include="Source\Core\World\Entity.cpp" />
+    <ClCompile Include="Source\Core\World\World.cpp" />
+    <ClCompile Include="Source\Core\World\Camera.cpp" />
+    <ClCompile Include="Source\Core\World\WorldObject.cpp" />
+    <ClCompile Include="Source\Core\AssetsLoader.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Core\Graphics\Buffer.h" />
@@ -40,9 +45,19 @@
     <ClInclude Include="Source\Core\Math\Vec3.h" />
     <ClInclude Include="Source\Core\Math\Vec4.h" />
     <ClInclude Include="Source\Core\App.h" />
-    <ClInclude Include="Source\Sandbox\DemoApp.h" />
     <ClInclude Include="Source\Core\Graphics\Shaders\DefaultShader.h" />
     <ClInclude Include="Source\Core\Graphics\Shaders\TextureShader.h" />
     <ClInclude Include="Source\Core\Graphics\Mesh.h" />
+    <ClInclude Include="Source\Core\Graphics\Shaders\GouraudShader.h" />
+    <ClInclude Include="Source\Core\Graphics\Shaders\GouraudTextureShader.h" />
+    <ClInclude Include="Source\Core\Graphics\Shaders\PointLightShader.h" />
+    <ClInclude Include="Source\Core\Graphics\Shaders\PointLightTextureShader.h" />
+    <ClInclude Include="Source\Core\World\Entity.h" />
+    <ClInclude Include="Source\Core\World\World.h" />
+    <ClInclude Include="Source\Core\World\Camera.h" />
+    <ClInclude Include="Source\Core\World\WorldObject.h" />
+    <ClInclude Include="Source\Core\World\ICamera.h" />
+    <ClInclude Include="Source\Sandbox\DemoApp_Camera.h" />
+    <ClInclude Include="Source\Core\AssetsLoader.h" />
   </ItemGroup>
 </Project>
