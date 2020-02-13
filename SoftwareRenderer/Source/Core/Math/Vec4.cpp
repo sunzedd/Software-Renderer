@@ -137,6 +137,11 @@ namespace Core {
 		return sqrt(x * x + y * y + z * z + w * w);
 	}
 
+	float Vec4::dot(const Vec4& rhs) const
+	{
+		return x * rhs.x + y * rhs.y + z * rhs.z + w * rhs.w;
+	}
+
 	Vec4 Vec4::getHadamard(const Vec4& rhs) const
 	{
 		Vec4 out(*this);
