@@ -37,6 +37,8 @@ namespace Core {
 
 		float length() const;
 
+		float dot(const Vec4& rhs) const;
+
 		Vec4 getHadamard(const Vec4& rhs) const;
 		Vec4 getNormalized() const;
 		Vec4& saturate();
