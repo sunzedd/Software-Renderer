@@ -23,7 +23,8 @@ namespace Core
 			float distance = v_to_light.length();
 			Vec3 light_unit_vec = v_to_light / distance;
 
-			float att = 1 / (distance * linear_attentuation + quadratic_attentuation * distance * distance + const_attentuation);
+			//float att = 1 / (distance * linear_attentuation + quadratic_attentuation * distance * distance + const_attentuation);
+			float att = 1 / distance;
 			float d = Vec3(out.n).dot(light_unit_vec);
 				
 			out.intensity = att * std::max(0.0f, d);
