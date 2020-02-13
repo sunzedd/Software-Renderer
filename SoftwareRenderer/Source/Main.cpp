@@ -1,5 +1,6 @@
 #include <iostream>
 #include "Sandbox/DemoApp_Camera.h"
+#include "Sandbox/Sb1/DemoApp_New.h"
 
 int main()
 {
