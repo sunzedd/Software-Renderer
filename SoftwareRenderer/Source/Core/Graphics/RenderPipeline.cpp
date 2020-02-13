@@ -2,18 +2,18 @@
 
 namespace Core
 {
-	RenderPipeline::RenderPipeline( FrameBuffer& frameBuf )
+	RenderPipeline::RenderPipeline(FrameBuffer& frameBuf)
 		:
 		m_rasterizer(frameBuf),
 		m_properties{ true, false },
 		m_viewport{ 0, 0, frameBuf.width(), frameBuf.height() }
 	{ }
 
-	void RenderPipeline::backFaceCulling( bool enabled )
+	void RenderPipeline::backFaceCulling(bool enabled)
 	{
 		m_properties.backFaceCullingFlag = enabled;
 	}
-	void RenderPipeline::wireframeRendering( bool enabled )
+	void RenderPipeline::wireframeRendering(bool enabled)
 	{
 		m_properties.wireframeFlag = enabled;
 	}
