@@ -91,11 +91,9 @@ namespace Core
 			}
 		}
 
-		for (auto& e : vertices)
-			e.color = { 0.42f, 0.60f, 0.8f, 1.0f };
-
 		mesh->setVertexBuffer(vertices);
 		mesh->setIndexBuffer(indices);
+		mesh->fillColor(Vec4(1.0f, 1.0f, 1.0f, 1.0f));
 
 		return std::move(mesh);
 	}
