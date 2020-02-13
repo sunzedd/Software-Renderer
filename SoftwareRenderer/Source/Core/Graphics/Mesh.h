@@ -18,6 +18,7 @@ namespace Core
 
 		void setVertexBuffer(const std::vector<Vertex>& vertices);
 		void setIndexBuffer(const std::vector<unsigned short>& indices);
+		void fillColor(const Vec4& color);
 
 		virtual void render(RenderPipeline& renderer) const;
 
