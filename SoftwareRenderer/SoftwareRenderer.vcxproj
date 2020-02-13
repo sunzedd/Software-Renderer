@@ -147,6 +147,8 @@
     <ClInclude Include="Source\Core\World\WorldObject.h" />
     <ClInclude Include="Source\Core\World\World.h" />
     <ClInclude Include="Source\Sandbox\DemoApp_Camera.h" />
+    <ClInclude Include="Source\Sandbox\Sb1\DemoApp_New.h" />
+    <ClInclude Include="Source\Sandbox\Sb1\Shader.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

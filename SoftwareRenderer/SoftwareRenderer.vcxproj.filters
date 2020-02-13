@@ -59,5 +59,7 @@
     <ClInclude Include="Source\Core\World\ICamera.h" />
     <ClInclude Include="Source\Sandbox\DemoApp_Camera.h" />
     <ClInclude Include="Source\Core\AssetsLoader.h" />
+    <ClInclude Include="Source\Sandbox\Sb1\DemoApp_New.h" />
+    <ClInclude Include="Source\Sandbox\Sb1\Shader.h" />
   </ItemGroup>
 </Project>
