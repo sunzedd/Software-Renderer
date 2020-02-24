@@ -36,6 +36,9 @@ namespace Core
 		assert(x < m_width);
 		assert(y < m_height);
 
+		//if (x < 0 || y < 0 || x > m_width - 1 || y > m_height -1)
+		//	return;
+
 		m_pData.get()[m_width * y + x] = value;
 	}
 
