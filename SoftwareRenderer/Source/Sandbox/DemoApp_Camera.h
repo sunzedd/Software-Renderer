@@ -101,17 +101,7 @@ public:
 		li_shader->bindViewMatrix(camera.getViewMatrix());
 
 		render();
-
-		// GUI
-		unsigned int fps = 1 / (static_cast<double>(dtime) / 1000);
-
-		static const std::string resWidth = std::to_string(m_windowProps.width);
-		static const std::string resHeight = std::to_string(m_windowProps.height);
-
-		ImGui::Begin("Properties");
-		ImGui::Text("Resolution: %s x %s", resWidth.c_str(), resHeight.c_str());
-		ImGui::Text("FPS: %s", std::to_string(fps).c_str());
-		ImGui::End();
+		renderGui(dtime);
 	}
 
 	void initScene()
@@ -121,11 +111,11 @@ public:
 
 		// meshes
 		auto cube_mesh = cr::Mesh::cube();
-		auto sphere_mesh = cr::AssetsLoader::loadMesh("assets/sphere.obj");
+		auto sphere_mesh = cr::AssetsLoader::loadMesh("Assets/Meshes/sphere.obj");
 		sphere_mesh->fillColor(cr::Vec4(1.0f, 0.0f, 0.2f, 1.0f));
 
 		// textures
-		auto cube_texture = cr::AssetsLoader::loadImage("assets/box.jpg");
+		auto cube_texture = cr::AssetsLoader::loadImage("Assets/Textures/box.jpg");
 		
 		// shaders
 		tex_shader = std::make_shared<cr::PointLightTextureShader>();
@@ -142,7 +132,7 @@ public:
 		auto cube2 = std::make_shared<cr::Entity>(cube_mesh, color_shader);
 		auto sphere = std::make_shared<cr::Entity>(sphere_mesh, color_shader);
 		li = std::make_shared<cr::Entity>(sphere_mesh, li_shader);
-		li->setScale(cr::Vec3(0.2, 0.2, 0.2));
+		li->setScale(cr::Vec3(0.1, 0.1, 0.1));
 
 		cube1->setPosition(cr::Vec3(2, 0, -7));
 		cube2->setPosition(cr::Vec3(-1, 0, -5));
@@ -150,11 +140,23 @@ public:
 		
 		// light
 		li->setPosition(cr::Vec3(2, 1, -5));
-		//color_shader->bindLightPosition(cr::Vec3(2, -1, -5.5));
-		//tex_shader->bindLightPosition(cr::Vec3(2, -1, -5.5));
 
 		level.getScene().push_back(cube1);
 		level.getScene().push_back(cube2);
 		level.getScene().push_back(sphere);
+	}
+
+	void renderGui(unsigned int dtime)
+	{
+		// GUI
+		unsigned int fps = 1 / (static_cast<double>(dtime) / 1000);
+
+		static const std::string resWidth = std::to_string(m_windowProps.width);
+		static const std::string resHeight = std::to_string(m_windowProps.height);
+
+		ImGui::Begin("Properties");
+		ImGui::Text("Resolution: %s x %s", resWidth.c_str(), resHeight.c_str());
+		ImGui::Text("FPS: %s", std::to_string(fps).c_str());
+		ImGui::End();
 	}
 };
