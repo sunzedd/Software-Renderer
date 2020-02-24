@@ -17,6 +17,16 @@ namespace Core
 	{
 		m_properties.wireframeFlag = enabled;
 	}
+	void RenderPipeline::setViewport(int topLeftX, int topLeftY, int width, int height)
+	{
+		m_viewport =
+		{
+			topLeftX,
+			topLeftY,
+			width,
+			height
+		};
+	}
 
 	void RenderPipeline::bindShaderProgram( std::shared_ptr<IShaderProgram> shader )
 	{

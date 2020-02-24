@@ -24,6 +24,7 @@ namespace Core
 
 		void backFaceCulling( bool enabled );
 		void wireframeRendering( bool enabled );
+		void setViewport(int topLeftX, int topLeftY, int width, int height);
 		void bindShaderProgram( std::shared_ptr<IShaderProgram> shader );
 
 		// Renderer entry point
