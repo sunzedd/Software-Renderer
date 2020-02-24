@@ -12,6 +12,7 @@ namespace Core
 		std::vector<std::shared_ptr<Entity>>& getScene() { return m_scene; }
 
 		virtual void update(unsigned int dtime);
+		virtual void render(RenderPipeline& renderer);
 
 	protected:
 		std::vector<std::shared_ptr<Entity>> m_scene;

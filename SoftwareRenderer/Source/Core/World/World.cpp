@@ -12,4 +12,10 @@ namespace Core
 		for (auto& e : m_scene)
 			e->update(dtime);
 	}
+
+	void World::render(RenderPipeline& renderer)
+	{
+		for (auto& e : m_scene)
+			e->render(renderer);
+	}
 }
