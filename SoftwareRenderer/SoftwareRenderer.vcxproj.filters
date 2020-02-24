@@ -25,6 +25,7 @@
     <ClCompile Include="Source\Core\World\Camera.cpp" />
     <ClCompile Include="Source\Core\World\WorldObject.cpp" />
     <ClCompile Include="Source\Core\AssetsLoader.cpp" />
+    <ClCompile Include="Source\Sandbox\Test1\TestDemo1.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Core\Graphics\Buffer.h" />
@@ -59,7 +60,7 @@
     <ClInclude Include="Source\Core\World\ICamera.h" />
     <ClInclude Include="Source\Sandbox\DemoApp_Camera.h" />
     <ClInclude Include="Source\Core\AssetsLoader.h" />
-    <ClInclude Include="Source\Sandbox\Sb1\DemoApp_New.h" />
-    <ClInclude Include="Source\Sandbox\Sb1\Shader.h" />
+    <ClInclude Include="Source\Sandbox\Test1\TestDemo1.h" />
+    <ClInclude Include="Source\Sandbox\Test1\Shader.h" />
   </ItemGroup>
 </Project>
