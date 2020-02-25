@@ -21,7 +21,7 @@ namespace Core {
 		}
 		static inline float toDegrees(float rad)
 		{
-			return (float)(rad / (CORE_PI / 180));
+			return (float)(rad / (CORE_PI / 180.0f));
 		}
 
 		static Vec3 lineIntersectPlane(const Vec3& planePoint, const Vec3& planeNorm, const Vec3& lineStart, const Vec3& lineEnd);
