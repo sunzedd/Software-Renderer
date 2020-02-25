@@ -111,11 +111,9 @@
     <ClCompile Include="Source\Core\Math\Vec2i.cpp" />
     <ClCompile Include="Source\Core\Math\Vec3.cpp" />
     <ClCompile Include="Source\Core\Math\Vec4.cpp" />
-    <ClCompile Include="Source\Sandbox\Test1\TestDemo1.cpp" />
     <ClCompile Include="Source\DemoApp\GUI\AppPropertiesWidget.cpp" />
     <ClCompile Include="Source\DemoApp\GUI\AppPropertiesWidget.h" />
     <ClCompile Include="Source\DemoApp\GUI\TransformManipulatorWidget.cpp" />
-    <ClCompile Include="Source\Sandbox\Test2\TestDemo2.cpp" />
     <ClCompile Include="Vendor\imgui-SFML.cpp" />
     <ClCompile Include="Vendor\imgui.cpp" />
     <ClCompile Include="Vendor\imgui_draw.cpp" />
@@ -159,12 +157,8 @@
     <ClInclude Include="Source\DemoApp\Shaders\DefaultSingleColorShader.h" />
     <ClInclude Include="Source\DemoApp\Shaders\MixedLightShader.h" />
     <ClInclude Include="Source\DemoApp\Shaders\Shaders.h" />
-    <ClInclude Include="Source\Sandbox\DemoApp_Camera.h" />
-    <ClInclude Include="Source\Sandbox\Test1\Shader.h" />
-    <ClInclude Include="Source\Sandbox\Test1\TestDemo1.h" />
     <ClInclude Include="Source\DemoApp\GUI\TransformManipulatorWidget.h" />
     <ClInclude Include="Source\DemoApp\GUI\Widget.h" />
-    <ClInclude Include="Source\Sandbox\Test2\TestDemo2.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

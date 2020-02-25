@@ -74,13 +74,14 @@ namespace Demo
 		// 1. Meshes:
 		auto sphereMesh = cr::AssetsLoader::loadMesh("Assets\\Meshes\\sphere.obj");
 		auto lightIndicatorMesh = cr::AssetsLoader::loadMesh("Assets\\Meshes\\sphere.obj");
-		//auto cubeMesh = cr::AssetsLoader::loadMesh("Assets\\Meshes\\cube_01.obj");
-		auto cubeMesh = cr::Mesh::cube();
+		auto treeMesh = cr::AssetsLoader::loadMesh("Assets\\Meshes\\tree.obj");
 		auto susannMesh = cr::AssetsLoader::loadMesh("Assets\\Meshes\\susann.obj");
+		auto terrainMesh = cr::AssetsLoader::loadMesh("Assets\\Meshes\\terrain_s.obj");
 
 		sphereMesh->fillColor(vec4(0.3f, 0.3f, 0.9f, 1.0f));
-		cubeMesh->fillColor(vec4(0.8f, 0.2f, 0.1f, 1.0f));
+		treeMesh->fillColor(vec4(0.8f, 0.2f, 0.1f, 1.0f));
 		susannMesh->fillColor(vec4(0.2f, 0.9f, 0.2f, 1.0f));
+		terrainMesh->fillColor(vec4(0.5f, 0.2f, 0.3f, 1.0f));
 
 		// 2. Textures:
 		// ----
@@ -91,13 +92,16 @@ namespace Demo
 
 		// 4. Entities creation and filling the scene:
 		auto sphereObject = std::make_shared<cr::Entity>("Sphere", sphereMesh, shaders.mixedLight);
-		auto cubeObject = std::make_shared<cr::Entity>("Cube", cubeMesh, shaders.mixedLight);
+		auto treeObject = std::make_shared<cr::Entity>("Cube", treeMesh, shaders.mixedLight);
 		auto susannObject = std::make_shared<cr::Entity>("Susann", susannMesh, shaders.mixedLight);
+		auto terrainObject = std::make_shared<cr::Entity>("Terrain", terrainMesh, shaders.mixedLight);
 		auto lightSource = std::make_shared<cr::Entity>("Point light", lightIndicatorMesh, shaders.singleColor);
 
-		sphereObject->setPosition(vec3(0.0f, 0.0f, -3.0f));
-		cubeObject->setPosition(vec3(-3.0f, 0.0f, -3.0f));
-		susannObject->setPosition(vec3(3.0f, 0.0f, -3.0f));
+		sphereObject->setPosition(vec3(0.0f, 1.0f, -3.0f));
+		treeObject->setPosition(vec3(-3.0f, 1.0f, -3.0f));
+		susannObject->setPosition(vec3(3.0f, 1.0f, -3.0f));
+		terrainObject->setPosition(vec3(0.0f, 0.0f, -3.0f));
+		terrainObject->setScale(vec3(1.5f, 1.5f, 1.5f));
 
 		lightSource->setPosition(vec3(0.0f, 2.5f, -3.0f));
 		lightSource->setScale(vec3(0.2f, 0.2f, 0.2f));
@@ -105,8 +109,9 @@ namespace Demo
 		pointLightSource = lightSource;
 
 		worldInstance.getScene().push_back(sphereObject);
-		worldInstance.getScene().push_back(cubeObject);
+		worldInstance.getScene().push_back(treeObject);
 		worldInstance.getScene().push_back(susannObject);
+		worldInstance.getScene().push_back(terrainObject);
 		worldInstance.getScene().push_back(lightSource);
 	}
 
