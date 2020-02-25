@@ -17,6 +17,11 @@ namespace Core
 		proj = m;
 	}
 
+	float IShaderProgram::calcIntesity(const Vec3& normal, const Vec3& lightDirection) const
+	{
+		return normal.dot(-lightDirection.normalized());
+	}
+
 	VSO::VSO(const Vertex& v)
 	{
 		pos = v.pos;
