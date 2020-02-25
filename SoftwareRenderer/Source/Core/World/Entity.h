@@ -7,11 +7,12 @@ namespace Core
 	class Entity : public WorldObject
 	{
 	public:
-		Entity(std::shared_ptr<Mesh> mesh, std::shared_ptr<IShaderProgram> shader);
+		Entity(const std::string& name, std::shared_ptr<Mesh> mesh, std::shared_ptr<IShaderProgram> shader);
 		virtual ~Entity();
 
 		virtual void render(RenderPipeline& renderer);
 
+		const std::pair<std::string, int>& getId() const { return m_id; }
 		const Vec3& getRotation() const { return m_rot; }
 		const Vec3& getScale() const { return m_scale; }
 
@@ -28,6 +29,8 @@ namespace Core
 		void recalcModelMatrix();
 
 	protected:
+		const std::pair<std::string, int> m_id;
+
 		std::shared_ptr<Mesh> m_pMesh;
 		std::shared_ptr<IShaderProgram> m_pShader;
 
@@ -36,5 +39,8 @@ namespace Core
 		Mat4 m_modelMatrix;
 
 		bool m_isActive;
+
+	private:
+		static int m_idCounter;
 	};
 }
