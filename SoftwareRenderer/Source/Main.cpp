@@ -1,13 +1,18 @@
 #include <iostream>
 #include "Sandbox/DemoApp_Camera.h"
-#include "Sandbox/Test1/TestDemo1.h"
+#include "Sandbox/Test2/TestDemo2.h"
+#include "DemoApp/DemoApp.h"
 
 int main()
 {
 	try
 	{
-		auto app = Demo::TestApp1::Create();
-		app->run();
+		Demo::DemoApp a;
+		a.run();
+
+		//auto app = new Demo::TestApp2();
+		//app->run();
+		//delete app;
 	}
 	catch ( const std::exception & e )
 	{

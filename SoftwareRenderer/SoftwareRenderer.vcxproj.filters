@@ -26,6 +26,12 @@
     <ClCompile Include="Source\Core\World\WorldObject.cpp" />
     <ClCompile Include="Source\Core\AssetsLoader.cpp" />
     <ClCompile Include="Source\Sandbox\Test1\TestDemo1.cpp" />
+    <ClCompile Include="Source\Sandbox\Test2\TestDemo2.cpp" />
+    <ClCompile Include="Source\DemoApp\DemoApp.cpp" />
+    <ClCompile Include="Source\DemoApp\GUI\AppPropertiesWidget.h" />
+    <ClCompile Include="Source\DemoApp\GUI\AppPropertiesWidget.cpp" />
+    <ClCompile Include="Source\DemoApp\GUI\TransformManipulatorWidget.cpp" />
+    <ClCompile Include="Source\DemoApp\Shaders\MixedLightShader.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Core\Graphics\Buffer.h" />
@@ -62,5 +68,14 @@
     <ClInclude Include="Source\Core\AssetsLoader.h" />
     <ClInclude Include="Source\Sandbox\Test1\TestDemo1.h" />
     <ClInclude Include="Source\Sandbox\Test1\Shader.h" />
+    <ClInclude Include="Source\Sandbox\Test2\TestDemo2.h" />
+    <ClInclude Include="Source\DemoApp\DemoApp.h" />
+    <ClInclude Include="Source\Core\Engine.h" />
+    <ClInclude Include="Source\DemoApp\GUI\Widget.h" />
+    <ClInclude Include="Source\DemoApp\GUI\TransformManipulatorWidget.h" />
+    <ClInclude Include="Source\DemoApp\Shaders\MixedLightShader.h" />
+    <ClInclude Include="Source\DemoApp\Shaders\Shaders.h" />
+    <ClInclude Include="Source\DemoApp\Shaders\DefaultSingleColorShader.h" />
+    <ClInclude Include="Source\DemoApp\GUI\Widgets.h" />
   </ItemGroup>
 </Project>
