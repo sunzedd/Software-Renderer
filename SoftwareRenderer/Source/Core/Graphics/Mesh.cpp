@@ -85,9 +85,26 @@ namespace Core
 		return cube;
 	}
 
+	std::vector<LineV3> Mesh::buildNormalLinesList(float lineLength) const
+	{
+		std::vector<LineV3> normalLines;
+		normalLines.reserve(m_vertices.size());
+
+		for (const auto& v : m_vertices)
+		{
+			Vec3 n = v.n;
+
+			LineV3 l(v.pos, v.pos + n * lineLength);
+
+			normalLines.push_back(l);
+		}
+
+		return normalLines;
+	}
+
 	void Mesh::render(RenderPipeline& renderer) const
 	{
-		renderer.run(m_vertices, m_indices);
+		renderer.runTriangles(m_vertices, m_indices);
 	}
 
 	void Mesh::setVertexBuffer(const std::vector<Vertex>& vertices)

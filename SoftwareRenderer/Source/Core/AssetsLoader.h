@@ -1,6 +1,7 @@
 #pragma once
-#include "Graphics/Mesh.h"
 #include <iostream>
+
+#include "Graphics/Mesh.h"
 #include "App.h"
 
 #define _CRT_SECURE_NO_WARNINGS
