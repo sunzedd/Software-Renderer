@@ -17,7 +17,7 @@ namespace Core
 		const std::vector<Vertex>& vertices() const { return m_vertices; }
 		const std::vector<unsigned short>& indices() const { return m_indices; }
 
-		std::vector<LineV3> buildNormalLinesList(float lineLength) const;
+		std::vector<LineV3> buildNormalIndicatorLinesList(float lineLength) const;
 
 		void setVertexBuffer(const std::vector<Vertex>& vertices);
 		void setIndexBuffer(const std::vector<unsigned short>& indices);

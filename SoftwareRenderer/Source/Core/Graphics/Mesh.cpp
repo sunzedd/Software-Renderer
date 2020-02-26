@@ -85,7 +85,7 @@ namespace Core
 		return cube;
 	}
 
-	std::vector<LineV3> Mesh::buildNormalLinesList(float lineLength) const
+	std::vector<LineV3> Mesh::buildNormalIndicatorLinesList(float lineLength) const
 	{
 		std::vector<LineV3> normalLines;
 		normalLines.reserve(m_vertices.size());
