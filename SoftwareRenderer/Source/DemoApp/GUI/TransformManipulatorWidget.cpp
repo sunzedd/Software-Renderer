@@ -25,7 +25,7 @@ namespace Demo
 
 	void TransformManipulatorWidget::render()
 	{
-		ImGui::Begin("Transform");
+		ImGui::Begin(m_title.c_str());
 		ImGui::ListBox("Object", &m_selectedEntityIndex, &m_entityLabels[0], m_entityLabels.size(), m_entityLabels.size());
 
 		if (m_selectedEntityIndex > -1)
@@ -41,9 +41,9 @@ namespace Demo
 			ImGui::DrawLine({ 0, 0 }, { 190, 0 }, { 255, 0, 0, 255 }, 2.0f);
 			ImGui::NewLine();
 			ImGui::Text("\t\tPosition:");
-			ImGui::SliderFloat("Tx: ", &selectedEntityTransform.position.x, -10.0f, 10.0f);
-			ImGui::SliderFloat("Ty: ", &selectedEntityTransform.position.y, -10.0f, 10.0f);
-			ImGui::SliderFloat("Tz: ", &selectedEntityTransform.position.z, -10.0f, 10.0f);
+			ImGui::SliderFloat("Tx: ", &selectedEntityTransform.position.x, DEMOAPP_WORLD_MIN_X, DEMOAPP_WORLD_MAX_X);
+			ImGui::SliderFloat("Ty: ", &selectedEntityTransform.position.y, DEMOAPP_WORLD_MIN_Y, DEMOAPP_WORLD_MAX_Y);
+			ImGui::SliderFloat("Tz: ", &selectedEntityTransform.position.z, DEMOAPP_WORLD_MIN_Z, DEMOAPP_WORLD_MAX_Z);
 			ImGui::NewLine();
 			ImGui::DrawLine({ 0, 0 }, { 190, 0 }, { 255, 0, 0, 255 }, 2.0f);
 			ImGui::NewLine();

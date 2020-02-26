@@ -9,7 +9,7 @@ namespace Demo
 			DEMOAPP_TITLE, false)
 	{
 		loadAndInitWorld();
-		setupGraphicsSettings();
+		setupRendererSettings();
 		initGui();
 	}
 
@@ -36,10 +36,7 @@ namespace Demo
 
 		m_renderer.beginFrame();
 
-		worldInstance.render(m_renderer);
-
-		//m_renderer.bindShaderProgram(shaders.singleColor);
-		//m_renderer.runLines(sphereNormalLines, vec4(1.0f, 0.0f, 0.0f, 1.0f));
+		worldInstance.render(m_renderer);	
 
 		for (auto& widget : widgets) 
 			widget->render();
@@ -81,9 +78,7 @@ namespace Demo
 		auto lightIndicatorMesh = cr::AssetsLoader::loadMesh("Assets\\Meshes\\sphere.obj");
 		auto treeMesh = cr::AssetsLoader::loadMesh("Assets\\Meshes\\tree.obj");
 		auto susannMesh = cr::AssetsLoader::loadMesh("Assets\\Meshes\\susann.obj");
-
-		//		Line buffer for showing normals
-		sphereNormalLines = sphereMesh->buildNormalLinesList(0.3f);
+		auto cubeMesh = cr::AssetsLoader::loadMesh("Assets\\Meshes\\cube_std.obj");//cr::Mesh::cube();
 
 		sphereMesh->fillColor(vec4(0.3f, 0.3f, 0.9f, 1.0f));
 		treeMesh->fillColor(vec4(0.8f, 0.2f, 0.1f, 1.0f));
@@ -97,33 +92,45 @@ namespace Demo
 		shaders.singleColor = std::make_shared<DefaultSingleColorShader>(vec4(0.8f, 0.8f, 0.8f, 1.0f));
 
 		// 4. Entities creation and filling the scene:
-		auto sphereObject = std::make_shared<cr::Entity>("Sphere", sphereMesh, shaders.mixedLight);
-		auto treeObject = std::make_shared<cr::Entity>("Cube", treeMesh, shaders.mixedLight);
-		auto susannObject = std::make_shared<cr::Entity>("Susann", susannMesh, shaders.mixedLight);
-		auto lightSource = std::make_shared<cr::Entity>("Point light", lightIndicatorMesh, shaders.singleColor);
+		auto sphereObject = std::make_shared<SceneObject>("Sphere", sphereMesh, shaders.mixedLight);
+		auto treeObject = std::make_shared<SceneObject>("Tree", treeMesh, shaders.mixedLight);
+		auto susannObject = std::make_shared<SceneObject>("Suzanne", susannMesh, shaders.mixedLight);
+		auto cubeObject = std::make_shared<SceneObject>("Cube", cubeMesh, shaders.mixedLight);
+		auto lightSource = std::make_shared<SceneObject>("Point light", lightIndicatorMesh, shaders.singleColor);
 
-		sphereObject->setPosition(vec3(0.0f, 1.0f, -3.0f));
-		treeObject->setPosition(vec3(-3.0f, 1.0f, -3.0f));
-		susannObject->setPosition(vec3(3.0f, 1.0f, -3.0f));
+		//sphereObject->showVertexNormals(true);
+		//treeObject->showVertexNormals(true);
+		//susannObject->showVertexNormals(true);
+		//cubeObject->showVertexNormals(true);
 
-		lightSource->setPosition(vec3(0.0f, 2.5f, -3.0f));
+		sphereObject->setPosition(vec3(10.0f, 2.0f, -3.0f));
+		treeObject->setPosition(vec3(13.0f, 2.0f, -4.0f));
+		susannObject->setPosition(vec3(7.0f, 2.0f, -3.0f));
+		cubeObject->setPosition(vec3(15.0f, 2.0f, -3.0f));
+
+		lightSource->setPosition(vec3(10.0f, 4.0f, -3.0f));
 		lightSource->setScale(vec3(0.2f, 0.2f, 0.2f));
 
 		pointLightSource = lightSource;
 
-		worldInstance.getScene().push_back(sphereObject);
-		worldInstance.getScene().push_back(treeObject);
-		worldInstance.getScene().push_back(susannObject);
-		worldInstance.getScene().push_back(lightSource);
+		worldInstance.getScene().reserve(5);
+		worldInstance.getScene().emplace_back(sphereObject);
+		worldInstance.getScene().emplace_back(treeObject);
+		worldInstance.getScene().emplace_back(susannObject);
+		worldInstance.getScene().emplace_back(lightSource);
+		worldInstance.getScene().emplace_back(cubeObject);
 	}
 
-	void DemoApp::setupGraphicsSettings()
+	void DemoApp::setupRendererSettings()
 	{
 		camera.setPosition(vec3(0.0f, 0.0f, 5.0f));
 		camera.setup(45.0f, 0.001f, 50.0f, 16.0f / 10.0f);
 
 		shaders.mixedLight->bindProjectionMatrix(camera.getProjMatrix());
 		shaders.singleColor->bindProjectionMatrix(camera.getProjMatrix());
+
+		m_renderer.backFaceCulling(true);
+		m_renderer.wireframeRendering(false);
 	}
 
 	void DemoApp::initGui()

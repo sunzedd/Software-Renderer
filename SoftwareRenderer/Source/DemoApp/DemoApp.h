@@ -24,9 +24,11 @@
 #include "../Core/Engine.h"
 #include "GUI/Widgets.h"
 #include "Shaders/Shaders.h"
+#include "SceneObject.h"
+
+#define DEMOAPP_TITLE "Demo"
 
 namespace cr = Core;
-#define DEMOAPP_TITLE "Demo"
 
 namespace Demo
 {
@@ -35,7 +37,6 @@ namespace Demo
 	public:
 		DemoApp();
 		~DemoApp();
-
 	private:
 		void updateScene(unsigned int dtime) override;
 		void updateGraphics(unsigned int dtime) override;
@@ -43,7 +44,7 @@ namespace Demo
 		void processInput(unsigned int dtime);
 
 		void loadAndInitWorld();
-		void setupGraphicsSettings();
+		void setupRendererSettings();
 		void initGui();
 
 	private:

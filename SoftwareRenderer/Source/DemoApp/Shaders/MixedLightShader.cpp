@@ -26,7 +26,7 @@ namespace Demo
 			attenuationCoef.quadratic * distanceToPointLight * distanceToPointLight);
 
 		float pointLightIntens = calcIntesity(vec3(out.n), pointLightDirection) * attenuationFactor;
-		float directLightIntens = calcIntesity(vec3(out.n), directLightDirection);
+		float directLightIntens = calcIntesity(vec3(out.n), directLightDirection) * dirLightIntensFilterCoef;
 
 		pointLightIntens = std::max(0.0f, pointLightIntens);
 		directLightIntens = std::max(0.0f, directLightIntens);

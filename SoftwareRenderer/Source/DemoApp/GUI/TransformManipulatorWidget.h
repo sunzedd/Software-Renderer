@@ -2,6 +2,13 @@
 #include "Widget.h"
 #include "../../Core/World/World.h"
 
+#define DEMOAPP_WORLD_MIN_X 0
+#define DEMOAPP_WORLD_MAX_X 20
+#define DEMOAPP_WORLD_MIN_Y 0
+#define DEMOAPP_WORLD_MAX_Y 20
+#define DEMOAPP_WORLD_MIN_Z 0
+#define DEMOAPP_WORLD_MAX_Z 20
+
 namespace Demo
 {
 	struct Transform
