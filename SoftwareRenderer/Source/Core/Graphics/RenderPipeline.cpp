@@ -86,7 +86,18 @@ namespace Core
 			viewport(lineVso.first);
 			viewport(lineVso.second);
 
-			m_rasterizer.line(lineVso.first.pos, lineVso.second.pos, color);
+			// Clipp line (just reject) against near plane.
+			// temporary here
+			if (lineVso.first.pos.z < -lineVso.first.pos.w)
+			{
+				return;
+			}
+			else if (lineVso.second.pos.z < -lineVso.second.pos.w)
+			{
+				return;
+			}
+
+			m_rasterizer.line(lineVso.first, lineVso.second, color);
 		}
 	}
 

@@ -109,9 +109,61 @@ namespace Core
 		}
 	}
 
-	void Rasterizer::line( const Vertex& v0, const Vertex& v1 )
+	void Rasterizer::line( VSO& v0, VSO& v1, const Vec4& color )
 	{
-		throw std::exception("Not implemented yet");
+		const auto& x0 = v0.pos.x;
+		const auto& x1 = v1.pos.x;
+		const auto& y0 = v0.pos.y;
+		const auto& y1 = v1.pos.y;
+		
+
+		if ((x0 < 0 || y0 < 0 || x0 > m_frameBuf.width() - 1 || y0 > m_frameBuf.height() - 1) ||
+			(x1 < 0 || y1 < 0 || x1 > m_frameBuf.width() - 1 || y1 > m_frameBuf.height() - 1))
+			return;
+
+		bool steep = false;
+		if (std::abs(v0.pos.x - v1.pos.x) < std::abs(v0.pos.y - v1.pos.y))
+		{
+			std::swap(v0.pos.x, v0.pos.y);
+			std::swap(v1.pos.x, v1.pos.y);
+			steep = true;
+		}
+
+		if (v0.pos.x > v1.pos.x)
+			std::swap(v0.pos, v1.pos);
+
+		int dx = v1.pos.x - v0.pos.x;
+		int dy = v1.pos.y - v0.pos.y;
+		float dz = v1.pos.w - v0.pos.w;
+		int derror2 = std::abs(dy) * 2;
+		int error2 = 0;
+		int y = v0.pos.y;
+
+		float z = v0.pos.w;
+		for (int x = v0.pos.x; x <= v1.pos.x; x++)
+		{
+			if (steep)
+			{
+				//if (m_depthBuf.testAndSet(y, x, z)) {
+					m_frameBuf.set(y, x, color);
+				//}
+			}
+			else
+			{
+				//if (m_depthBuf.testAndSet(x, y, z)) {
+					m_frameBuf.set(x, y, color);
+				//}
+			}
+
+			error2 += derror2;
+			if (error2 > dx)
+			{
+				y += (v1.pos.y > v0.pos.y ? 1 : -1);
+				error2 -= dx * 2;
+			}
+
+			z += dz;
+		}
 	}
 
 	void Rasterizer::triangleWireframe(const Vec3& p0, const Vec3& p1, const Vec3& p2, const Vec4& color)

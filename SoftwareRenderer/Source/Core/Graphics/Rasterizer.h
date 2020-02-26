@@ -18,7 +18,7 @@ namespace Core
 
 		void line( const Vec2& p0, const Vec2& p1, const Vec4& color );
 		void line( const Vec3& p0, const Vec3& p1, const Vec4& color );
-		void line( const Vertex& v0, const Vertex& v1 );
+		void line( VSO& v0, VSO& v1, const Vec4& color );
 
 		void triangleWireframe( const Vec3& p0, const Vec3& p1, const Vec3& p2, const Vec4& color );
 		void triangle( const Triangle<VSO>& triangle );
