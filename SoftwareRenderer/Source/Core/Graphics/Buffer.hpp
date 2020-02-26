@@ -20,10 +20,13 @@ namespace Core
 	template <typename T>
 	T Buffer<T>::get(int x, int y) const
 	{
-		assert(x > -1);
-		assert(y > -1);
-		assert(x < m_width);
-		assert(y < m_height);
+		//assert(x > -1);
+		//assert(y > -1);
+		//assert(x < m_width);
+		//assert(y < m_height);
+
+		if (x < 0 || y < 0 || x > m_width - 1 || y > m_height - 1)
+			return 100;
 
 		return m_pData.get()[m_width * y + x];
 	}
@@ -31,13 +34,13 @@ namespace Core
 	template <typename T>
 	void Buffer<T>::set(int x, int y, T value)
 	{
-		assert(x > -1);
-		assert(y > -1);
-		assert(x < m_width);
-		assert(y < m_height);
+		//assert(x > -1);
+		//assert(y > -1);
+		//assert(x < m_width);
+		//assert(y < m_height);
 
-		//if (x < 0 || y < 0 || x > m_width - 1 || y > m_height -1)
-		//	return;
+		if (x < 0 || y < 0 || x > m_width - 1 || y > m_height -1)
+			return;
 
 		m_pData.get()[m_width * y + x] = value;
 	}
