@@ -33,6 +33,6 @@ namespace Demo
 		float dirLightIntensFilterCoef = 0.6f;
 
 		vec3 pointLightPosition;
-		vec3 directLightDirection;
+		vec3 directLightDirection = { -1.0f, -1.0f, 0.0f };
 	};
 }
