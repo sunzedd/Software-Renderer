@@ -30,9 +30,6 @@ namespace cr = Core;
 
 namespace Demo
 {
-	const int   DEMOAPP_RESOLUTION_WIDTH = 1280;
-	const int   DEMOAPP_RESOLUTION_HEIGHT =  800;
-
 	class DemoApp final : public cr::App
 	{
 	public:
@@ -53,7 +50,9 @@ namespace Demo
 		// world/scene objects
 		cr::World worldInstance;
 		cr::Camera camera;
+		float cameraSpeed = 0.001;
 		std::shared_ptr<cr::Entity> pointLightSource;
+		std::vector<cr::LineV3> sphereNormalLines;
 
 		// GUI
 		std::vector<std::unique_ptr<Widget>> widgets;
@@ -65,5 +64,8 @@ namespace Demo
 			std::shared_ptr<DefaultSingleColorShader> singleColor;
 		}
 		shaders;
+
+		static const int DEMOAPP_RESOLUTION_WIDTH = 1280;
+		static const int DEMOAPP_RESOLUTION_HEIGHT = 800;
 	};
 }

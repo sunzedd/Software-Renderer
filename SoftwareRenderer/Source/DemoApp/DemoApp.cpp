@@ -37,6 +37,10 @@ namespace Demo
 		m_renderer.beginFrame();
 
 		worldInstance.render(m_renderer);
+
+		//m_renderer.bindShaderProgram(shaders.singleColor);
+		//m_renderer.runLines(sphereNormalLines, vec4(1.0f, 0.0f, 0.0f, 1.0f));
+
 		for (auto& widget : widgets) 
 			widget->render();
 	}
@@ -45,11 +49,12 @@ namespace Demo
 	{
 		float dRot = dtime * 0.035;
 		float dMove = dtime * 0.003;
+		float dCamMove = cameraSpeed * dtime;
 
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) camera.move(cr::Direction::Left, dMove);
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) camera.move(cr::Direction::Right, dMove);
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) camera.move(cr::Direction::Forward, dMove);
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) camera.move(cr::Direction::Backward, dMove);
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) camera.move(cr::Direction::Left, dCamMove);
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) camera.move(cr::Direction::Right, dCamMove);
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) camera.move(cr::Direction::Forward, dCamMove);
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) camera.move(cr::Direction::Backward, dCamMove);
 
 		//mouse movement
 		if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Right))
@@ -76,12 +81,13 @@ namespace Demo
 		auto lightIndicatorMesh = cr::AssetsLoader::loadMesh("Assets\\Meshes\\sphere.obj");
 		auto treeMesh = cr::AssetsLoader::loadMesh("Assets\\Meshes\\tree.obj");
 		auto susannMesh = cr::AssetsLoader::loadMesh("Assets\\Meshes\\susann.obj");
-		auto terrainMesh = cr::AssetsLoader::loadMesh("Assets\\Meshes\\terrain_s.obj");
+
+		//		Line buffer for showing normals
+		sphereNormalLines = sphereMesh->buildNormalLinesList(0.3f);
 
 		sphereMesh->fillColor(vec4(0.3f, 0.3f, 0.9f, 1.0f));
 		treeMesh->fillColor(vec4(0.8f, 0.2f, 0.1f, 1.0f));
 		susannMesh->fillColor(vec4(0.2f, 0.9f, 0.2f, 1.0f));
-		terrainMesh->fillColor(vec4(0.5f, 0.2f, 0.3f, 1.0f));
 
 		// 2. Textures:
 		// ----
@@ -94,14 +100,11 @@ namespace Demo
 		auto sphereObject = std::make_shared<cr::Entity>("Sphere", sphereMesh, shaders.mixedLight);
 		auto treeObject = std::make_shared<cr::Entity>("Cube", treeMesh, shaders.mixedLight);
 		auto susannObject = std::make_shared<cr::Entity>("Susann", susannMesh, shaders.mixedLight);
-		auto terrainObject = std::make_shared<cr::Entity>("Terrain", terrainMesh, shaders.mixedLight);
 		auto lightSource = std::make_shared<cr::Entity>("Point light", lightIndicatorMesh, shaders.singleColor);
 
 		sphereObject->setPosition(vec3(0.0f, 1.0f, -3.0f));
 		treeObject->setPosition(vec3(-3.0f, 1.0f, -3.0f));
 		susannObject->setPosition(vec3(3.0f, 1.0f, -3.0f));
-		terrainObject->setPosition(vec3(0.0f, 0.0f, -3.0f));
-		terrainObject->setScale(vec3(1.5f, 1.5f, 1.5f));
 
 		lightSource->setPosition(vec3(0.0f, 2.5f, -3.0f));
 		lightSource->setScale(vec3(0.2f, 0.2f, 0.2f));
@@ -111,7 +114,6 @@ namespace Demo
 		worldInstance.getScene().push_back(sphereObject);
 		worldInstance.getScene().push_back(treeObject);
 		worldInstance.getScene().push_back(susannObject);
-		worldInstance.getScene().push_back(terrainObject);
 		worldInstance.getScene().push_back(lightSource);
 	}
 
@@ -128,5 +130,6 @@ namespace Demo
 	{
 		widgets.push_back(std::make_unique<AppPropertiesWidget>(m_windowProps.width, m_windowProps.height));
 		widgets.push_back(std::make_unique<TransformManipulatorWidget>(worldInstance));
+		widgets.push_back(std::make_unique<CameraManipulatorWidget>(cameraSpeed));
 	}
 }
