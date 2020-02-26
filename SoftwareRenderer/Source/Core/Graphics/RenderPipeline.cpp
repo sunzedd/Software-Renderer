@@ -40,7 +40,7 @@ namespace Core
 	}
 
 	// Renderer entry point
-	void RenderPipeline::run( const std::vector<Vertex>& vertexBuf, const std::vector<unsigned short>& indexBuf )
+	void RenderPipeline::runTriangles( const std::vector<Vertex>& vertexBuf, const std::vector<unsigned short>& indexBuf )
 	{
 		if( !m_shader )
 			throw Exception( "No shader binded" );
@@ -62,6 +62,31 @@ namespace Core
 			{
 				clip( polygon );
 			}
+		}
+	}
+
+	void RenderPipeline::runLines(const std::vector<LineV3>& lineBuf, const Vec4& color)
+	{
+		for (const auto& l : lineBuf)
+		{
+			LineVtx line;
+
+			line.first.pos = l.first;
+			line.second.pos = l.second;
+
+			Line<VSO> lineVso =
+			{
+				m_shader->vertexShader(line.first),
+				m_shader->vertexShader(line.second)
+			};
+
+			perspectiveDivide(lineVso.first);
+			perspectiveDivide(lineVso.second);
+
+			viewport(lineVso.first);
+			viewport(lineVso.second);
+
+			m_rasterizer.line(lineVso.first.pos, lineVso.second.pos, color);
 		}
 	}
 

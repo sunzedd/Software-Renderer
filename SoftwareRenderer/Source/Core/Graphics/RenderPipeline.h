@@ -5,6 +5,7 @@
 #include "FrameBuffer.h"
 #include "Rasterizer.h"
 #include "Triangle.h"
+#include "Common.h"
 
 namespace Core
 {
@@ -29,7 +30,8 @@ namespace Core
 
 		// Renderer entry point
 		void beginFrame();
-		void run( const std::vector<Vertex>& vertexBuf,  const std::vector<unsigned short>& indexBuf );
+		void runTriangles( const std::vector<Vertex>& vertexBuf,  const std::vector<unsigned short>& indexBuf );
+		void runLines(const std::vector<LineV3>& lineBuf, const Vec4& color);
 	private:
 		bool backFaceTest( Triangle<VSO>& polygon ) const;
 		void clip( Triangle<VSO>& polygon );
