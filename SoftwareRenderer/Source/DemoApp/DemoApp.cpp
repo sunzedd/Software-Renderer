@@ -74,11 +74,11 @@ namespace Demo
 	{
 		// +-------------------- Creation and loading world objects.----------------------+
 		// 1. Meshes:
-		auto sphereMesh = cr::AssetsLoader::loadMesh("Assets\\Meshes\\sphere.obj");
+		auto sphereMesh = cr::AssetsLoader::loadMesh("Assets\\Meshes\\sphere_01_n.obj");
 		auto lightIndicatorMesh = cr::AssetsLoader::loadMesh("Assets\\Meshes\\sphere.obj");
 		auto treeMesh = cr::AssetsLoader::loadMesh("Assets\\Meshes\\tree.obj");
 		auto susannMesh = cr::AssetsLoader::loadMesh("Assets\\Meshes\\susann.obj");
-		auto cubeMesh = cr::AssetsLoader::loadMesh("Assets\\Meshes\\cube_std.obj");//cr::Mesh::cube();
+		auto cubeMesh = cr::AssetsLoader::loadMesh("Assets\\Meshes\\cube_m.obj");//cr::Mesh::cube();
 
 		sphereMesh->fillColor(vec4(0.3f, 0.3f, 0.9f, 1.0f));
 		treeMesh->fillColor(vec4(0.8f, 0.2f, 0.1f, 1.0f));
@@ -98,17 +98,12 @@ namespace Demo
 		auto cubeObject = std::make_shared<SceneObject>("Cube", cubeMesh, shaders.mixedLight);
 		auto lightSource = std::make_shared<SceneObject>("Point light", lightIndicatorMesh, shaders.singleColor);
 
-		//sphereObject->showVertexNormals(true);
-		//treeObject->showVertexNormals(true);
-		//susannObject->showVertexNormals(true);
-		//cubeObject->showVertexNormals(true);
+		sphereObject->setPosition(vec3(10.0f, 2.0f, 1.0f));
+		treeObject->setPosition(vec3(13.0f, 2.0f, 2.0f));
+		susannObject->setPosition(vec3(7.0f, 2.0f, 2.0f));
+		cubeObject->setPosition(vec3(13.0f, 2.0f, 4.0f));
 
-		sphereObject->setPosition(vec3(10.0f, 2.0f, -3.0f));
-		treeObject->setPosition(vec3(13.0f, 2.0f, -4.0f));
-		susannObject->setPosition(vec3(7.0f, 2.0f, -3.0f));
-		cubeObject->setPosition(vec3(15.0f, 2.0f, -3.0f));
-
-		lightSource->setPosition(vec3(10.0f, 4.0f, -3.0f));
+		lightSource->setPosition(vec3(6.0f, 4.0f, 5.0f));
 		lightSource->setScale(vec3(0.2f, 0.2f, 0.2f));
 
 		pointLightSource = lightSource;

@@ -30,7 +30,7 @@ namespace Demo
 	private:
 		Attenuation attenuationCoef = { 1.0f, 0.01f, 0.002f };
 		vec4 ambient = { 0.1f, 0.1f, 0.1f, 1.0f };
-		float dirLightIntensFilterCoef = 0.1f;
+		float dirLightIntensFilterCoef = 0.3f;
 
 		vec3 pointLightPosition;
 		vec3 directLightDirection = { -1.0f, -1.0f, 0.0f };
