@@ -32,6 +32,8 @@
     <ClCompile Include="Source\DemoApp\Shaders\MixedLightShader.cpp" />
     <ClCompile Include="Source\DemoApp\GUI\CameraManipulatorWidget.cpp" />
     <ClCompile Include="Source\DemoApp\SceneObject.cpp" />
+    <ClCompile Include="Source\DemoApp\Shaders\MixedLightTextureShader.cpp" />
+    <ClCompile Include="Source\DemoApp\GUI\ObjectRenderControllerWidget.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Core\Graphics\Buffer.h" />
@@ -76,5 +78,8 @@
     <ClInclude Include="Source\DemoApp\GUI\CameraManipulatorWidget.h" />
     <ClInclude Include="Source\Core\Graphics\Common.h" />
     <ClInclude Include="Source\DemoApp\SceneObject.h" />
+    <ClInclude Include="Source\DemoApp\CoreAliases.h" />
+    <ClInclude Include="Source\DemoApp\Shaders\MixedLightTextureShader.h" />
+    <ClInclude Include="Source\DemoApp\GUI\ObjectRenderControllerWidget.h" />
   </ItemGroup>
 </Project>

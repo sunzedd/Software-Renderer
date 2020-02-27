@@ -104,8 +104,10 @@
     <ClCompile Include="Source\Core\World\WorldObject.cpp" />
     <ClCompile Include="Source\DemoApp\DemoApp.cpp" />
     <ClCompile Include="Source\DemoApp\GUI\CameraManipulatorWidget.cpp" />
+    <ClCompile Include="Source\DemoApp\GUI\ObjectRenderControllerWidget.cpp" />
     <ClCompile Include="Source\DemoApp\SceneObject.cpp" />
     <ClCompile Include="Source\DemoApp\Shaders\MixedLightShader.cpp" />
+    <ClCompile Include="Source\DemoApp\Shaders\MixedLightTextureShader.cpp" />
     <ClCompile Include="Source\Main.cpp" />
     <ClCompile Include="Source\Core\Math\Mat4.cpp" />
     <ClCompile Include="Source\Core\Math\MathFunc.cpp" />
@@ -155,12 +157,15 @@
     <ClInclude Include="Source\Core\World\ICamera.h" />
     <ClInclude Include="Source\Core\World\WorldObject.h" />
     <ClInclude Include="Source\Core\World\World.h" />
+    <ClInclude Include="Source\DemoApp\CoreAliases.h" />
     <ClInclude Include="Source\DemoApp\DemoApp.h" />
     <ClInclude Include="Source\DemoApp\GUI\CameraManipulatorWidget.h" />
+    <ClInclude Include="Source\DemoApp\GUI\ObjectRenderControllerWidget.h" />
     <ClInclude Include="Source\DemoApp\GUI\Widgets.h" />
     <ClInclude Include="Source\DemoApp\SceneObject.h" />
     <ClInclude Include="Source\DemoApp\Shaders\DefaultSingleColorShader.h" />
     <ClInclude Include="Source\DemoApp\Shaders\MixedLightShader.h" />
+    <ClInclude Include="Source\DemoApp\Shaders\MixedLightTextureShader.h" />
     <ClInclude Include="Source\DemoApp\Shaders\Shaders.h" />
     <ClInclude Include="Source\DemoApp\GUI\TransformManipulatorWidget.h" />
     <ClInclude Include="Source\DemoApp\GUI\Widget.h" />

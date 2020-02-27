@@ -34,6 +34,9 @@ namespace cr = Core;
 
 namespace Demo
 {
+	using ShaderLibrary = std::unordered_map<const char*, std::shared_ptr<Core::IShaderProgram>>;
+	using TextureLibrary = std::unordered_map<const char*, std::shared_ptr<sf::Image>>;
+
 	class DemoApp final : public cr::App
 	{
 	public:
@@ -68,6 +71,9 @@ namespace Demo
 			std::shared_ptr<DefaultSingleColorShader> singleColor;
 		}
 		shaders;
+
+		ShaderLibrary shaderLib;
+		TextureLibrary textureLib;
 
 		static const int DEMOAPP_RESOLUTION_WIDTH = 1280;
 		static const int DEMOAPP_RESOLUTION_HEIGHT = 800;

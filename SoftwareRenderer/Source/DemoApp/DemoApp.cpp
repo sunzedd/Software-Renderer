@@ -152,5 +152,6 @@ namespace Demo
 		widgets.push_back(std::make_unique<AppPropertiesWidget>(m_windowProps.width, m_windowProps.height));
 		widgets.push_back(std::make_unique<TransformManipulatorWidget>(worldInstance));
 		widgets.push_back(std::make_unique<CameraManipulatorWidget>(cameraSpeed));
+		widgets.push_back(std::make_unique<ObjectRenderControllerWidget>(worldInstance, shaderLib, textureLib));
 	}
 }
