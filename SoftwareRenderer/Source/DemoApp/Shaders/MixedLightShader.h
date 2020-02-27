@@ -1,14 +1,9 @@
 #pragma once
 #include "../../Core/Graphics/IShaderProgram.h"
+#include "../CoreAliases.h"
 
 namespace Demo
 {
-	using vec3 = Core::Vec3;
-	using vec4 = Core::Vec4;
-	using VS_Output = Core::VSO;
-	using vertex = Core::Vertex;
-	using color4f = Core::Vec4;
-
 	// Two light sources: directional and point.
 	class MixedLightShader : public Core::IShaderProgram
 	{

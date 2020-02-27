@@ -24,7 +24,9 @@
 #include "../Core/Engine.h"
 #include "GUI/Widgets.h"
 #include "Shaders/Shaders.h"
+#include "../Core/Math/Vec2i.h"
 #include "SceneObject.h"
+#include "CoreAliases.h"
 
 #define DEMOAPP_TITLE "Demo"
 

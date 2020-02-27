@@ -54,18 +54,33 @@ namespace Demo
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) camera.move(cr::Direction::Backward, dCamMove);
 
 		//mouse movement
-		if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Right))
+		static bool isMouseRightBtnPressed = false;
+		static vec2i lastMouseCursorPosition = { sf::Mouse::getPosition().x, sf::Mouse::getPosition().y };
+
+		if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Right) && !isMouseRightBtnPressed)
 		{
-			static int lastMouseX = sf::Mouse::getPosition().x;
-			static int lastMouseY = sf::Mouse::getPosition().y;
+			isMouseRightBtnPressed = true;
+			lastMouseCursorPosition = { sf::Mouse::getPosition().x, sf::Mouse::getPosition().y };
+		}
+		if (!sf::Mouse::isButtonPressed(sf::Mouse::Button::Right) && isMouseRightBtnPressed)
+		{
+			isMouseRightBtnPressed = false;
+		}
 
-			int curMouseX = sf::Mouse::getPosition().x;
-			int curMouseY = sf::Mouse::getPosition().y;
+		if (isMouseRightBtnPressed)
+		{
+			vec2i currentMouseCursorPosition = {
+				sf::Mouse::getPosition().x,
+				sf::Mouse::getPosition().y
+			};
 
-			camera.rotate(cr::Vec2(lastMouseX - curMouseX, lastMouseY - curMouseY));
+			camera.rotate(cr::Vec2(
+				lastMouseCursorPosition.x - currentMouseCursorPosition.x,
+				lastMouseCursorPosition.y - currentMouseCursorPosition.y));
 
-			lastMouseX = curMouseX;
-			lastMouseY = curMouseY;
+			// TODO: Block rotation around Z axis.
+
+			lastMouseCursorPosition = currentMouseCursorPosition;
 		}
 	}
 
@@ -74,7 +89,7 @@ namespace Demo
 	{
 		// +-------------------- Creation and loading world objects.----------------------+
 		// 1. Meshes:
-		auto sphereMesh = cr::AssetsLoader::loadMesh("Assets\\Meshes\\sphere_01_n.obj");
+		auto sphereMesh = cr::AssetsLoader::loadMesh("Assets\\Meshes\\sphere.obj");
 		auto lightIndicatorMesh = cr::AssetsLoader::loadMesh("Assets\\Meshes\\sphere.obj");
 		auto treeMesh = cr::AssetsLoader::loadMesh("Assets\\Meshes\\tree.obj");
 		auto susannMesh = cr::AssetsLoader::loadMesh("Assets\\Meshes\\susann.obj");
