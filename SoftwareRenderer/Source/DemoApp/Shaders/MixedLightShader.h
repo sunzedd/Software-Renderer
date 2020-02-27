@@ -1,5 +1,6 @@
 #pragma once
 #include "../../Core/Graphics/IShaderProgram.h"
+#include "../../Core/Graphics/Color.h"
 #include "../CoreAliases.h"
 
 namespace Demo
@@ -17,12 +18,12 @@ namespace Demo
 
 	public:
 		VS_Output vertexShader(const vertex& input) override;
-		color4f pixelShader(const VS_Output& interpolated) override;
+		virtual color4f pixelShader(const VS_Output& interpolated) override;
 
 		void bindPointLightPosition(const vec3& lpos);
 		void bindDirectLightDirection(const vec3& ldir);
 
-	private:
+	protected:
 		Attenuation attenuationCoef = { 1.0f, 0.01f, 0.002f };
 		vec4 ambient = { 0.1f, 0.1f, 0.1f, 1.0f };
 		float dirLightIntensFilterCoef = 0.3f;

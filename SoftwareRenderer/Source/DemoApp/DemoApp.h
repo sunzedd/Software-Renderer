@@ -64,6 +64,7 @@ namespace Demo
 		struct
 		{
 			std::shared_ptr<MixedLightShader> mixedLight;
+			std::shared_ptr<MixedLightTextureShader> mixedLightTexture;
 			std::shared_ptr<DefaultSingleColorShader> singleColor;
 		}
 		shaders;

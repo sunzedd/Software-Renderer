@@ -32,6 +32,8 @@ namespace Demo
 		// Update shader "uniforms".
 		shaders.mixedLight->bindViewMatrix(camera.getViewMatrix());
 		shaders.mixedLight->bindPointLightPosition(pointLightSource->getPosition());
+		shaders.mixedLightTexture->bindViewMatrix(camera.getViewMatrix());
+		shaders.mixedLightTexture->bindPointLightPosition(pointLightSource->getPosition());
 		shaders.singleColor->bindViewMatrix(camera.getViewMatrix());
 
 		m_renderer.beginFrame();
@@ -93,7 +95,7 @@ namespace Demo
 		auto lightIndicatorMesh = cr::AssetsLoader::loadMesh("Assets\\Meshes\\sphere.obj");
 		auto treeMesh = cr::AssetsLoader::loadMesh("Assets\\Meshes\\tree.obj");
 		auto susannMesh = cr::AssetsLoader::loadMesh("Assets\\Meshes\\susann.obj");
-		auto cubeMesh = cr::AssetsLoader::loadMesh("Assets\\Meshes\\cube_m.obj");//cr::Mesh::cube();
+		auto cubeMesh = cr::AssetsLoader::loadMesh("Assets\\Meshes\\cube_m.obj");
 
 		sphereMesh->fillColor(vec4(0.3f, 0.3f, 0.9f, 1.0f));
 		treeMesh->fillColor(vec4(0.8f, 0.2f, 0.1f, 1.0f));
@@ -104,10 +106,11 @@ namespace Demo
 
 		// 3. Shaders:
 		shaders.mixedLight = std::make_shared<MixedLightShader>();
+		shaders.mixedLightTexture = std::make_shared<MixedLightTextureShader>();
 		shaders.singleColor = std::make_shared<DefaultSingleColorShader>(vec4(0.8f, 0.8f, 0.8f, 1.0f));
 
 		// 4. Entities creation and filling the scene:
-		auto sphereObject = std::make_shared<SceneObject>("Sphere", sphereMesh, shaders.mixedLight);
+		auto sphereObject = std::make_shared<SceneObject>("Sphere", sphereMesh, shaders.mixedLightTexture);
 		auto treeObject = std::make_shared<SceneObject>("Tree", treeMesh, shaders.mixedLight);
 		auto susannObject = std::make_shared<SceneObject>("Suzanne", susannMesh, shaders.mixedLight);
 		auto cubeObject = std::make_shared<SceneObject>("Cube", cubeMesh, shaders.mixedLight);
@@ -137,6 +140,7 @@ namespace Demo
 		camera.setup(45.0f, 0.001f, 50.0f, 16.0f / 10.0f);
 
 		shaders.mixedLight->bindProjectionMatrix(camera.getProjMatrix());
+		shaders.mixedLightTexture->bindProjectionMatrix(camera.getProjMatrix());
 		shaders.singleColor->bindProjectionMatrix(camera.getProjMatrix());
 
 		m_renderer.backFaceCulling(true);

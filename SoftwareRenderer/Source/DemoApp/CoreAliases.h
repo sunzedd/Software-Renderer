@@ -9,8 +9,7 @@ namespace Core {
 	class Vec2i;
 }
 
-namespace Demo
-{
+namespace Demo {
 	using vec3 = Core::Vec3;
 	using vec4 = Core::Vec4;
 	using vec2i = Core::Vec2i;
