@@ -79,6 +79,10 @@ namespace Core
 				v3.uv = uvs[uvIndex[2]];
 				v3.n = normals[normalIndex[2]];
 
+				v1.n.w = 0.0f;
+				v2.n.w = 0.0f;
+				v3.n.w = 0.0f;
+
 				indices.push_back(i);
 				indices.push_back(i + 1);
 				indices.push_back(i + 2);
