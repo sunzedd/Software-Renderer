@@ -45,7 +45,7 @@ namespace Core
 		default:
 			break;
 		}
-	
+
 		m_isTransformed = true;
 	}
 
@@ -64,6 +64,7 @@ namespace Core
 	void Camera::rotate(const Vec2& delta)
 	{
 		const Mat4 rot = Mat4::rotationX(delta.y * m_rotVelocity) * Mat4::rotationY(delta.x * m_rotVelocity);
+
 		m_orientation *= rot;
 		m_isTransformed = true;
 	}
