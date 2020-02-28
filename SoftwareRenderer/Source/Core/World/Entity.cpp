@@ -2,19 +2,13 @@
 
 namespace Core
 {
-	int Entity::m_idCounter = 0;
-
-	Entity::Entity(const std::string& name, std::shared_ptr<Mesh> mesh, std::shared_ptr<IShaderProgram> shader)
+	Entity::Entity(std::shared_ptr<Mesh> mesh, std::shared_ptr<IShaderProgram> shader)
 		:
 		WorldObject(),
-		m_id(name, ++m_idCounter),
 		m_pMesh(mesh),
 		m_pShader(shader),
 		m_scale(Vec3(1, 1, 1)),
 		m_isActive(true)
-	{ }
-
-	Entity::~Entity()
 	{ }
 
 	void Entity::render(RenderPipeline& renderer)
