@@ -2,9 +2,9 @@
 
 namespace Demo
 {
-	SceneObject::SceneObject(const std::string& name, std::shared_ptr<cr::Mesh> mesh, std::shared_ptr<cr::IShaderProgram> shader)
+	SceneObject::SceneObject(std::shared_ptr<cr::Mesh> mesh, std::shared_ptr<cr::IShaderProgram> shader)
 		:
-		Entity(name, mesh, shader),
+		Entity(mesh, shader),
 		m_showVertexNormalsFlag(false)
 	{
 		m_vertexNormalIndicators = m_pMesh->buildNormalIndicatorLinesList(0.2f);
