@@ -1,11 +1,11 @@
 #include <iostream>
-#include "DemoApp/DemoApp.h"
+#include "EditorDemoApp/EditorDemoApp.h"
 
 int main()
 {
 	try
 	{
-		Demo::DemoApp a;
+		Demo::EditorDemoApp a;
 		a.run();
 	}
 	catch ( const std::exception & e )

@@ -37,11 +37,11 @@ namespace Demo
 	using ShaderLibrary = std::unordered_map<const char*, std::shared_ptr<Core::IShaderProgram>>;
 	using TextureLibrary = std::unordered_map<const char*, std::shared_ptr<sf::Image>>;
 
-	class DemoApp final : public cr::App
+	class EditorDemoApp final : public cr::App
 	{
 	public:
-		DemoApp();
-		~DemoApp();
+		EditorDemoApp();
+		~EditorDemoApp();
 	private:
 		void updateScene(unsigned int dtime) override;
 		void updateGraphics(unsigned int dtime) override;

@@ -1,8 +1,8 @@
-#include "DemoApp.h"
+#include "EditorDemoApp.h"
 
 namespace Demo
 {
-	DemoApp::DemoApp() 
+	EditorDemoApp::EditorDemoApp() 
 		:
 		App(DEMOAPP_RESOLUTION_WIDTH,
 			DEMOAPP_RESOLUTION_HEIGHT,
@@ -13,10 +13,10 @@ namespace Demo
 		initGui();
 	}
 
-	DemoApp::~DemoApp()
+	EditorDemoApp::~EditorDemoApp()
 	{ }
 
-	void DemoApp::updateScene(unsigned int dtime)	
+	void EditorDemoApp::updateScene(unsigned int dtime)	
 	{
 		processInput(dtime);
 
@@ -27,7 +27,7 @@ namespace Demo
 			widget->update(dtime);
 	}
 
-	void DemoApp::updateGraphics(unsigned int dtime)
+	void EditorDemoApp::updateGraphics(unsigned int dtime)
 	{
 		// Update shader "uniforms".
 		shaders.mixedLight->bindViewMatrix(camera.getViewMatrix());
@@ -44,7 +44,7 @@ namespace Demo
 			widget->render();
 	}
 
-	void DemoApp::processInput(unsigned int dtime)
+	void EditorDemoApp::processInput(unsigned int dtime)
 	{
 		float dRot = dtime * 0.035;
 		float dMove = dtime * 0.003;
@@ -87,7 +87,7 @@ namespace Demo
 	}
 
 
-	void DemoApp::loadAndInitWorld() 
+	void EditorDemoApp::loadAndInitWorld() 
 	{
 		// +-------------------- Creation and loading world objects.----------------------+
 		// 1. Meshes:
@@ -134,7 +134,7 @@ namespace Demo
 		worldInstance.getScene().emplace_back(cubeObject);
 	}
 
-	void DemoApp::setupRendererSettings()
+	void EditorDemoApp::setupRendererSettings()
 	{
 		camera.setPosition(vec3(0.0f, 0.0f, 5.0f));
 		camera.setup(45.0f, 0.001f, 50.0f, 16.0f / 10.0f);
@@ -147,7 +147,7 @@ namespace Demo
 		m_renderer.wireframeRendering(false);
 	}
 
-	void DemoApp::initGui()
+	void EditorDemoApp::initGui()
 	{
 		widgets.push_back(std::make_unique<AppPropertiesWidget>(m_windowProps.width, m_windowProps.height));
 		widgets.push_back(std::make_unique<TransformManipulatorWidget>(worldInstance));
