@@ -21,7 +21,6 @@
     <ClCompile Include="Source\Core\Graphics\Shaders\DefaultShader.cpp" />
     <ClCompile Include="Source\Core\Graphics\Mesh.cpp" />
     <ClCompile Include="Source\Core\World\Entity.cpp" />
-    <ClCompile Include="Source\Core\World\World.cpp" />
     <ClCompile Include="Source\Core\World\Camera.cpp" />
     <ClCompile Include="Source\Core\World\WorldObject.cpp" />
     <ClCompile Include="Source\Core\AssetsLoader.cpp" />
@@ -32,8 +31,10 @@
     <ClCompile Include="Source\EditorDemoApp\GUI\TransformManipulatorWidget.cpp" />
     <ClCompile Include="Source\EditorDemoApp\Shaders\MixedLightShader.cpp" />
     <ClCompile Include="Source\EditorDemoApp\Shaders\MixedLightTextureShader.cpp" />
-    <ClCompile Include="Source\EditorDemoApp\SceneObject.cpp" />
     <ClCompile Include="Source\EditorDemoApp\EditorDemoApp.cpp" />
+    <ClCompile Include="Source\EditorDemoApp\Scene\SceneObject.cpp" />
+    <ClCompile Include="Source\EditorDemoApp\Scene\Scene.cpp" />
+    <ClCompile Include="Source\EditorDemoApp\Shaders\ShaderLibrary.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Core\Graphics\Buffer.h" />
@@ -62,7 +63,6 @@
     <ClInclude Include="Source\Core\Graphics\Shaders\PointLightShader.h" />
     <ClInclude Include="Source\Core\Graphics\Shaders\PointLightTextureShader.h" />
     <ClInclude Include="Source\Core\World\Entity.h" />
-    <ClInclude Include="Source\Core\World\World.h" />
     <ClInclude Include="Source\Core\World\Camera.h" />
     <ClInclude Include="Source\Core\World\WorldObject.h" />
     <ClInclude Include="Source\Core\World\ICamera.h" />
@@ -79,7 +79,9 @@
     <ClInclude Include="Source\EditorDemoApp\Shaders\MixedLightTextureShader.h" />
     <ClInclude Include="Source\EditorDemoApp\Shaders\Shaders.h" />
     <ClInclude Include="Source\EditorDemoApp\CoreAliases.h" />
-    <ClInclude Include="Source\EditorDemoApp\SceneObject.h" />
     <ClInclude Include="Source\EditorDemoApp\EditorDemoApp.h" />
+    <ClInclude Include="Source\EditorDemoApp\Scene\Scene.h" />
+    <ClInclude Include="Source\EditorDemoApp\Scene\SceneObject.h" />
+    <ClInclude Include="Source\EditorDemoApp\Shaders\ShaderLibrary.h" />
   </ItemGroup>
 </Project>
