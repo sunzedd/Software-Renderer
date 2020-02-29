@@ -7,6 +7,11 @@ namespace Demo
 	class SingleColorShader : public Core::IShaderProgram
 	{
 	public:
+		SingleColorShader()
+			:
+			m_color(color4f(0.9f, 0.4f, 0.6f, 1.0f))
+		{ }
+
 		SingleColorShader(const color4f& color)
 			:
 			m_color(color)

@@ -20,6 +20,6 @@ namespace Demo
 		}
 
 	private:
-		color4f m_color;
+		color4f m_color = { 0.4f, 0.8f, 0.6f, 1.0f };
 	};
 }
