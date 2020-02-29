@@ -14,6 +14,8 @@ namespace Core
 
 		const Vec3& getRotation() const { return m_rot; }
 		const Vec3& getScale() const { return m_scale; }
+		IShaderProgram& getShader() { return *m_pShader; }
+		const IShaderProgram& getShader() const { return *m_pShader; }
 
 		void setActivity(bool enabled);
 		void setRotation(const Vec3& rot);
