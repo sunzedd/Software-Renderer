@@ -45,6 +45,16 @@ namespace Core
 		m_isTransformed = true;
 	}
 
+	void Entity::setMesh(std::shared_ptr<Mesh> mesh)
+	{
+		m_pMesh = mesh;
+	}
+
+	void Entity::setShader(std::shared_ptr<IShaderProgram> shader)
+	{
+		m_pShader = shader;
+	}
+
 	void Entity::rotate(const Vec3& delta)
 	{
 		m_rot += delta;

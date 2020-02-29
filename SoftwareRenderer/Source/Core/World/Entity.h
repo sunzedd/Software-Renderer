@@ -20,6 +20,8 @@ namespace Core
 		void setActivity(bool enabled);
 		void setRotation(const Vec3& rot);
 		void setScale(const Vec3& scale);
+		void setMesh(std::shared_ptr<Mesh> mesh);
+		void setShader(std::shared_ptr<IShaderProgram> shader);
 
 		void rotate(const Vec3& delta);
 		void scale(const Vec3& scaleFactor);
