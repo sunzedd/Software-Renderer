@@ -30,6 +30,49 @@ namespace Demo
 		m_lightSource = lsrc;
 	}
 
+	Core::Entity& Scene::getObject(const std::string& name)
+	{
+		const auto found = m_container.find(name);
+		if (found == m_container.cend())
+		{
+			throw NotInSceneException(name);
+		}
+		else
+		{
+			return *found->second;
+		}
+	}
+
+	const Core::Entity& Scene::getObject(const std::string& name) const
+	{
+		const auto found = m_container.find(name);
+		if (found == m_container.cend())
+		{
+			throw NotInSceneException(name);
+		}
+		else
+		{
+			return *found->second;
+		}
+	}
+
+	void Scene::buildObjectNamesList(std::vector<std::string>& outList, bool includeLightSource)
+	{
+		for (auto& obj : m_container)
+		{
+			outList.push_back(std::string(obj.first));
+		}
+	}
+
+	void Scene::buildObjectTransormsList(std::vector< std::tuple<vec3,vec3,float> >& outList, bool includeLightSource)
+	{
+		for (auto& obj : m_container)
+		{
+			auto transform = std::make_tuple(obj.second->getPosition(), obj.second->getRotation(), 1.0f);
+			outList.push_back(transform);
+		}
+	}
+
 	void Scene::render(Core::RenderPipeline& renderer)
 	{
 		for (auto& object : m_container)

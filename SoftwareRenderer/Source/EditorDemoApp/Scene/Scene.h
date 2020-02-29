@@ -21,10 +21,16 @@ namespace Demo
 		void setCamera(std::shared_ptr<Core::Camera> camera);
 		void setLightSource(std::shared_ptr<PointLightSource> lsrc);
 
+		Core::Entity& getObject(const std::string& name);
 		Core::Camera& getCamera() { return *m_camera; }
-		const Core::Camera& getCamera() const { return *m_camera; }
 		PointLightSource& getLightSource() { return *m_lightSource; }
+
+		const Core::Entity& getObject(const std::string& name) const;
+		const Core::Camera& getCamera() const { return *m_camera; }
 		const PointLightSource& getLightSource() const { return *m_lightSource; }
+
+		void buildObjectNamesList(std::vector<std::string>& outList, bool includeLightSource = false);
+		void buildObjectTransormsList(std::vector< std::tuple<vec3,vec3,float> >& outList, bool includeLightSource = false);
 
 		void render(Core::RenderPipeline& renderer);
 		void update(unsigned int dtime);
