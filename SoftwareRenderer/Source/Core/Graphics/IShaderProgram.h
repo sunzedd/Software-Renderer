@@ -15,6 +15,7 @@ namespace Core
 		void bindViewMatrix(const Mat4& m);
 		void bindProjectionMatrix(const Mat4& m);
 
+	protected:
 		float calcIntesity(const Vec3& normal, const Vec3& lightDirection) const;
 
 	protected:
