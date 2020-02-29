@@ -33,6 +33,10 @@
 
 namespace cr = Core;
 
+namespace Demo {
+	extern std::shared_ptr<sf::Image> g_defaultTexture;
+}
+
 namespace Demo
 {
 	class EditorDemoApp final : public cr::App

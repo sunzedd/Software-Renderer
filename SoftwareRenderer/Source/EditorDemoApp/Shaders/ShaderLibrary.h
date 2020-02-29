@@ -8,36 +8,14 @@ namespace Demo
 	class ShaderLibrary final
 	{
 	public:
-		static ShaderLibrary& instance()
-		{
-			if (!m_instance)
-				m_instance = new ShaderLibrary();
-			
-			return *m_instance;
-		}
+		static ShaderLibrary& instance();
 
-		void add(const std::string& name, std::shared_ptr<Core::IShaderProgram> shader) 
-		{
-			m_shaders.emplace(name, shader);
-		}
-
-		std::shared_ptr<Core::IShaderProgram> get(const std::string& name) 
-		{
-			auto shader = m_shaders[name];
-			if (!shader)
-				throw std::exception(("There is no such shader in shader library (" + name + ")").c_str());
-
-			return m_shaders[name]; 
-		}
+		void add(const std::string& name, std::shared_ptr<Core::IShaderProgram> shader);
+		std::shared_ptr<Core::IShaderProgram> get(const std::string& name);
 
 	private:
-		ShaderLibrary() 
-		{
-		}
-		~ShaderLibrary()
-		{
-			delete m_instance;
-		}
+		ShaderLibrary() { }
+		~ShaderLibrary();
 
 	private:
 		std::unordered_map<std::string, std::shared_ptr<Core::IShaderProgram>> m_shaders;

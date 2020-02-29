@@ -1,5 +1,9 @@
 #include "EditorDemoApp.h"
 
+namespace Demo {
+	std::shared_ptr<sf::Image> g_defaultTexture = Core::AssetLoader::loadImage("Assets\\Textures\\floor.jpg");
+}
+
 namespace Demo
 {
 	EditorDemoApp::EditorDemoApp() 
@@ -81,29 +85,30 @@ namespace Demo
 	{
 		auto& slib = ShaderLibrary::instance();
 
-		slib.add("Color with point light", std::make_shared<MixedLightShader>());
-		slib.add("Texture with point light", std::make_shared<MixedLightTextureShader>());
-		slib.add("Single color", std::make_shared<DefaultSingleColorShader>(vec4(1.0f, 0.0f, 0.0f, 1.0f)));
+		slib.add("PLC", std::make_shared<PointLightColorShader>());	// PLC = Point Light Colored
+		slib.add("PLT", std::make_shared<PointLightTextureShader>(g_defaultTexture)); // PLT = Point Light Textured
+		slib.add("SC", std::make_shared<SingleColorShader>(vec4(1.0f, 0.0f, 0.0f, 1.0f))); // SC = Single Color
 	}
 
 	void EditorDemoApp::initScene()
 	{
 		m_scene = std::make_unique<Scene>();
+		auto& shaderLib = ShaderLibrary::instance();
 
+		// Camera creation and setup
 		auto camera = std::make_shared<Core::Camera>();
 		camera->setup(45.0f, 0.001f, 100.0f,
 			static_cast<float>(DEMOAPP_RESOLUTION_WIDTH) / static_cast<float>(DEMOAPP_RESOLUTION_HEIGHT));
 		camera->setPosition(vec3(0.0f, 0.0f, 3));
+
+		// Light source creation and setup
+		vec4 lightSourceIndicatorColor = { 1.0f, 1.0f, 1.0f, 1.0f };
+		auto lightSource = std::make_shared<PointLightSource>(lightSourceIndicatorColor);
+		lightSource->setPosition(vec3(0.0f, 0.0f, -2.0f));
+		lightSource->setScale(vec3(0.2f, 0.2f, 0.2f));
+
 		m_scene->setCamera(std::move(camera));
-
-		auto& slib = ShaderLibrary::instance();
-		auto lightScrShader = slib.get("Single color");
-		auto lightSrcMesh = cr::AssetsLoader::loadMesh("Assets\\Meshes\\sphere.obj");
-		auto lightSrc = std::make_shared<SceneObject>(lightSrcMesh, std::move(lightScrShader));
-		lightSrc->setScale(vec3(0.1f, 0.1f, 0.1f));
-		lightSrc->setPosition(vec3(0, 0, -5));
-
-		m_scene->setLightSource("Light Source", lightSrc);
+		m_scene->setLightSource(lightSource);
 	}
 
 	void EditorDemoApp::initRender()

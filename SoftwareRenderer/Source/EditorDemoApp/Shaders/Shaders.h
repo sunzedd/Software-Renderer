@@ -1,5 +1,5 @@
 #pragma once
-#include "MixedLightShader.h"
-#include "MixedLightTextureShader.h"
-#include "DefaultSingleColorShader.h"
+#include "PointLightColorShader.h"
+#include "PointLightTextureShader.h"
+#include "SingleColorShader.h"
 #include "ShaderLibrary.h"

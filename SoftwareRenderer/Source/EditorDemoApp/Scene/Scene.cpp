@@ -2,7 +2,7 @@
 
 namespace Demo
 {
-	void Scene::add(const std::string& name, std::shared_ptr<SceneObject> object)
+	void Scene::add(const std::string& name, std::shared_ptr<Core::Entity> object)
 	{
 		const auto found = m_container.find(name);
 		if (found == m_container.cend())
@@ -20,36 +20,14 @@ namespace Demo
 		m_container.erase(name);
 	}
 
-	void Scene::setActivity(const std::string& name, bool activated)
-	{
-		const auto found = m_container.find(name);
-		if (found == m_container.end())
-		{
-			throw NotInSceneException(name);
-		}
-		else
-		{
-			found->second->setActivity(activated);
-		}
-	}
-
 	void Scene::setCamera(std::shared_ptr<Core::Camera> camera)
 	{
 		m_camera = camera;
 	}
 
-	void Scene::setLightSource(const std::string& name, std::shared_ptr<SceneObject> lsrc)
+	void Scene::setLightSource(std::shared_ptr<PointLightSource> lsrc)
 	{
-		const auto found = m_container.find(name);
-		if (found == m_container.cend())
-		{
-			m_container.insert(std::make_pair(name, lsrc));
-			m_lightSource = lsrc;
-		}
-		else
-		{
-			throw AlreadyInSceneException(name);
-		}
+		m_lightSource = lsrc;
 	}
 
 	void Scene::render(Core::RenderPipeline& renderer)
@@ -60,6 +38,10 @@ namespace Demo
 			object.second->getShader().bindViewMatrix(m_camera->getViewMatrix());
 			object.second->render(renderer);
 		}
+
+		m_lightSource->getShader().bindProjectionMatrix(m_camera->getProjMatrix());
+		m_lightSource->getShader().bindViewMatrix(m_camera->getViewMatrix());
+		m_lightSource->render(renderer);
 	}
 
 	void Scene::update(unsigned int dtime)
@@ -67,7 +49,7 @@ namespace Demo
 		for (auto& object : m_container)
 			object.second->update(dtime);
 
-		//m_lightSource->update(dtime);
+		m_lightSource->update(dtime);
 		m_camera->update(dtime);
 	}
 }
