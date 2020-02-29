@@ -8,7 +8,6 @@ build/
 # Files
 *.user
 *.o
-*.obj
 *.exe
 
 #OSX
