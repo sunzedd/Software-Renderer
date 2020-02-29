@@ -10,13 +10,6 @@ namespace Core {
 
 	/*
 		Row major matrix order.
-
-		Multiplication with vectors order:
-
-		[x, y, z, w] * [1, 0, 0, 0] = [x', y', z', w']
-					   [0, 1, 0, 0]
-					   [0, 0, 1, 0]
-					   [0, 0, 0, 1]
 	*/
 
 	class Mat4
