@@ -1,9 +1,9 @@
 #pragma once
 #include "../../Core/World/Entity.h"
 #include "../../Core/AssetLoader.h"
-#include "../Shaders/ShaderLibrary.h"
 #include "../Shaders/SingleColorShader.h"
 #include "../CoreAliases.h"
+#include "../AssetLibrary.h"
 
 namespace Demo 
 {

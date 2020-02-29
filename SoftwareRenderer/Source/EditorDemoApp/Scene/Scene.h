@@ -1,5 +1,6 @@
 
 #pragma once
+#include <unordered_map>
 #include "../CoreAliases.h"
 #include "../../Core/World/Entity.h"
 #include "../../Core/World/Camera.h"

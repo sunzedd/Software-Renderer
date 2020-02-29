@@ -2,7 +2,6 @@
 #include "../CoreAliases.h"
 #include "../../Core/World/Entity.h"
 #include "../../Core/AssetLoader.h"
-#include "../Shaders/ShaderLibrary.h"
 
 namespace Demo
 {
