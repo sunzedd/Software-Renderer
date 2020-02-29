@@ -14,6 +14,7 @@ namespace Core {
 namespace Demo {
 	using vec3 = Core::Vec3;
 	using vec4 = Core::Vec4;
+	using vec2 = Core::Vec2;
 	using vec2i = Core::Vec2i;
 	using VS_Output = Core::VSO;
 	using vertex = Core::Vertex;
