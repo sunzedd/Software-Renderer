@@ -1,6 +1,4 @@
 #pragma once
-#include <unordered_map>
-#include <SFML/Graphics/Image.hpp>
 
 namespace Core {
 	class Vertex;
