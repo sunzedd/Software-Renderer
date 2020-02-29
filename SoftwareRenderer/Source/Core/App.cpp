@@ -34,8 +34,8 @@ namespace Core
 			sf::Time dtime = m_timer.restart();
 
 			ImGui::SFML::Update( *m_pWindow, dtime );
-			updateScene( dtime.asMilliseconds() );
-			updateGraphics( dtime.asMilliseconds() );
+			update( dtime.asMilliseconds() );
+			render( dtime.asMilliseconds() );
 			updateWindow();
 		}
 	}
@@ -64,12 +64,12 @@ namespace Core
 		m_pWindow->display();
 	}
 
-	void App::updateScene( unsigned int dtime )
+	void App::update( unsigned int dtime )
 	{
 	
 	}
 
-	void App::updateGraphics( unsigned int dtime )
+	void App::render( unsigned int dtime )
 	{
 		unsigned int fps = 1 / ( static_cast<double>(dtime) / 1000 );
 

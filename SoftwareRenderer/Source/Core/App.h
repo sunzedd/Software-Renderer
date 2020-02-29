@@ -34,8 +34,8 @@ namespace Core
 
 	protected:
 		virtual void receiveWindowEvent();
-		virtual void updateScene( unsigned int dtime );
-		virtual void updateGraphics( unsigned int dtime );
+		virtual void update( unsigned int dtime );
+		virtual void render( unsigned int dtime );
 
 	private:
 		void updateWindow();
