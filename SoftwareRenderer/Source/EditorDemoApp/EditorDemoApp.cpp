@@ -4,51 +4,41 @@ namespace Demo
 {
 	EditorDemoApp::EditorDemoApp() 
 		:
-		App(DEMOAPP_RESOLUTION_WIDTH,
-			DEMOAPP_RESOLUTION_HEIGHT,
-			DEMOAPP_TITLE, false)
+		App(DEMOAPP_RESOLUTION_WIDTH, DEMOAPP_RESOLUTION_HEIGHT, DEMOAPP_TITLE, false)
 	{
-		loadAndInitWorld();
-		setupRendererSettings();
+		loadShaders();
+		initScene();
+		initRender();
 		initGui();
 	}
 
-	EditorDemoApp::~EditorDemoApp()
-	{ }
-
-	void EditorDemoApp::updateScene(unsigned int dtime)	
+	void EditorDemoApp::update(unsigned int dtime)	
 	{
 		processInput(dtime);
+		m_scene->update(dtime);
 
-		worldInstance.update(dtime);
-		camera.update(dtime);
-
-		for (auto& widget : widgets)
+		for (auto& widget : m_widgets)
 			widget->update(dtime);
 	}
 
-	void EditorDemoApp::updateGraphics(unsigned int dtime)
+	void EditorDemoApp::render(unsigned int dtime)
 	{
-		// Update shader "uniforms".
-		shaders.mixedLight->bindViewMatrix(camera.getViewMatrix());
-		shaders.mixedLight->bindPointLightPosition(pointLightSource->getPosition());
-		shaders.mixedLightTexture->bindViewMatrix(camera.getViewMatrix());
-		shaders.mixedLightTexture->bindPointLightPosition(pointLightSource->getPosition());
-		shaders.singleColor->bindViewMatrix(camera.getViewMatrix());
-
 		m_renderer.beginFrame();
 
-		worldInstance.render(m_renderer);	
+		m_scene->render(m_renderer);
 
-		for (auto& widget : widgets) 
+		for (auto& widget : m_widgets) 
 			widget->render();
 	}
+
 
 	void EditorDemoApp::processInput(unsigned int dtime)
 	{
 		float dRot = dtime * 0.035;
 		float dMove = dtime * 0.003;
-		float dCamMove = cameraSpeed * dtime;
+		float dCamMove = m_cameraSpeed * dtime;
+
+		auto& camera = m_scene->getCamera();
 
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) camera.move(cr::Direction::Left, dCamMove);
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) camera.move(cr::Direction::Right, dCamMove);
@@ -87,71 +77,43 @@ namespace Demo
 	}
 
 
-	void EditorDemoApp::loadAndInitWorld() 
+	void EditorDemoApp::loadShaders()
 	{
-		// +-------------------- Creation and loading world objects.----------------------+
-		// 1. Meshes:
-		auto sphereMesh = cr::AssetsLoader::loadMesh("Assets\\Meshes\\sphere.obj");
-		auto lightIndicatorMesh = cr::AssetsLoader::loadMesh("Assets\\Meshes\\sphere.obj");
-		auto treeMesh = cr::AssetsLoader::loadMesh("Assets\\Meshes\\tree.obj");
-		auto susannMesh = cr::AssetsLoader::loadMesh("Assets\\Meshes\\susann.obj");
-		auto cubeMesh = cr::AssetsLoader::loadMesh("Assets\\Meshes\\cube_m.obj");
+		auto& slib = ShaderLibrary::instance();
 
-		sphereMesh->fillColor(vec4(0.3f, 0.3f, 0.9f, 1.0f));
-		treeMesh->fillColor(vec4(0.8f, 0.2f, 0.1f, 1.0f));
-		susannMesh->fillColor(vec4(0.2f, 0.9f, 0.2f, 1.0f));
-
-		// 2. Textures:
-		// ----
-
-		// 3. Shaders:
-		shaders.mixedLight = std::make_shared<MixedLightShader>();
-		shaders.mixedLightTexture = std::make_shared<MixedLightTextureShader>();
-		shaders.singleColor = std::make_shared<DefaultSingleColorShader>(vec4(0.8f, 0.8f, 0.8f, 1.0f));
-
-		// 4. Entities creation and filling the scene:
-		auto sphereObject = std::make_shared<SceneObject>("Sphere", sphereMesh, shaders.mixedLightTexture);
-		auto treeObject = std::make_shared<SceneObject>("Tree", treeMesh, shaders.mixedLight);
-		auto susannObject = std::make_shared<SceneObject>("Suzanne", susannMesh, shaders.mixedLight);
-		auto cubeObject = std::make_shared<SceneObject>("Cube", cubeMesh, shaders.mixedLight);
-		auto lightSource = std::make_shared<SceneObject>("Point light", lightIndicatorMesh, shaders.singleColor);
-
-		sphereObject->setPosition(vec3(10.0f, 2.0f, 1.0f));
-		treeObject->setPosition(vec3(13.0f, 2.0f, 2.0f));
-		susannObject->setPosition(vec3(7.0f, 2.0f, 2.0f));
-		cubeObject->setPosition(vec3(13.0f, 2.0f, 4.0f));
-
-		lightSource->setPosition(vec3(6.0f, 4.0f, 5.0f));
-		lightSource->setScale(vec3(0.2f, 0.2f, 0.2f));
-
-		pointLightSource = lightSource;
-
-		worldInstance.getScene().reserve(5);
-		worldInstance.getScene().emplace_back(sphereObject);
-		worldInstance.getScene().emplace_back(treeObject);
-		worldInstance.getScene().emplace_back(susannObject);
-		worldInstance.getScene().emplace_back(lightSource);
-		worldInstance.getScene().emplace_back(cubeObject);
+		slib.add("Color with point light", std::make_shared<MixedLightShader>());
+		slib.add("Texture with point light", std::make_shared<MixedLightTextureShader>());
+		slib.add("Single color", std::make_shared<DefaultSingleColorShader>(vec4(1.0f, 0.0f, 0.0f, 1.0f)));
 	}
 
-	void EditorDemoApp::setupRendererSettings()
+	void EditorDemoApp::initScene()
 	{
-		camera.setPosition(vec3(0.0f, 0.0f, 5.0f));
-		camera.setup(45.0f, 0.001f, 50.0f, 16.0f / 10.0f);
+		m_scene = std::make_unique<Scene>();
 
-		shaders.mixedLight->bindProjectionMatrix(camera.getProjMatrix());
-		shaders.mixedLightTexture->bindProjectionMatrix(camera.getProjMatrix());
-		shaders.singleColor->bindProjectionMatrix(camera.getProjMatrix());
+		auto camera = std::make_shared<Core::Camera>();
+		camera->setup(45.0f, 0.001f, 100.0f,
+			static_cast<float>(DEMOAPP_RESOLUTION_WIDTH) / static_cast<float>(DEMOAPP_RESOLUTION_HEIGHT));
+		camera->setPosition(vec3(0.0f, 0.0f, 3));
+		m_scene->setCamera(std::move(camera));
 
+		auto& slib = ShaderLibrary::instance();
+		auto lightScrShader = slib.get("Single color");
+		auto lightSrcMesh = cr::AssetsLoader::loadMesh("Assets\\Meshes\\sphere.obj");
+		auto lightSrc = std::make_shared<SceneObject>(lightSrcMesh, std::move(lightScrShader));
+		lightSrc->setScale(vec3(0.1f, 0.1f, 0.1f));
+		lightSrc->setPosition(vec3(0, 0, -5));
+
+		m_scene->setLightSource("Light Source", lightSrc);
+	}
+
+	void EditorDemoApp::initRender()
+	{
 		m_renderer.backFaceCulling(true);
 		m_renderer.wireframeRendering(false);
 	}
 
 	void EditorDemoApp::initGui()
 	{
-		widgets.push_back(std::make_unique<AppPropertiesWidget>(m_windowProps.width, m_windowProps.height));
-		widgets.push_back(std::make_unique<TransformManipulatorWidget>(worldInstance));
-		widgets.push_back(std::make_unique<CameraManipulatorWidget>(cameraSpeed));
-		widgets.push_back(std::make_unique<ObjectRenderControllerWidget>(worldInstance, shaderLib, textureLib));
+		m_widgets.push_back(std::make_unique<AppPropertiesWidget>(m_windowProps.width, m_windowProps.height));
 	}
 }

@@ -22,60 +22,40 @@
 */
 
 #include "../Core/Engine.h"
-#include "GUI/Widgets.h"
-#include "Shaders/Shaders.h"
 #include "../Core/Math/Vec2i.h"
-#include "SceneObject.h"
-#include "CoreAliases.h"
+#include "Shaders/Shaders.h"
+#include "Scene/Scene.h"
+#include "GUI/Widgets.h"
 
-#define DEMOAPP_TITLE "Demo"
+#define DEMOAPP_TITLE				"Demo"
+#define DEMOAPP_RESOLUTION_WIDTH	960
+#define DEMOAPP_RESOLUTION_HEIGHT	540
 
 namespace cr = Core;
 
 namespace Demo
 {
-	using ShaderLibrary = std::unordered_map<const char*, std::shared_ptr<Core::IShaderProgram>>;
-	using TextureLibrary = std::unordered_map<const char*, std::shared_ptr<sf::Image>>;
-
 	class EditorDemoApp final : public cr::App
 	{
 	public:
 		EditorDemoApp();
-		~EditorDemoApp();
 	private:
-		void updateScene(unsigned int dtime) override;
-		void updateGraphics(unsigned int dtime) override;
+		void update(unsigned int dtime) override;
+		void render(unsigned int dtime) override;
 		
 		void processInput(unsigned int dtime);
 
-		void loadAndInitWorld();
-		void setupRendererSettings();
+		void loadShaders();
+		void initScene();
+		void initRender();
 		void initGui();
 
 	private:
-		// world/scene objects
-		cr::World worldInstance;
-		cr::Camera camera;
-		float cameraSpeed = 0.001;
-		std::shared_ptr<cr::Entity> pointLightSource;
-		std::vector<cr::LineV3> sphereNormalLines;
+		std::unique_ptr<Scene> m_scene;
 
-		// GUI
-		std::vector<std::unique_ptr<Widget>> widgets;
+		float m_cameraSpeed = 0.004;
 
-		// Shaders
-		struct
-		{
-			std::shared_ptr<MixedLightShader> mixedLight;
-			std::shared_ptr<MixedLightTextureShader> mixedLightTexture;
-			std::shared_ptr<DefaultSingleColorShader> singleColor;
-		}
-		shaders;
-
-		ShaderLibrary shaderLib;
-		TextureLibrary textureLib;
-
-		static const int DEMOAPP_RESOLUTION_WIDTH = 1280;
-		static const int DEMOAPP_RESOLUTION_HEIGHT = 800;
+		// TODO: incapsulate into Gui class.
+		std::vector<std::unique_ptr<Widget>> m_widgets;
 	};
 }

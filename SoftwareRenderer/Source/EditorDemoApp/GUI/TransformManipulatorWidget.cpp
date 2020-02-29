@@ -1,5 +1,6 @@
 #include "TransformManipulatorWidget.h"
 
+#if 0
 namespace Demo
 {
 	TransformManipulatorWidget::TransformManipulatorWidget(Core::World& world)
@@ -18,7 +19,7 @@ namespace Demo
 			t.rotation = entity->getRotation();
 			t.scale = entity->getScale().x;
 
-			m_entityLabels.push_back(entity->getId().first.c_str());
+			//m_entityLabels.push_back(entity->getId().first.c_str());
 			m_entityTransforms.push_back(t);
 		}
 	}
@@ -73,3 +74,4 @@ namespace Demo
 		m_entityTransforms.push_back(Transform());
 	}
 }
+#endif

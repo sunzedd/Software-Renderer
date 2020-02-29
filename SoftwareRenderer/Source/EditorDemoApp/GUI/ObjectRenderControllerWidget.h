@@ -1,8 +1,8 @@
 #pragma once
 #include "Widget.h"
 #include "../CoreAliases.h"
-#include "../../Core/World/World.h"
 
+#if 0
 namespace Demo
 {
 	using ShaderLibrary = std::unordered_map<const char*, std::shared_ptr<Core::IShaderProgram>>;
@@ -27,3 +27,4 @@ namespace Demo
 		int m_selectedTextureIndex = -1;
 	};
 }
+#endif

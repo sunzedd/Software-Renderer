@@ -1,6 +1,5 @@
 #pragma once
 #include "Widget.h"
-#include "../../Core/World/World.h"
 
 #define DEMOAPP_WORLD_MIN_X 0
 #define DEMOAPP_WORLD_MAX_X 20
@@ -9,6 +8,7 @@
 #define DEMOAPP_WORLD_MIN_Z 0
 #define DEMOAPP_WORLD_MAX_Z 20
 
+#if 0
 namespace Demo
 {
 	struct Transform
@@ -35,3 +35,4 @@ namespace Demo
 		int m_selectedEntityIndex;
 	};
 }
+#endif

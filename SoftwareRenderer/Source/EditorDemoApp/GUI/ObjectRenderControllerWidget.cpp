@@ -1,5 +1,6 @@
 #include "ObjectRenderControllerWidget.h"
 
+#if 0
 namespace Demo
 {
 	ObjectRenderControllerWidget::ObjectRenderControllerWidget(Core::World& world, 
@@ -14,7 +15,7 @@ namespace Demo
 		for (int i = 0; i < m_world.getScene().size(); i++)
 		{
 			const auto& entity = world.getScene()[i];
-			m_entityLabels.push_back(entity->getId().first.c_str());
+			//m_entityLabels.push_back(entity->getId().first.c_str());
 		}
 
 		m_textureLabels.push_back("No Texture");
@@ -45,3 +46,4 @@ namespace Demo
 	{
 	}
 }
+#endif
