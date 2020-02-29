@@ -34,9 +34,16 @@ namespace Demo
 	{
 		for (auto& object : m_container)
 		{
-			object.second->getShader().bindProjectionMatrix(m_camera->getProjMatrix());
-			object.second->getShader().bindViewMatrix(m_camera->getViewMatrix());
-			object.second->render(renderer);
+			auto entity = object.second;
+			
+			entity->getShader().bindProjectionMatrix(m_camera->getProjMatrix());
+			entity->getShader().bindViewMatrix(m_camera->getViewMatrix());
+
+			// TODO: Rewrite with visitor pattern.
+			auto pShader = dynamic_cast<PointLightShaderBase*>( &entity->getShader() );
+			pShader->setPointLightPosition(m_lightSource->getPosition());
+
+			entity->render(renderer);
 		}
 
 		m_lightSource->getShader().bindProjectionMatrix(m_camera->getProjMatrix());

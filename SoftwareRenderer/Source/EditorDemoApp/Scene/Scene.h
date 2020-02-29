@@ -3,6 +3,7 @@
 #include "../CoreAliases.h"
 #include "../../Core/World/Entity.h"
 #include "../../Core/World/Camera.h"
+#include "../Shaders/PointLightShaderBase.h"
 #include "PointLightSource.h"
 
 namespace Demo
