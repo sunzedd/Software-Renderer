@@ -25,7 +25,9 @@
 #include "../Core/Math/Vec2i.h"
 #include "Shaders/Shaders.h"
 #include "Scene/Scene.h"
-#include "GUI/Widgets.h"
+#include "Scene/SceneObjectBuilder.h"
+#include "UI/UI.h"
+#include "AssetLibrary.h"
 
 #define DEMOAPP_TITLE				"Demo"
 #define DEMOAPP_RESOLUTION_WIDTH	960
@@ -33,8 +35,10 @@
 
 namespace cr = Core;
 
-namespace Demo {
+namespace Demo 
+{
 	extern std::shared_ptr<sf::Image> g_defaultTexture;
+	extern std::shared_ptr<Core::IShaderProgram> g_defaultShader;
 }
 
 namespace Demo
@@ -49,17 +53,17 @@ namespace Demo
 		
 		void processInput(unsigned int dtime);
 
-		void loadShaders();
+		void loadShaderLibrary();
+		void loadTextureLibrary();
+
 		void initScene();
 		void initRender();
 		void initGui();
 
 	private:
 		std::unique_ptr<Scene> m_scene;
+		std::vector<WidgetBase*> m_ui;
 
 		float m_cameraSpeed = 0.004;
-
-		// TODO: incapsulate into Gui class.
-		std::vector<std::unique_ptr<Widget>> m_widgets;
 	};
 }
