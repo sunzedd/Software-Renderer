@@ -107,6 +107,7 @@
     <ClCompile Include="Source\EditorDemoApp\Scene\SceneObjectBuilder.cpp" />
     <ClCompile Include="Source\EditorDemoApp\Shaders\PointLightShaderBase.cpp" />
     <ClCompile Include="Source\EditorDemoApp\UI\ObjectPickerWidgetBase.cpp" />
+    <ClCompile Include="Source\EditorDemoApp\UI\RenderModeControllerWidget.cpp" />
     <ClCompile Include="Source\EditorDemoApp\UI\TransformControllerWidget.cpp" />
     <ClCompile Include="Source\Main.cpp" />
     <ClCompile Include="Source\Core\Math\Mat4.cpp" />
@@ -154,7 +155,6 @@
     <ClInclude Include="Source\Core\World\ICamera.h" />
     <ClInclude Include="Source\Core\World\WorldObject.h" />
     <ClInclude Include="Source\EditorDemoApp\AssetLibrary.h" />
-    <ClInclude Include="Source\EditorDemoApp\Commands.h" />
     <ClInclude Include="Source\EditorDemoApp\CoreAliases.h" />
     <ClInclude Include="Source\EditorDemoApp\EditorDemoApp.h" />
     <ClInclude Include="Source\EditorDemoApp\Scene\Scene.h" />
@@ -167,7 +167,7 @@
     <ClInclude Include="Source\EditorDemoApp\Shaders\Shaders.h" />
     <ClInclude Include="Source\EditorDemoApp\UI\ObjectPickerWidgetBase.h" />
     <ClInclude Include="Source\EditorDemoApp\UI\PerformanceViewerWidget.h" />
-    <ClInclude Include="Source\EditorDemoApp\UI\RenderTypeControllerWidget.h" />
+    <ClInclude Include="Source\EditorDemoApp\UI\RenderModeControllerWidget.h" />
     <ClInclude Include="Source\EditorDemoApp\UI\TransformControllerWidget.h" />
     <ClInclude Include="Source\EditorDemoApp\UI\UI.h" />
     <ClInclude Include="Source\EditorDemoApp\UI\WidgetBase.h" />
