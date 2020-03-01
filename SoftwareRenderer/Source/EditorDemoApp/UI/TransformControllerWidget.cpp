@@ -43,10 +43,10 @@ namespace Demo
 
 			const char* selectedEntityName = getSelectedItemName();
 			auto& entity = m_scene.getObject(selectedEntityName);
-
-			TransformObjectCommand tCmd(entity);
-			tCmd.setTransform(selectedEntityTransform.position, rotDegrees, selectedEntityTransform.scale);
-			tCmd.exec();
+		
+			entity.setPosition(selectedEntityTransform.position);
+			entity.setRotation(rotDegrees);
+			entity.setScale(vec3(1,1,1) * selectedEntityTransform.scale);
 		}
 
 		// Light source translation
@@ -58,9 +58,7 @@ namespace Demo
 		ImGui::SliderFloat("y", &m_lightSourcePosition.y, m_sceneSizeY.x, m_sceneSizeY.y);
 		ImGui::SliderFloat("z", &m_lightSourcePosition.z, m_sceneSizeZ.x, m_sceneSizeZ.y);
 
-		TransformObjectCommand tCmd(m_scene.getLightSource());
-		tCmd.setPosition(m_lightSourcePosition);
-		tCmd.exec();
+		m_scene.getLightSource().setPosition(m_lightSourcePosition);
 
 		ImGui::End();
 	}

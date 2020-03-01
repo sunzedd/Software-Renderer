@@ -1,7 +1,6 @@
 #pragma once
 #include "ObjectPickerWidgetBase.h"
 #include "../Scene/Scene.h"
-#include "../Commands.h"
 
 namespace Demo
 {
