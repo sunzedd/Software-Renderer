@@ -19,6 +19,12 @@ namespace Demo
 		initGui();
 	}
 
+	EditorDemoApp::~EditorDemoApp()
+	{
+		for (WidgetBase* w : m_ui) 
+			delete w;
+	}
+
 	void EditorDemoApp::update(unsigned int dtime)	
 	{
 		processInput(dtime);

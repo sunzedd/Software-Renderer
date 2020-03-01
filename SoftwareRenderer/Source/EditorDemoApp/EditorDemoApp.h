@@ -47,6 +47,7 @@ namespace Demo
 	{
 	public:
 		EditorDemoApp();
+		~EditorDemoApp();
 	private:
 		void update(unsigned int dtime) override;
 		void render(unsigned int dtime) override;
