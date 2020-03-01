@@ -33,6 +33,17 @@ namespace Demo
 			return item;
 		}
 
+		void buildNamesList(std::vector<std::string>& outList)
+		{
+			outList.clear();
+			outList.reserve(m_container.size());
+
+			for (const auto& item : m_container)
+			{
+				outList.emplace_back(item.first);
+			}
+		}
+
 	private:
 		Library() { }
 		~Library() { delete m_instance; }
