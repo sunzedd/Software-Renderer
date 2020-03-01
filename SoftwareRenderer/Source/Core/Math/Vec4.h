@@ -11,7 +11,11 @@ namespace Core {
 	class  Vec4
 	{
 	public:
-		float x, y, z, w;
+		union
+		{
+			struct { float x, y, z, w; };
+			float data[4];
+		};
 
 		Vec4();
 		Vec4(float x, float y, float z, float w);
