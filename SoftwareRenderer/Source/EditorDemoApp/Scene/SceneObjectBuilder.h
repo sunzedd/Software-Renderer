@@ -16,7 +16,7 @@ namespace Demo
 		SceneObjectBuilder() { }
 
 		void createObject();
-		std::shared_ptr<Core::Entity> getBuildedObject();
+		std::shared_ptr<Core::Entity> getBuiltObject();
 
 		void setPosition(const vec3& pos);
 		void setScale(const vec3& scale);
@@ -25,6 +25,6 @@ namespace Demo
 		void setShader(std::shared_ptr<Core::IShaderProgram> shader);
 
 	private:
-		std::shared_ptr<Core::Entity> m_buildedObject;
+		std::shared_ptr<Core::Entity> m_builtObject;
 	};
 }

@@ -76,17 +76,20 @@ namespace Demo
 				}
 				else // mode == RenderMode::Textured
 				{
-					auto& object = m_scene.getObject(getSelectedItemName());
-					auto shader = std::dynamic_pointer_cast<PointLightTextureShader>(m_shaderLib.get("PLT"));
-					auto texture = m_textureLib.get(modifiedSelectedObjRenderState.textureName);
+					if (m_selectedTextureIndex > -1)
+					{
+						auto& object = m_scene.getObject(getSelectedItemName());
+						auto shader = std::dynamic_pointer_cast<PointLightTextureShader>(m_shaderLib.get("PLT"));
+						auto texture = m_textureLib.get(modifiedSelectedObjRenderState.textureName);
 
-					//+-------------------------------------------------------------------------+
-					//| TODO: Rewrite!!!!!!!!!!!!												|
-					//| Bad architecture design cause this Kostil' :(							|
-					auto shaderCopy = std::make_shared<PointLightTextureShader>(*shader);
-					//+-------------------------------------------------------------------------+
-					shaderCopy->setTexture(texture);
-					object.setShader(shaderCopy);
+						//+-------------------------------------------------------------------------+
+						//| TODO: Rewrite!!!!!!!!!!!!												|
+						//| Bad architecture design cause this Kostil' :(							|
+						auto shaderCopy = std::make_shared<PointLightTextureShader>(*shader);
+						//+-------------------------------------------------------------------------+
+						shaderCopy->setTexture(texture);
+						object.setShader(shaderCopy);
+					}
 				}
 			}
 		}
@@ -113,7 +116,7 @@ namespace Demo
 		for (int i = 0; i < m_itemLabelsStr.size(); i++)
 		{
 			RenderSettingsState state;
-			state.color = vec4(0.3f, 0.5f, 0.8f, 1.0f);
+			state.color = vec4(1.0f, 1.0f, 1.0f, 1.0f);
 			state.mode = static_cast<int>(RenderMode::Colored);
 			state.textureName = S_DEFAULT_TEXTURE_NAME;
 

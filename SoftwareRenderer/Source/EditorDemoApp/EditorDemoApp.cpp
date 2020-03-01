@@ -94,6 +94,8 @@ namespace Demo
 		tlib.add("Quads", Core::AssetLoader::loadImage("Assets\\Textures\\quads.jpg"));
 		tlib.add("Stone", Core::AssetLoader::loadImage("Assets\\Textures\\stone.jpg"));
 		tlib.add("Wood", Core::AssetLoader::loadImage("Assets\\Textures\\wood.jpg"));
+		tlib.add("Earth", Core::AssetLoader::loadImage("Assets\\Textures\\earth.jpg"));
+		tlib.add("Grass", Core::AssetLoader::loadImage("Assets\\Textures\\grass_real.jpg"));
 	}
 
 	void EditorDemoApp::loadShaderLibrary()
@@ -108,39 +110,68 @@ namespace Demo
 	void EditorDemoApp::initScene()
 	{
 		m_scene = std::make_unique<Scene>();
-		auto& shaderLib = ShaderLibrary::instance();
 
-		// Camera creation and setup
-		auto camera = std::make_shared<Core::Camera>();
-		camera->setup(45.0f, 0.001f, 100.0f,
-			static_cast<float>(DEMOAPP_RESOLUTION_WIDTH) / static_cast<float>(DEMOAPP_RESOLUTION_HEIGHT));
-		camera->setPosition(vec3(0.0f, 0.0f, 3));
-
-		// Light source creation and setup
-		vec4 lightSourceIndicatorColor = { 1.0f, 1.0f, 1.0f, 1.0f };
-		auto lightSource = std::make_shared<PointLightSource>(lightSourceIndicatorColor);
-		lightSource->setPosition(vec3(0.0f, 2.0f, -2.0f));
-		lightSource->setScale(vec3(0.2f, 0.2f, 0.2f));
-
-		m_scene->setCamera(std::move(camera));
-		m_scene->setLightSource(lightSource);
+		initCamera();
+		initLighting();
 
 		// Fill the scene with objects
 		SceneObjectBuilder objBuilder;
-		
-		// Default
+
+		// Terrain
+		objBuilder.createObject();
+		objBuilder.setMesh(Core::AssetLoader::loadMesh("Assets\\Meshes\\floor.obj"));
+		objBuilder.setPosition(vec3(0.0f, 0.0f, 0.0f));
+		objBuilder.setShader(ShaderLibrary::instance().get("PLC"));
+		m_scene->add("Terrain", objBuilder.getBuiltObject());
+
+		// Cube (Builder creates cube by default)
 		objBuilder.createObject();
 		objBuilder.setShader(ShaderLibrary::instance().get("PLC"));
-		objBuilder.setPosition(vec3(-3.0f, 0.0f, -2.0f));
+		objBuilder.setPosition(vec3(-3.0f, 1.0f, -2.0f));
 		objBuilder.setScale(vec3(0.5f, 0.5f, 0.5f));
-		m_scene->add("Default object", objBuilder.getBuildedObject());
+		m_scene->add("Cube", objBuilder.getBuiltObject());
 
-		// Textured sphere
+		// Sphere
 		objBuilder.createObject();
 		objBuilder.setMesh(Core::AssetLoader::loadMesh("Assets\\Meshes\\sphere.obj"));
-		objBuilder.setPosition(vec3(0.0f, 0.0f, -2.0f));
-		objBuilder.setShader(ShaderLibrary::instance().get("PLT"));
-		m_scene->add("Sphere", objBuilder.getBuildedObject());
+		objBuilder.setPosition(vec3(0.0f, 1.0f, -1.0f));
+		objBuilder.setShader(ShaderLibrary::instance().get("PLC"));
+		m_scene->add("Sphere", objBuilder.getBuiltObject());
+
+		// Tree1
+		objBuilder.createObject();
+		objBuilder.setMesh(Core::AssetLoader::loadMesh("Assets\\Meshes\\tree_01.obj"));
+		objBuilder.setPosition(vec3(5.0f, 0.0f, -6.0f));
+		objBuilder.setShader(ShaderLibrary::instance().get("PLC"));
+		m_scene->add("Tree1", objBuilder.getBuiltObject());
+
+		// Tree2
+		objBuilder.createObject();
+		objBuilder.setMesh(Core::AssetLoader::loadMesh("Assets\\Meshes\\tree_02.obj"));
+		objBuilder.setPosition(vec3(2.0f, 0.0f, -4.0f));
+		objBuilder.setShader(ShaderLibrary::instance().get("PLC"));
+		m_scene->add("Tree2", objBuilder.getBuiltObject());
+	}
+
+
+	void EditorDemoApp::initCamera()
+	{
+		auto camera = std::make_shared<Core::Camera>();
+		camera->setup(45.0f, 0.001f, 100.0f,
+			static_cast<float>(DEMOAPP_RESOLUTION_WIDTH) / static_cast<float>(DEMOAPP_RESOLUTION_HEIGHT));
+		camera->setPosition(vec3(0.0f, 1.0f, 10));
+
+		m_scene->setCamera(std::move(camera));
+	}
+
+	void EditorDemoApp::initLighting()
+	{
+		vec4 lightSourceIndicatorColor = { 1.0f, 1.0f, 0.5f, 1.0f };
+		auto lightSource = std::make_shared<PointLightSource>(lightSourceIndicatorColor);
+		lightSource->setPosition(vec3(0.0f, 5.0f, -2.0f));
+		lightSource->setScale(vec3(0.2f, 0.2f, 0.2f));
+
+		m_scene->setLightSource(lightSource);
 	}
 
 	void EditorDemoApp::initRender()
@@ -153,5 +184,6 @@ namespace Demo
 	{
 		m_ui.push_back(new PerformanceViewerWidget(vec2i(m_windowProps.width, m_windowProps.height)));
 		m_ui.push_back(new TransformControllerWidget(*m_scene));
+		m_ui.push_back(new RenderModeControllerWidget(*m_scene));
 	}
 }

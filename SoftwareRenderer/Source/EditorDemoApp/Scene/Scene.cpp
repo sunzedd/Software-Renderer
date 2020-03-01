@@ -82,7 +82,6 @@ namespace Demo
 			entity->getShader().bindProjectionMatrix(m_camera->getProjMatrix());
 			entity->getShader().bindViewMatrix(m_camera->getViewMatrix());
 
-			// TODO: Rewrite with visitor pattern.
 			auto pShader = dynamic_cast<PointLightShaderBase*>( &entity->getShader() );
 			pShader->setPointLightPosition(m_lightSource->getPosition());
 

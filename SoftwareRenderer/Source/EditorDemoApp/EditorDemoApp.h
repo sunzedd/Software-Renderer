@@ -58,6 +58,8 @@ namespace Demo
 		void loadTextureLibrary();
 
 		void initScene();
+		void initCamera();
+		void initLighting();
 		void initRender();
 		void initGui();
 

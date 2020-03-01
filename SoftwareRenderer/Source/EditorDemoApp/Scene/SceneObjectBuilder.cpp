@@ -7,36 +7,36 @@ namespace Demo
 		auto defaultObjectMesh = Core::AssetLoader::loadMesh("Assets\\Meshes\\cube.obj");
 		auto defaultObjectShader = g_defaultShader;
 
-		m_buildedObject = std::make_shared<Core::Entity>(std::move(defaultObjectMesh), std::move(defaultObjectShader));
+		m_builtObject = std::make_shared<Core::Entity>(std::move(defaultObjectMesh), std::move(defaultObjectShader));
 	}
 
-	std::shared_ptr<Core::Entity> SceneObjectBuilder::getBuildedObject()
+	std::shared_ptr<Core::Entity> SceneObjectBuilder::getBuiltObject()
 	{
-		return std::move(m_buildedObject);
+		return std::move(m_builtObject);
 	}
 
 	void SceneObjectBuilder::setPosition(const vec3& pos)
 	{
-		m_buildedObject->setPosition(pos);
+		m_builtObject->setPosition(pos);
 	}
 
 	void SceneObjectBuilder::setScale(const vec3& scale)
 	{
-		m_buildedObject->setScale(scale);
+		m_builtObject->setScale(scale);
 	}
 
 	void SceneObjectBuilder::setRotation(const vec3& rot)
 	{
-		m_buildedObject->setRotation(rot);
+		m_builtObject->setRotation(rot);
 	}
 
 	void SceneObjectBuilder::setMesh(std::shared_ptr<Core::Mesh> mesh)
 	{
-		m_buildedObject->setMesh(mesh);
+		m_builtObject->setMesh(mesh);
 	}
 
 	void SceneObjectBuilder::setShader(std::shared_ptr<Core::IShaderProgram> shader)
 	{
-		m_buildedObject->setShader(shader);
+		m_builtObject->setShader(shader);
 	}
 }

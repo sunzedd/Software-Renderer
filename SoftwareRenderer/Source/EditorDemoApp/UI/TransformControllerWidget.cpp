@@ -7,6 +7,7 @@ namespace Demo
 		ObjectPickerWidgetBase(scene, "Transformations")
 	{
 		fillObjectTransforms();
+		m_lightSourcePosition = scene.getLightSource().getPosition();
 	}
 
 	void TransformControllerWidget::render()
