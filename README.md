@@ -15,4 +15,7 @@ ImGui
 ImGui-SFML (https://github.com/eliasdaler/imgui-sfml)
 
 ## Examples: 
-... later
+
+![Screenshot1](/SoftwareRenderer/assets/DemoScr1.png)
+
+![Screenshot2](/SoftwareRenderer/assets/DemoScr2.png)
