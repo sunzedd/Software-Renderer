@@ -5,7 +5,7 @@ Decomposed into two parts:
 
 Engine and demo application (scene editor).
 
-Supports textures
+Supports textures meshes, loading OBJ models
 
 ## Required dependencies:
 SFML-2.5.1
