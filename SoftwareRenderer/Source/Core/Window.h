@@ -15,7 +15,7 @@ public:
 	~Window();
 
 	FrameBuffer& getFrameBuffer() { return m_frameBuffer; }
-	sf::Event&   getEvent() { return m_event; }
+	const sf::Event& getEvent() const { return m_event; }
 
 	bool isOpen() const { return m_nativeWindow->isOpen(); }
 	void update(sf::Time deltaTime);
@@ -35,8 +35,8 @@ private:
 	m_properties;
 
 	std::unique_ptr<sf::RenderWindow> m_nativeWindow;
-	FrameBuffer					m_frameBuffer;
-	sf::Texture					m_frameBufferTexture;
+	FrameBuffer m_frameBuffer;
+	sf::Texture m_frameBufferTexture;
 	std::unique_ptr<sf::Sprite> m_frameBufferSprite;
 };
 } // namespace Core

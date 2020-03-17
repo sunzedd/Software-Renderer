@@ -29,10 +29,4 @@ namespace Core
 			m_window.update(dtime);
 		}
 	}
-
-	void App::update(unsigned int dtime)
-	{}
-
-	void App::render(unsigned int dtime)
-	{}
 }

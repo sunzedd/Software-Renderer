@@ -22,12 +22,12 @@ public:
 	void run();
 
 protected:
-	virtual void update(unsigned int dtime);
-	virtual void render(unsigned int dtime);
+	virtual void update(unsigned int dtime) = 0;
+	virtual void render(unsigned int dtime) = 0;
 
 protected:
 	Window m_window;
-	sf::Event& m_windowEvent;
+	const sf::Event& m_windowEvent;
 	sf::Clock m_timer;
 	RenderPipeline m_renderer;
 };
