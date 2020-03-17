@@ -98,6 +98,7 @@
     <ClCompile Include="Source\Core\Graphics\RenderPipeline.cpp" />
     <ClCompile Include="Source\Core\Graphics\Shaders\DefaultShader.cpp" />
     <ClCompile Include="Source\Core\Graphics\Vertex.cpp" />
+    <ClCompile Include="Source\Core\Window.cpp" />
     <ClCompile Include="Source\Core\World\Camera.cpp" />
     <ClCompile Include="Source\Core\World\Entity.cpp" />
     <ClCompile Include="Source\Core\World\WorldObject.cpp" />
@@ -124,6 +125,7 @@
   <ItemGroup>
     <ClInclude Include="Source\Core\App.h" />
     <ClInclude Include="Source\Core\AssetLoader.h" />
+    <ClInclude Include="Source\Core\Defines.h" />
     <ClInclude Include="Source\Core\Engine.h" />
     <ClInclude Include="Source\Core\Graphics\Buffer.hpp" />
     <ClInclude Include="Source\Core\Graphics\Buffer.h" />
@@ -150,6 +152,7 @@
     <ClInclude Include="Source\Core\Math\Vec2i.h" />
     <ClInclude Include="Source\Core\Math\Vec3.h" />
     <ClInclude Include="Source\Core\Math\Vec4.h" />
+    <ClInclude Include="Source\Core\Window.h" />
     <ClInclude Include="Source\Core\World\Entity.h" />
     <ClInclude Include="Source\Core\World\Camera.h" />
     <ClInclude Include="Source\Core\World\ICamera.h" />

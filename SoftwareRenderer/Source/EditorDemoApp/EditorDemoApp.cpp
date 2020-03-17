@@ -36,7 +36,7 @@ namespace Demo
 	{
 		m_renderer.beginFrame();
 		m_scene->render(m_renderer);
-		for (auto w : m_ui) w->render();
+		//for (auto w : m_ui) w->render();
 	}
 
 
@@ -182,7 +182,7 @@ namespace Demo
 
 	void EditorDemoApp::initGui()
 	{
-		m_ui.push_back(new PerformanceViewerWidget(vec2i(m_windowProps.width, m_windowProps.height)));
+		m_ui.push_back(new PerformanceViewerWidget(vec2i(800, 600)));
 		m_ui.push_back(new TransformControllerWidget(*m_scene));
 		m_ui.push_back(new RenderModeControllerWidget(*m_scene));
 	}
