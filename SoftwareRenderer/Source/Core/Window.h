@@ -24,9 +24,9 @@ public:
 	~Window();
 
 	FrameBuffer& getFrameBuffer() { return m_frameBuffer; }
-	const sf::Event& getEvent() const { return m_event; }
 
 	bool isOpen() const { return m_nativeWindow.isOpen(); }
+	void pollEvent(sf::Event& e);
 	void update(sf::Time deltaTime);
 
 private:
@@ -42,6 +42,9 @@ private:
 	sf::Sprite m_frameBufferSprite;
 
 	sf::Event m_event;
+
+	sf::Font m_font;
+	sf::Text m_fpsLabel;
 };
 
 } // namespace Core

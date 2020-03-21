@@ -23,21 +23,27 @@ Window::~Window()
 	ImGui::SFML::Shutdown();
 }
 
-void Window::update(sf::Time deltaTime)
+void Window::pollEvent(sf::Event& e)
 {
 	while (m_nativeWindow.pollEvent(m_event))
 	{
 		if (m_event.type == sf::Event::Closed) m_nativeWindow.close();
 	}
-	ImGui::SFML::ProcessEvent(m_event);
-	ImGui::SFML::Update(m_nativeWindow, deltaTime);
+}
+
+void Window::update(sf::Time deltaTime)
+{
+	int fps = 1.0f / (static_cast<double>(deltaTime.asMilliseconds()) / 1000);
 
 	m_frameBufferTexture.update((sf::Uint8*)m_frameBuffer.pixels());
 	m_frameBufferSprite.setTexture(m_frameBufferTexture);
 
 	m_nativeWindow.clear();
 	m_nativeWindow.draw(m_frameBufferSprite);
-	ImGui::SFML::Render(m_nativeWindow);
+
+	m_fpsLabel.setString(std::to_string(fps));
+	m_nativeWindow.draw(m_fpsLabel);
+
 	m_nativeWindow.display();
 }
 
@@ -56,6 +62,10 @@ void Window::createGraphics(bool fullscreen)
 
 	m_frameBufferTexture.create(m_properties.width, m_properties.height);
 	m_frameBufferSprite = sf::Sprite(m_frameBufferTexture);
+
+	if (!m_font.loadFromFile("Assets\\font.ttf"))
+		throw std::exception("Could not load font");
+	m_fpsLabel.setFont(m_font);
 
 	ImGui::SFML::Init(m_nativeWindow);
 }

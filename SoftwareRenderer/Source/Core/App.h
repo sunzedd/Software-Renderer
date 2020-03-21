@@ -26,7 +26,7 @@ protected:
 
 protected:
 	Window m_window;
-	const sf::Event& m_windowEvent;
+	sf::Event m_event;
 	sf::Clock m_timer;
 	RenderPipeline m_renderer;
 };
