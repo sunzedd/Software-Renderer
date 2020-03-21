@@ -8,7 +8,7 @@ int main()
 		Demo::EditorDemoApp a;
 		a.run();
 	}
-	catch ( const std::exception & e )
+	catch (const std::exception& e)
 	{
 		std::cout << e.what() << std::endl;
 		system("pause");

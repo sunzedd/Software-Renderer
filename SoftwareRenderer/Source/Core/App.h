@@ -14,8 +14,6 @@ namespace Core {
 class App 
 {
 public:
-	class Exception;
-
 	App();
 	App(int width, int height, const std::string& title, bool fullscreen);
 	virtual ~App();
@@ -31,14 +29,6 @@ protected:
 	const sf::Event& m_windowEvent;
 	sf::Clock m_timer;
 	RenderPipeline m_renderer;
-};
-
-class App::Exception : public std::exception
-{
-public:
-	Exception(const std::string& msg)
-		:
-		exception(msg.c_str()) { }
 };
 
 } // namespace Core

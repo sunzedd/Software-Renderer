@@ -30,8 +30,8 @@
 #include "AssetLibrary.h"
 
 #define DEMOAPP_TITLE				"Demo"
-#define DEMOAPP_RESOLUTION_WIDTH	960
-#define DEMOAPP_RESOLUTION_HEIGHT	540
+#define DEMOAPP_RESOLUTION_WIDTH	1024
+#define DEMOAPP_RESOLUTION_HEIGHT	768
 
 namespace cr = Core;
 

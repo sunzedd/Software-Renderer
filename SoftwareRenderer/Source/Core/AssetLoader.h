@@ -11,12 +11,12 @@ namespace Core {
 class AssetLoader
 {
 public:
-	class Exception : public App::Exception
+	class _Exception : public std::exception
 	{
 	public:
-		Exception(const std::string& msg)
+		_Exception(const std::string& msg)
 			:
-			App::Exception(msg) { }
+			exception(msg.c_str()) {}
 	};
 
 	static std::shared_ptr<Mesh> loadMesh(const std::string& filepath);
