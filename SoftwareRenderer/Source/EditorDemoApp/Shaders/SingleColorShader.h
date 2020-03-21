@@ -21,7 +21,8 @@ namespace Demo
 		{
 			VS_Output out(input);
 
-			out.pos = out.pos * (model * view * proj);
+			out.posView = out.pos * (model * view);
+			out.pos = out.posView * proj;
 			out.intensity = 1.0f;
 
 			return out;

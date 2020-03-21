@@ -9,11 +9,12 @@ namespace Demo
 
 		// Transform vertex position and normal vector to world space(for intensity calculation).
 		out.posWorld = out.pos * model;
+		out.posView = out.posWorld * view;
 		out.n *= model;
 		out.n = out.n.getNormalized();
 
 		// Transform vertex position to clip (projection) space.
-		out.pos = out.posWorld * (view * proj);
+		out.pos = out.posView * proj;
 
 		//+------------------- Intensity computation with 2 light sources -------------------+
 		vec3 pointLightDirection = vec3(out.posWorld) - m_pointLightPosition;
