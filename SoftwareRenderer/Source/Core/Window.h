@@ -26,7 +26,7 @@ public:
 	FrameBuffer& getFrameBuffer() { return m_frameBuffer; }
 	const sf::Event& getEvent() const { return m_event; }
 
-	bool isOpen() const { return m_nativeWindow->isOpen(); }
+	bool isOpen() const { return m_nativeWindow.isOpen(); }
 	void update(sf::Time deltaTime);
 
 private:
@@ -35,10 +35,11 @@ private:
 private:
 	_Properties	m_properties;
 
-	std::unique_ptr<sf::RenderWindow> m_nativeWindow;
 	FrameBuffer m_frameBuffer;
+	
+	sf::RenderWindow m_nativeWindow;
 	sf::Texture m_frameBufferTexture;
-	std::unique_ptr<sf::Sprite> m_frameBufferSprite;
+	sf::Sprite m_frameBufferSprite;
 
 	sf::Event m_event;
 };
