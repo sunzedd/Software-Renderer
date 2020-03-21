@@ -1,6 +1,7 @@
 #include "MathFunc.h"
 
 namespace Core {
+
 Vec3 MathFunc::lineIntersectPlane(const Vec3& planePoint, const Vec3& planeNorm, const Vec3& lineStart, const Vec3& lineEnd)
 {
 	Vec3 n = planeNorm.normalized();
@@ -30,4 +31,5 @@ Vec4 MathFunc::computePlaneEquation(const Vec3& p1, const Vec3& p2, const Vec3& 
 
 	return Vec4( a, b, c, d );
 }
+
 } // namespace Core

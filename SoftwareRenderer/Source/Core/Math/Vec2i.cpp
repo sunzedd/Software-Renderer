@@ -1,6 +1,7 @@
 #include "Vec2i.h"
 
 namespace Core {
+
 Vec2i::Vec2i()
 	:
 	x(0),
@@ -59,4 +60,5 @@ Vec2i& Vec2i::operator *= (int value)
 	y *= value;
 	return *this;
 }
+
 } // namespace Core

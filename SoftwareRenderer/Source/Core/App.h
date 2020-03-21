@@ -10,6 +10,7 @@
 #include "Window.h"
 
 namespace Core {
+
 class App 
 {
 public:
@@ -39,4 +40,5 @@ public:
 		:
 		exception(msg.c_str()) { }
 };
+
 } // namespace Core

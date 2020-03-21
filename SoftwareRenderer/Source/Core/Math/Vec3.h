@@ -9,6 +9,7 @@ namespace Core {
 }
 
 namespace Core {
+
 class  Vec3
 {
 public:
@@ -50,4 +51,5 @@ public:
 	Vec3& getSaturated() const;
 
 };
+
 } // namespace Core

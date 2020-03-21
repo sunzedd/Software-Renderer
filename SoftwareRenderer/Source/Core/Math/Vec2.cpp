@@ -2,6 +2,7 @@
 #include "Vec2i.h"
 
 namespace Core {
+
 Vec2::Vec2()
 	:
 	x(0.0f),
@@ -78,4 +79,5 @@ Vec2& Vec2::operator /= (float value)
 	y /= value;
 	return *this;
 }
+
 } // namespace Core

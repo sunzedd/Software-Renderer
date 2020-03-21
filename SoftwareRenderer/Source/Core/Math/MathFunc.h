@@ -5,6 +5,7 @@
 #define CORE_PI 3.14159265359
 
 namespace Core {
+
 class MathFunc
 {
 public:
@@ -28,4 +29,5 @@ public:
 private:
 	MathFunc() {} 
 };
+
 } // namespace Core

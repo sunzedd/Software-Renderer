@@ -4,6 +4,7 @@
 #include <iostream>
 
 namespace Core {
+
 Mat4::Mat4()
 {
 	std::memset(data, 0.0f, sizeof(float) * 16);
@@ -216,4 +217,5 @@ Mat4 Mat4::perspective(float fov, float aspectRatio, float near, float far)
 
 	return result;
 }
+
 } // namespace Core

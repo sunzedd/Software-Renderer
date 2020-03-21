@@ -2,6 +2,7 @@
 #include "Vec4.h"
 
 namespace Core {
+
 Vec3::Vec3() 
 	:
 	x(0.0f),
@@ -185,4 +186,5 @@ Vec3& Vec3::getSaturated() const
 	
 	return out;
 }
+
 } // namespace Core

@@ -1,6 +1,7 @@
 #include "App.h"
 
 namespace Core {
+
 App::App()
 	:
 	m_window(),
@@ -28,4 +29,5 @@ void App::run()
 		m_window.update(dtime);
 	}
 }
+
 } // namespace Core

@@ -32,6 +32,7 @@
     <ClCompile Include="Source\EditorDemoApp\UI\ObjectPickerWidgetBase.cpp" />
     <ClCompile Include="Source\EditorDemoApp\UI\TransformControllerWidget.cpp" />
     <ClCompile Include="Source\EditorDemoApp\UI\RenderModeControllerWidget.cpp" />
+    <ClCompile Include="Source\Core\Window.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Core\Graphics\Buffer.h" />
@@ -83,6 +84,8 @@
     <ClInclude Include="Source\EditorDemoApp\Library.h" />
     <ClInclude Include="Source\EditorDemoApp\AssetLibrary.h" />
     <ClInclude Include="Source\EditorDemoApp\UI\RenderModeControllerWidget.h" />
+    <ClInclude Include="Source\Core\Window.h" />
+    <ClInclude Include="Source\Core\Defines.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Source\EditorDemoApp\Scene\PointLightSource.h" />

@@ -173,4 +173,5 @@ Vec4& Vec4::saturate()
 
 	return *this;
 }
+
 } // namespace Core

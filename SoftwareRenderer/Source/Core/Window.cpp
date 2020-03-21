@@ -1,6 +1,7 @@
 #include "Window.h"
 
 namespace Core {
+
 Window::Window()
 	:
 	m_properties({ CORE_DEFAULT_WIDTH, CORE_DEFAULT_HEIGHT, false, "CoreApp" }),
@@ -63,4 +64,5 @@ void Window::createGraphics(bool fullscreen)
 
 	ImGui::SFML::Init(*m_nativeWindow);
 }
+
 } // namespace Core

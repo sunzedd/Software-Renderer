@@ -54,4 +54,5 @@ public:
 	static Mat4 orthographic(float left, float right, float bottom, float top, float near, float far);
 	static Mat4 perspective(float fov, float aspectRatio, float near, float far);
 };
+
 } // namespace Core

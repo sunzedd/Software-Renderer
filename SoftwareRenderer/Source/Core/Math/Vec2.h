@@ -5,6 +5,7 @@ namespace Core {
 }
 
 namespace Core {
+
 class  Vec2
 {
 public:
@@ -27,4 +28,5 @@ public:
 	Vec2& operator *= (float value);
 	Vec2& operator /= (float value);
 };
+
 } // namespace Core

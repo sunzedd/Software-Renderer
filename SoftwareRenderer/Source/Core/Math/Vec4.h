@@ -46,4 +46,5 @@ public:
 	Vec4 getNormalized() const;
 	Vec4& saturate();
 };
+
 } // namespace Core

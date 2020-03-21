@@ -7,8 +7,17 @@
 #include "Defines.h"
 
 namespace Core {
+
 class Window
 {
+	struct _Properties
+	{
+		int	width;
+		int	height;
+		bool fullscreen;
+		std::string title;
+	};
+
 public:
 	Window();
 	Window(int width, int height, const std::string& title, bool fullscreen = false);
@@ -23,20 +32,15 @@ public:
 private:
 	void createGraphics(bool fullscreen);
 
-	sf::Event m_event;
-
-	struct 
-	{
-		int			width;
-		int			height;
-		bool		fullscreen;
-		std::string title;
-	}
-	m_properties;
+private:
+	_Properties	m_properties;
 
 	std::unique_ptr<sf::RenderWindow> m_nativeWindow;
 	FrameBuffer m_frameBuffer;
 	sf::Texture m_frameBufferTexture;
 	std::unique_ptr<sf::Sprite> m_frameBufferSprite;
+
+	sf::Event m_event;
 };
+
 } // namespace Core
