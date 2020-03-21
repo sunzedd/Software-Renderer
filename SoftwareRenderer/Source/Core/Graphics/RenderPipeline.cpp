@@ -40,10 +40,11 @@ void RenderPipeline::beginFrame()
 }
 
 // Renderer entry point
-void RenderPipeline::runTriangles( const std::vector<Vertex>& vertexBuf, const std::vector<unsigned short>& indexBuf )
+void RenderPipeline::runTriangles(const std::vector<Vertex>& vertexBuf,
+	const std::vector<unsigned short>& indexBuf)
 {
 	if( !m_shader )
-		throw Exception( "No shader binded" );
+		throw _Exception( "No shader binded" );
 
 	for( int i = 0; i < indexBuf.size(); i += 3 )
 	{
@@ -101,7 +102,7 @@ void RenderPipeline::runLines(const std::vector<LineV3>& lineBuf, const Vec4& co
 	}
 }
 
-bool RenderPipeline::backFaceTest( Triangle<VSO>& polygon ) const
+bool RenderPipeline::backFaceTest(Triangle<VSO>& polygon) const
 {
 	if ( !m_properties.backFaceCullingFlag )
 		return true;
@@ -119,7 +120,7 @@ bool RenderPipeline::backFaceTest( Triangle<VSO>& polygon ) const
 	return ( d <= 0 );
 }
 
-void RenderPipeline::clip( Triangle<VSO>& polygon )
+void RenderPipeline::clip(Triangle<VSO>& polygon)
 {
 	// cull tests
 	if (polygon.v0.pos.x > polygon.v0.pos.w&&
@@ -235,7 +236,10 @@ void RenderPipeline::renderClippedPolygon( Triangle<VSO>& polygon )
 	viewport( polygon.v2 );
 
 	if (m_properties.wireframeFlag)
-		m_rasterizer.triangleWireframe(polygon.v0.pos, polygon.v1.pos, polygon.v2.pos, Vec4(1.0f, 1.0f, 1.0f, 1.0f));
+	{
+		m_rasterizer.triangleWireframe(polygon.v0.pos, polygon.v1.pos, polygon.v2.pos,
+			Vec4(1.0f, 1.0f, 1.0f, 1.0f));
+	}
 	else
 		m_rasterizer.triangle( polygon );
 }

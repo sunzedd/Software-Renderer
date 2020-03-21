@@ -166,7 +166,8 @@ void Rasterizer::line( VSO& v0, VSO& v1, const Vec4& color )
 	}
 }
 
-void Rasterizer::triangleWireframe(const Vec3& p0, const Vec3& p1, const Vec3& p2, const Vec4& color)
+void Rasterizer::triangleWireframe(const Vec3& p0, const Vec3& p1, const Vec3& p2,
+	const Vec4& color)
 {
 	line(p0, p1, color);
 	line(p1, p2, color);
@@ -251,7 +252,8 @@ void Rasterizer::triangleFlatBottom( const VSO& it0, const VSO& it1, const VSO& 
 	triangleFlat(it0, it1, it2, dit0, dit1, itEdge1);
 }
 
-void Rasterizer::triangleFlat(const VSO& it0, const VSO& it1, const VSO& it2, const VSO& dv0, const VSO& dv1, VSO itEdge1)
+void Rasterizer::triangleFlat(const VSO& it0, const VSO& it1, const VSO& it2,
+	const VSO& dv0, const VSO& dv1, VSO itEdge1)
 {
 	auto itEdge0 = it0;
 

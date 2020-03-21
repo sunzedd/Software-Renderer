@@ -11,14 +11,22 @@ namespace Core {
 
 class RenderPipeline final
 {
-public:
-	class Exception : public std::exception
+	struct _Properties
 	{
-	public:
-		Exception(const std::string& msg)
-			:
-			exception(msg.c_str()) { }
+		bool backFaceCullingFlag;
+		bool wireframeFlag;
 	};
+
+	struct _Viewport
+	{
+		int topLeftX;
+		int topLeftY;
+		int width;
+		int height;
+	};
+
+public:
+	class _Exception;
 
 public:
 	RenderPipeline( FrameBuffer& frameBuf );
@@ -30,8 +38,10 @@ public:
 
 	// Renderer entry point
 	void beginFrame();
-	void runTriangles( const std::vector<Vertex>& vertexBuf,  const std::vector<unsigned short>& indexBuf );
+	void runTriangles(const std::vector<Vertex>& vertexBuf,
+		const std::vector<unsigned short>& indexBuf );
 	void runLines(const std::vector<LineV3>& lineBuf, const Vec4& color);
+
 private:
 	bool backFaceTest( Triangle<VSO>& polygon ) const;
 	void clip( Triangle<VSO>& polygon );
@@ -43,21 +53,16 @@ private:
 	Rasterizer m_rasterizer;
 	std::shared_ptr<IShaderProgram> m_shader;
 
-	struct 
-	{
-		bool backFaceCullingFlag;
-		bool wireframeFlag;
-	}
-	m_properties;
+	_Properties m_properties;
+	_Viewport m_viewport;
+};
 
-	struct
-	{
-		int topLeftX;
-		int topLeftY;
-		int width;
-		int height;
-	}
-	m_viewport;
+class RenderPipeline::_Exception : public std::exception
+{
+public:
+	_Exception(const std::string& msg)
+		:
+		exception(msg.c_str()) { }
 };
 
 } // namespace Core
