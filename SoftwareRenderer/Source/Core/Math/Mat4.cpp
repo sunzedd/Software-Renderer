@@ -162,6 +162,31 @@ Mat4 Mat4::rotationXYZ(const Vec3& angle)
 	return x * y * z;
 }
 
+#ifdef EXPERIMENTAL
+Mat4 Mat4::lookAt(const Vec3& eye, const Vec3& center, const Vec3& up)
+{
+	const Vec3 f = (center - eye).normalize();
+	const Vec3 s = f.cross(up).normalize();
+	const Vec3 u = s.cross(f);
+
+	Mat4 result;
+	result.m[0][0] = s.x;
+	result.m[1][0] = s.y;
+	result.m[2][0] = s.z;
+	result.m[0][1] = u.x;
+	result.m[1][1] = u.y;
+	result.m[2][1] = u.z;
+	result.m[0][2] = -f.x;
+	result.m[1][2] = -f.y;
+	result.m[2][2] = -f.z;
+	result.m[3][0] = -s.dot(eye);
+	result.m[3][1] = -u.dot(eye);
+	result.m[3][2] = f.dot(eye);
+
+	return result;
+}
+
+#else
 Mat4 Mat4::lookAt(const Vec3& pos, const Vec3& object, const Vec3& up)
 {
 	Mat4 result;
@@ -184,6 +209,7 @@ Mat4 Mat4::lookAt(const Vec3& pos, const Vec3& object, const Vec3& up)
 
 	return result * translation(Vec3(-pos.x, -pos.y, -pos.z));
 }
+#endif
 
 Mat4 Mat4::orthographic(float left, float right, float bottom, float top, float near, float far)
 {

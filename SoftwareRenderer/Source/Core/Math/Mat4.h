@@ -2,6 +2,8 @@
 #include "MathFunc.h"
 #include <cmath>
 
+#define EXPERIMENTAL
+
 namespace Core {
 	class Vec3;
 }
@@ -50,7 +52,12 @@ public:
 	static Mat4 rotationZ(float angle);
 	static Mat4 rotationXYZ(const Vec3& angle);
 
+#ifdef EXPERIMENTAL
+	// Right handed coordinate system
+	static Mat4 lookAt(const Vec3& eye, const Vec3& center, const Vec3& up);
+#else
 	static Mat4 lookAt(const Vec3& pos, const Vec3& object, const Vec3& up);
+#endif
 	static Mat4 orthographic(float left, float right, float bottom, float top, float near, float far);
 	static Mat4 perspective(float fov, float aspectRatio, float near, float far);
 };
