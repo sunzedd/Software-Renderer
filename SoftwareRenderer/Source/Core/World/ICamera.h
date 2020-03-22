@@ -4,6 +4,13 @@
 
 namespace Core {
 
+enum class Direction
+{
+	Forward, Backward,
+	Left, Right,
+	Up, Down
+};
+
 class ICamera : public WorldObject
 {
 public:

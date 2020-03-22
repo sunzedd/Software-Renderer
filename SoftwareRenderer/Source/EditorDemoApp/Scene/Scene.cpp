@@ -20,7 +20,7 @@ namespace Demo
 		m_container.erase(name);
 	}
 
-	void Scene::setCamera(std::shared_ptr<Core::Camera> camera)
+	void Scene::setCamera(std::shared_ptr<Core::CameraLookAt> camera)
 	{
 		m_camera = camera;
 	}

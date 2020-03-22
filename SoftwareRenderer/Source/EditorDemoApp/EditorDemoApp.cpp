@@ -156,7 +156,7 @@ namespace Demo
 
 	void EditorDemoApp::initCamera()
 	{
-		auto camera = std::make_shared<Core::Camera>();
+		auto camera = std::make_shared<Core::CameraLookAt>();
 		camera->setup(45.0f, 0.001f, 100.0f,
 			static_cast<float>(DEMOAPP_RESOLUTION_WIDTH) / static_cast<float>(DEMOAPP_RESOLUTION_HEIGHT));
 		camera->setPosition(vec3(0.0f, 1.0f, 10));
@@ -176,8 +176,8 @@ namespace Demo
 
 	void EditorDemoApp::initRender()
 	{
-		m_renderer.backFaceCulling(true);
-		m_renderer.wireframeRendering(false);
+		m_renderer.toogleBackFaceCulling(true);
+		m_renderer.toogleWireframeRendering(false);
 	}
 
 	void EditorDemoApp::initGui()

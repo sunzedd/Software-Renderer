@@ -6,6 +6,7 @@
 #include "../../Core/World/Camera.h"
 #include "../Shaders/PointLightShaderBase.h"
 #include "PointLightSource.h"
+#include "../../Core/World/CameraLookAt.h"
 
 namespace Demo
 {
@@ -19,15 +20,15 @@ namespace Demo
 
 		void add(const std::string& name, std::shared_ptr<Core::Entity> object);
 		void remove(const std::string& name);
-		void setCamera(std::shared_ptr<Core::Camera> camera);
+		void setCamera(std::shared_ptr<Core::CameraLookAt> camera);
 		void setLightSource(std::shared_ptr<PointLightSource> lsrc);
 
 		Core::Entity& getObject(const std::string& name);
-		Core::Camera& getCamera() { return *m_camera; }
+		Core::CameraLookAt& getCamera() { return *m_camera; }
 		PointLightSource& getLightSource() { return *m_lightSource; }
 
 		const Core::Entity& getObject(const std::string& name) const;
-		const Core::Camera& getCamera() const { return *m_camera; }
+		const Core::CameraLookAt& getCamera() const { return *m_camera; }
 		const PointLightSource& getLightSource() const { return *m_lightSource; }
 
 		void buildObjectNamesList(std::vector<std::string>& outList, bool includeLightSource = false);
@@ -39,7 +40,7 @@ namespace Demo
 	private:
 		std::unordered_map<std::string, std::shared_ptr<Core::Entity>> m_container;
 		std::shared_ptr<PointLightSource> m_lightSource;
-		std::shared_ptr<Core::Camera> m_camera;
+		std::shared_ptr<Core::CameraLookAt> m_camera;
 	};
 
 	// Exceptions
