@@ -9,11 +9,11 @@ RenderPipeline::RenderPipeline(FrameBuffer& frameBuf)
 	m_viewport{ 0, 0, frameBuf.width(), frameBuf.height() }
 { }
 
-void RenderPipeline::backFaceCulling(bool enabled)
+void RenderPipeline::toogleBackFaceCulling(bool enabled)
 {
 	m_properties.backFaceCullingFlag = enabled;
 }
-void RenderPipeline::wireframeRendering(bool enabled)
+void RenderPipeline::toogleWireframeRendering(bool enabled)
 {
 	m_properties.wireframeFlag = enabled;
 }
@@ -40,11 +40,10 @@ void RenderPipeline::beginFrame()
 }
 
 // Renderer entry point
-void RenderPipeline::runTriangles(const std::vector<Vertex>& vertexBuf,
+void RenderPipeline::drawIndexedTriangles(const std::vector<Vertex>& vertexBuf,
 	const std::vector<unsigned short>& indexBuf)
 {
-	if( !m_shader )
-		throw _Exception( "No shader binded" );
+	if(!m_shader) throw NoShaderBoundException();
 
 	for( int i = 0; i < indexBuf.size(); i += 3 )
 	{
@@ -66,7 +65,7 @@ void RenderPipeline::runTriangles(const std::vector<Vertex>& vertexBuf,
 	}
 }
 
-void RenderPipeline::runLines(const std::vector<LineV3>& lineBuf, const Vec4& color)
+void RenderPipeline::drawLines(const std::vector<LineV3>& lineBuf, const Vec4& color)
 {
 	for (const auto& l : lineBuf)
 	{

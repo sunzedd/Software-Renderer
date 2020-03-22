@@ -17,7 +17,7 @@ std::shared_ptr<Mesh> AssetLoader::loadMesh(const std::string& filepath)
 	FILE* file;
 	fopen_s(&file, filepath.c_str(), "r");
 	if (!file)
-		throw _Exception("Could not open file while reading: " + filepath);
+		throw CouldNotLoadAssetException("Could not open file: " + filepath);
 
 	while (1)
 	{
@@ -56,7 +56,7 @@ std::shared_ptr<Mesh> AssetLoader::loadMesh(const std::string& filepath)
 			if (cn != 9)
 			{
 				fclose(file);
-				throw _Exception("File could not been read: " + filepath);
+				throw CouldNotLoadAssetException("Incorrect file data: " + filepath);
 			}
 
 			for (int i = 0; i < 3; i++)
@@ -108,7 +108,7 @@ std::shared_ptr<sf::Image> AssetLoader::loadImage(const std::string& filepath)
 	img->loadFromFile(filepath);
 
 	if (img->getSize().x == 0 || img->getSize().y == 0)
-		throw _Exception("Could not load image");
+		throw CouldNotLoadAssetException("Could not load image: " + filepath);
 
 	return std::move(img);
 }

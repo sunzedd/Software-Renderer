@@ -104,7 +104,7 @@ std::vector<LineV3> Mesh::buildNormalIndicatorLinesList(float lineLength) const
 
 void Mesh::render(RenderPipeline& renderer) const
 {
-	renderer.runTriangles(m_vertices, m_indices);
+	renderer.drawIndexedTriangles(m_vertices, m_indices);
 }
 
 void Mesh::setVertexBuffer(const std::vector<Vertex>& vertices)
