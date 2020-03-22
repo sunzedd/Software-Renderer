@@ -51,12 +51,13 @@ public:
 	{}
 };
 
-class RenderSystemNotInitializedException : public CoreException
+class RenderPipelineNotCreatedException : public CoreException
 {
 public:
-	RenderSystemNotInitializedException()
+	RenderPipelineNotCreatedException()
 		:
-		CoreException("Initialize render system before call render pipeline.")
+		CoreException("Render pipeline not initialized.\n Note: you shuld call "
+					  "RenderPipeline::create(Window& window) before.")
 	{}
 };
 

@@ -2,12 +2,35 @@
 
 namespace core {
 
+RenderPipeline* RenderPipeline::s_instance = nullptr;
+
+void RenderPipeline::create(Window& window)
+{
+	s_instance = new RenderPipeline(window.getFrameBuffer());
+}
+
+void RenderPipeline::destroy()
+{
+	if (s_instance)
+		delete s_instance;
+}
+
+RenderPipeline& RenderPipeline::instance()
+{
+	if (!s_instance) throw RenderPipelineNotCreatedException();
+	return *s_instance;
+}
+
 RenderPipeline::RenderPipeline(FrameBuffer& frameBuf)
 	:
 	m_rasterizer(frameBuf),
 	m_properties{ true, false },
 	m_viewport{ 0, 0, frameBuf.width(), frameBuf.height() }
 { }
+
+RenderPipeline::~RenderPipeline()
+{
+}
 
 void RenderPipeline::toogleBackFaceCulling(bool enabled)
 {

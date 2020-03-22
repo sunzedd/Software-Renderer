@@ -3,6 +3,7 @@
 #include <string>
 
 #include "../Exceptions.h"
+#include "../Window.h"
 
 #include "IShaderProgram.h"
 #include "FrameBuffer.h"
@@ -14,6 +15,8 @@ namespace core {
 
 class RenderPipeline final
 {
+	static RenderPipeline* s_instance;
+
 	struct _Properties
 	{
 		bool backFaceCullingFlag;
@@ -29,7 +32,9 @@ class RenderPipeline final
 	};
 
 public:
-	RenderPipeline(FrameBuffer& frameBuf);
+	static void create(Window& window);
+	static void destroy();
+	static RenderPipeline& instance();
 
 	void toogleBackFaceCulling(bool enable);
 	void toogleWireframeRendering(bool enable);
@@ -46,6 +51,9 @@ public:
 	void drawLines(const std::vector<LineV3>& lineBuf, const Vec4& color);
 
 private:
+	RenderPipeline(FrameBuffer& frameBuf);
+	~RenderPipeline();
+
 	bool backFaceTest(Triangle<VSO>& polygon) const;
 	void clip(Triangle<VSO>& polygon);
 	void renderClippedPolygon(Triangle<VSO>& polygon);

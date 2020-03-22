@@ -12,7 +12,4 @@ private:
 
 	void loadAssets();
 	void initScene();
-
-private:
-	std::unique_ptr<core::Scene> m_scene;
 };
