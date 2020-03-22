@@ -33,6 +33,7 @@
     <ClCompile Include="Source\EditorDemoApp\UI\TransformControllerWidget.cpp" />
     <ClCompile Include="Source\EditorDemoApp\UI\RenderModeControllerWidget.cpp" />
     <ClCompile Include="Source\Core\Window.cpp" />
+    <ClCompile Include="Source\Core\World\CameraLookAt.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Core\Graphics\Buffer.h" />
@@ -86,6 +87,8 @@
     <ClInclude Include="Source\EditorDemoApp\UI\RenderModeControllerWidget.h" />
     <ClInclude Include="Source\Core\Window.h" />
     <ClInclude Include="Source\Core\Defines.h" />
+    <ClInclude Include="Source\Core\Exceptions.h" />
+    <ClInclude Include="Source\Core\World\CameraLookAt.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Source\EditorDemoApp\Scene\PointLightSource.h" />

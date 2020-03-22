@@ -100,6 +100,7 @@
     <ClCompile Include="Source\Core\Graphics\Vertex.cpp" />
     <ClCompile Include="Source\Core\Window.cpp" />
     <ClCompile Include="Source\Core\World\Camera.cpp" />
+    <ClCompile Include="Source\Core\World\CameraLookAt.cpp" />
     <ClCompile Include="Source\Core\World\Entity.cpp" />
     <ClCompile Include="Source\Core\World\WorldObject.cpp" />
     <ClCompile Include="Source\EditorDemoApp\EditorDemoApp.cpp" />
@@ -127,6 +128,7 @@
     <ClInclude Include="Source\Core\AssetLoader.h" />
     <ClInclude Include="Source\Core\Defines.h" />
     <ClInclude Include="Source\Core\Engine.h" />
+    <ClInclude Include="Source\Core\Exceptions.h" />
     <ClInclude Include="Source\Core\Graphics\Buffer.hpp" />
     <ClInclude Include="Source\Core\Graphics\Buffer.h" />
     <ClInclude Include="Source\Core\Graphics\Color.h" />
@@ -153,6 +155,7 @@
     <ClInclude Include="Source\Core\Math\Vec3.h" />
     <ClInclude Include="Source\Core\Math\Vec4.h" />
     <ClInclude Include="Source\Core\Window.h" />
+    <ClInclude Include="Source\Core\World\CameraLookAt.h" />
     <ClInclude Include="Source\Core\World\Entity.h" />
     <ClInclude Include="Source\Core\World\Camera.h" />
     <ClInclude Include="Source\Core\World\ICamera.h" />
