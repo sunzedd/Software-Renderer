@@ -110,7 +110,7 @@ Mat4 Mat4::scale(const Vec3& t)
 
 Mat4 Mat4::rotationX(float angle)
 {
-	float rad = MathFunc::toRadians(angle);
+	float rad = Math::toRadians(angle);
 
 	const float cosX = cos(rad);
 	const float sinX = sin(rad);
@@ -125,7 +125,7 @@ Mat4 Mat4::rotationX(float angle)
 
 Mat4 Mat4::rotationY(float angle)
 {
-	float rad = MathFunc::toRadians(angle);
+	float rad = Math::toRadians(angle);
 
 	const float cosY = cos(rad);
 	const float sinY = sin(rad);
@@ -140,7 +140,7 @@ Mat4 Mat4::rotationY(float angle)
 
 Mat4 Mat4::rotationZ(float angle)
 {
-	float rad = MathFunc::toRadians(angle);
+	float rad = Math::toRadians(angle);
 
 	const float cosZ = cos(rad);
 	const float sinZ = sin(rad);
@@ -230,7 +230,7 @@ Mat4 Mat4::orthographic(float left, float right, float bottom, float top, float 
 
 Mat4 Mat4::perspective(float fov, float aspectRatio, float near, float far)
 {
-	const float fovRad = MathFunc::toRadians(fov);
+	const float fovRad = Math::toRadians(fov);
 	const float tanHalfFovy = ( tan(fovRad) / 2.0f );
 	Mat4 result;
 

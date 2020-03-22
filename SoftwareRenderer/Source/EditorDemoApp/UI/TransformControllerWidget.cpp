@@ -37,9 +37,9 @@ namespace Demo
 			ImGui::SliderFloat("Scale", &selectedEntityTransform.scale, 0.1f, 3.0f);
 
 			Core::Vec3 rotDegrees = {
-				Core::MathFunc::toDegrees(selectedEntityTransform.rotation.x),
-				Core::MathFunc::toDegrees(selectedEntityTransform.rotation.y),
-				Core::MathFunc::toDegrees(selectedEntityTransform.rotation.z)
+				Core::Math::toDegrees(selectedEntityTransform.rotation.x),
+				Core::Math::toDegrees(selectedEntityTransform.rotation.y),
+				Core::Math::toDegrees(selectedEntityTransform.rotation.z)
 			};
 
 			const char* selectedEntityName = getSelectedItemName();

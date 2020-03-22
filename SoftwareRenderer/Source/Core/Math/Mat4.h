@@ -1,5 +1,5 @@
 #pragma once
-#include "MathFunc.h"
+#include "Math.h"
 #include <cmath>
 
 #define EXPERIMENTAL

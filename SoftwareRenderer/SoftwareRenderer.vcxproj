@@ -113,7 +113,7 @@
     <ClCompile Include="Source\EditorDemoApp\UI\TransformControllerWidget.cpp" />
     <ClCompile Include="Source\Main.cpp" />
     <ClCompile Include="Source\Core\Math\Mat4.cpp" />
-    <ClCompile Include="Source\Core\Math\MathFunc.cpp" />
+    <ClCompile Include="Source\Core\Math\Math.cpp" />
     <ClCompile Include="Source\Core\Math\Vec2.cpp" />
     <ClCompile Include="Source\Core\Math\Vec2i.cpp" />
     <ClCompile Include="Source\Core\Math\Vec3.cpp" />
@@ -149,7 +149,6 @@
     <ClInclude Include="Source\Core\Graphics\Vertex.h" />
     <ClInclude Include="Source\Core\Math\Mat4.h" />
     <ClInclude Include="Source\Core\Math\Math.h" />
-    <ClInclude Include="Source\Core\Math\MathFunc.h" />
     <ClInclude Include="Source\Core\Math\Vec2.h" />
     <ClInclude Include="Source\Core\Math\Vec2i.h" />
     <ClInclude Include="Source\Core\Math\Vec3.h" />

@@ -207,7 +207,7 @@ void Rasterizer::triangle( const Triangle<VSO>& triangle )
 			(pv1->pos.y - pv0->pos.y) /
 			(pv2->pos.y - pv0->pos.y);
 
-		const auto vi = MathFunc::linearInterpolation(*pv0, *pv2, alphaSplit);
+		const auto vi = Math::linearInterpolation(*pv0, *pv2, alphaSplit);
 
 		if (pv1->pos.x < vi.pos.x) // major right
 		{

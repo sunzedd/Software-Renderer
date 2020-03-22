@@ -1,8 +1,8 @@
-#include "MathFunc.h"
+#include "Math.h"
 
 namespace Core {
 
-Vec3 MathFunc::lineIntersectPlane(const Vec3& planePoint, const Vec3& planeNorm, const Vec3& lineStart, const Vec3& lineEnd)
+Vec3 Math::lineIntersectPlane(const Vec3& planePoint, const Vec3& planeNorm, const Vec3& lineStart, const Vec3& lineEnd)
 {
 	Vec3 n = planeNorm.normalized();
 	float d = -n.dot(planePoint);
@@ -16,7 +16,7 @@ Vec3 MathFunc::lineIntersectPlane(const Vec3& planePoint, const Vec3& planeNorm,
 	return lineStart + intersec;
 }
 
-Vec4 MathFunc::computePlaneEquation(const Vec3& p1, const Vec3& p2, const Vec3& p3)
+Vec4 Math::computePlaneEquation(const Vec3& p1, const Vec3& p2, const Vec3& p3)
 {
 	float a1 = p2.x - p1.x;
 	float b1 = p2.y - p1.y;

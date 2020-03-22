@@ -12,7 +12,6 @@
     <ClCompile Include="Source\Core\Graphics\RenderPipeline.cpp" />
     <ClCompile Include="Source\Core\Graphics\Vertex.cpp" />
     <ClCompile Include="Source\Core\Math\Mat4.cpp" />
-    <ClCompile Include="Source\Core\Math\MathFunc.cpp" />
     <ClCompile Include="Source\Core\Math\Vec2.cpp" />
     <ClCompile Include="Source\Core\Math\Vec2i.cpp" />
     <ClCompile Include="Source\Core\Math\Vec3.cpp" />
@@ -34,6 +33,7 @@
     <ClCompile Include="Source\EditorDemoApp\UI\RenderModeControllerWidget.cpp" />
     <ClCompile Include="Source\Core\Window.cpp" />
     <ClCompile Include="Source\Core\World\CameraLookAt.cpp" />
+    <ClCompile Include="Source\Core\Math\Math.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Core\Graphics\Buffer.h" />
@@ -48,7 +48,6 @@
     <ClInclude Include="Source\Core\Graphics\Vertex.h" />
     <ClInclude Include="Source\Core\Math\Mat4.h" />
     <ClInclude Include="Source\Core\Math\Math.h" />
-    <ClInclude Include="Source\Core\Math\MathFunc.h" />
     <ClInclude Include="Source\Core\Math\Vec2.h" />
     <ClInclude Include="Source\Core\Math\Vec2i.h" />
     <ClInclude Include="Source\Core\Math\Vec3.h" />

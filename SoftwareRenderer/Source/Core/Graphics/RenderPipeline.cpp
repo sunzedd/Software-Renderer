@@ -164,8 +164,8 @@ void RenderPipeline::clip(Triangle<VSO>& polygon)
 		const float alphaA = (-v0.pos.z) / (v1.pos.z - v0.pos.z);
 		const float alphaB = (-v0.pos.z) / (v2.pos.z - v0.pos.z);
 
-		const auto v0a = MathFunc::linearInterpolation(v0, v1, alphaA);
-		const auto v0b = MathFunc::linearInterpolation(v0, v2, alphaB);
+		const auto v0a = Math::linearInterpolation(v0, v1, alphaA);
+		const auto v0b = Math::linearInterpolation(v0, v2, alphaB);
 
 		Triangle<VSO> clippedTri1( v0a, v1, v2 );
 		Triangle<VSO> clippedTri2( v0b, v0a, v2 );
@@ -179,8 +179,8 @@ void RenderPipeline::clip(Triangle<VSO>& polygon)
 		const float alpha0 = (-v0.pos.z) / (v2.pos.z - v0.pos.z);
 		const float alpha1 = (-v1.pos.z) / (v2.pos.z - v1.pos.z);
 
-		v0 = MathFunc::linearInterpolation(v0, v2, alpha0);
-		v1 = MathFunc::linearInterpolation(v1, v2, alpha1);
+		v0 = Math::linearInterpolation(v0, v2, alpha0);
+		v1 = Math::linearInterpolation(v1, v2, alpha1);
 
 		Triangle<VSO> clippedTri( v0, v1, v2 );
 
