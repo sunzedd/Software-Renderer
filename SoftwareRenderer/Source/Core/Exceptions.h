@@ -2,7 +2,7 @@
 #include <string>
 #include <exception>
 
-namespace Core
+namespace core
 {
 
 class CoreException : public std::exception
@@ -48,6 +48,15 @@ public:
 	NoShaderBoundException(const std::string& message)
 		:
 		CoreException(message)
+	{}
+};
+
+class RenderSystemNotInitializedException : public CoreException
+{
+public:
+	RenderSystemNotInitializedException()
+		:
+		CoreException("Initialize render system before call render pipeline.")
 	{}
 };
 

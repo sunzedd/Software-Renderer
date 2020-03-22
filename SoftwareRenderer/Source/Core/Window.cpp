@@ -1,6 +1,6 @@
 #include "Window.h"
 
-namespace Core {
+namespace core {
 
 Window::Window()
 	:
@@ -70,4 +70,4 @@ void Window::createGraphics(bool fullscreen)
 	ImGui::SFML::Init(m_nativeWindow);
 }
 
-} // namespace Core
+} // namespace core

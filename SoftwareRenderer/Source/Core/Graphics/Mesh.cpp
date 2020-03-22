@@ -1,6 +1,6 @@
 #include "Mesh.h"
 
-namespace Core {
+namespace core {
 
 Mesh::Mesh()
 { }
@@ -125,4 +125,4 @@ void Mesh::fillColor(const Vec4& color)
 	}
 }
 
-} // namespace Core
+} // namespace core

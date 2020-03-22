@@ -2,7 +2,7 @@
 #include "Buffer.h"
 #include "Color.h"
 
-namespace Core {
+namespace core {
 
 class FrameBuffer : public Buffer<Color>
 {
@@ -28,4 +28,4 @@ public:
 	}
 };
 
-} // namespace Core
+} // namespace core

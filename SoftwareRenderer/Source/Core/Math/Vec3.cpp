@@ -1,7 +1,7 @@
 #include "Vec3.h"
 #include "Vec4.h"
 
-namespace Core {
+namespace core {
 
 Vec3::Vec3() 
 	:
@@ -187,4 +187,4 @@ Vec3& Vec3::getSaturated() const
 	return out;
 }
 
-} // namespace Core
+} // namespace core

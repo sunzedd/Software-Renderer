@@ -1,7 +1,7 @@
 #pragma once
 #include <vector>
 
-namespace Core {
+namespace core {
 class Vec3;
 class Vec2i;
 class Vertex;

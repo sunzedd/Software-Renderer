@@ -1,6 +1,6 @@
 #include "Vertex.h"
 
-namespace Core {
+namespace core {
 
 Vertex& Vertex::operator += ( const Vertex& rhs )
 {
@@ -90,4 +90,4 @@ Vertex operator / ( const Vertex& v, float val )
 	return out;
 }
 
-} // namespace Core
+} // namespace core

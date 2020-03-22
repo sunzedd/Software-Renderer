@@ -2,7 +2,7 @@
 #include "../Math/Vec3.h"
 #include "../Math/Vec4.h"
 
-namespace Core {
+namespace core {
 
 class Vertex
 {
@@ -24,4 +24,4 @@ public:
 	friend Vertex operator / ( const Vertex& v, float val );
 };
 
-} // namespace Core
+} // namespace core

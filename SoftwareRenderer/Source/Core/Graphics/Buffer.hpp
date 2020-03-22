@@ -1,7 +1,7 @@
 #pragma once
 #include "Buffer.h"
 
-namespace Core {
+namespace core {
 
 template <typename T>
 Buffer<T>::Buffer(int width, int height)
@@ -60,4 +60,4 @@ void Buffer<T>::fill(T value)
 		*cur = value;
 }
 
-} // namespace Core
+} // namespace core

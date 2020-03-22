@@ -4,11 +4,11 @@
 
 #define EXPERIMENTAL
 
-namespace Core {
+namespace core {
 	class Vec3;
 }
 
-namespace Core {
+namespace core {
 
 /*
 	Row major matrix order.
@@ -62,4 +62,4 @@ public:
 	static Mat4 perspective(float fov, float aspectRatio, float near, float far);
 };
 
-} // namespace Core
+} // namespace core

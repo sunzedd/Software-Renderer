@@ -1,6 +1,6 @@
 #pragma once
 
-namespace Core {
+namespace core {
 
 template <typename T>
 class Triangle
@@ -17,4 +17,4 @@ public:
 	{ }
 };
 
-} // namespace Core
+} // namespace core

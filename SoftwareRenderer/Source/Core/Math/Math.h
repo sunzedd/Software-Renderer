@@ -7,7 +7,7 @@
 
 #define CORE_PI 3.14159265359
 
-namespace Core {
+namespace core {
 
 class Math
 {
@@ -33,4 +33,4 @@ private:
 	Math() {}
 };
 
-} // namespace Core
+} // namespace core

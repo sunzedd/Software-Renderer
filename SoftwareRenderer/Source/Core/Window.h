@@ -6,7 +6,7 @@
 #include "Graphics/FrameBuffer.h"
 #include "Defines.h"
 
-namespace Core {
+namespace core {
 
 class Window
 {
@@ -47,4 +47,4 @@ private:
 	sf::Text m_fpsLabel;
 };
 
-} // namespace Core
+} // namespace core

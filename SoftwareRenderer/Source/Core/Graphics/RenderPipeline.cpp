@@ -1,6 +1,6 @@
 #include "RenderPipeline.h"
 
-namespace Core {
+namespace core {
 
 RenderPipeline::RenderPipeline(FrameBuffer& frameBuf)
 	:
@@ -263,4 +263,4 @@ void RenderPipeline::viewport( VSO& vso ) const
 	vso.pos.y = ( 1 - vso.pos.y ) * m_viewport.height * 0.5f + m_viewport.topLeftY;
 }
 
-} // namespace Core
+} // namespace core

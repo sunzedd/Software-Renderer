@@ -1,5 +1,6 @@
 #pragma once
 #include "App.h"
 #include "AssetLoader.h"
-#include "World/Camera.h"
-#include "World/Entity.h"
+#include "Scene/Scene.h"
+#include "Scene/Camera.h"
+#include "Scene/GameObject.h"

@@ -6,10 +6,10 @@
 #include <imgui.h>
 #include <imgui-SFML.h>
 
-#include "Graphics/RenderPipeline.h"
+#include "Graphics/RenderManager.h"
 #include "Window.h"
 
-namespace Core {
+namespace core {
 
 class App 
 {
@@ -22,13 +22,12 @@ public:
 
 protected:
 	virtual void update(unsigned int dtime) = 0;
-	virtual void render(unsigned int dtime) = 0;
+	virtual void render() = 0;
 
 protected:
 	Window m_window;
 	sf::Event m_event;
 	sf::Clock m_timer;
-	RenderPipeline m_renderer;
 };
 
-} // namespace Core
+} // namespace core

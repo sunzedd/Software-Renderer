@@ -10,7 +10,7 @@
 #include "Triangle.h"
 #include "Common.h"
 
-namespace Core {
+namespace core {
 
 class RenderPipeline final
 {
@@ -29,7 +29,7 @@ class RenderPipeline final
 	};
 
 public:
-	RenderPipeline( FrameBuffer& frameBuf );
+	RenderPipeline(FrameBuffer& frameBuf);
 
 	void toogleBackFaceCulling(bool enable);
 	void toogleWireframeRendering(bool enable);
@@ -60,4 +60,4 @@ private:
 	_Viewport m_viewport;
 };
 
-} // namespace Core
+} // namespace core

@@ -1,7 +1,7 @@
 #pragma once
 #include "Vertex.h"
 
-namespace Core {
+namespace core {
 
 class VSO;
 
@@ -51,4 +51,4 @@ public:
 	friend VSO operator / (const VSO& vso, float val);
 };
 
-} // namespace Core
+} // namespace core

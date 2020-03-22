@@ -1,6 +1,6 @@
 #include "Math.h"
 
-namespace Core {
+namespace core {
 
 Vec3 Math::lineIntersectPlane(const Vec3& planePoint, const Vec3& planeNorm, const Vec3& lineStart, const Vec3& lineEnd)
 {
@@ -32,4 +32,4 @@ Vec4 Math::computePlaneEquation(const Vec3& p1, const Vec3& p2, const Vec3& p3)
 	return Vec4( a, b, c, d );
 }
 
-} // namespace Core
+} // namespace core

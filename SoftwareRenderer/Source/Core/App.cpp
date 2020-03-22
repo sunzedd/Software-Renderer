@@ -1,18 +1,20 @@
 #include "App.h"
 
-namespace Core {
+namespace core {
 
 App::App()
 	:
-	m_window(),
-	m_renderer(m_window.getFrameBuffer())
-{}
+	m_window()
+{
+	RenderManager::initRenderSystem(m_window);
+}
 
 App::App(int width, int height, const std::string& title, bool fullscreen)
 	:
-	m_window(width, height, title, fullscreen),
-	m_renderer(m_window.getFrameBuffer())
-{}
+	m_window(width, height, title, fullscreen)
+{
+	RenderManager::initRenderSystem(m_window);
+}
 
 App::~App()
 {}
@@ -25,10 +27,10 @@ void App::run()
 		m_event = sf::Event();
 
 		update(dtime.asMilliseconds());
-		render(dtime.asMilliseconds());
+		render();
 		m_window.pollEvent(m_event);
 		m_window.update(dtime);
 	}
 }
 
-} // namespace Core
+} // namespace core

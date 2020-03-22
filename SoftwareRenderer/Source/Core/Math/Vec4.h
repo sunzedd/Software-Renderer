@@ -2,11 +2,11 @@
 #include "Vec3.h"
 #include "Mat4.h"
 
-namespace Core {
+namespace core {
 class Mat4;
 }
 
-namespace Core {
+namespace core {
 class  Vec4
 {
 public:
@@ -47,4 +47,4 @@ public:
 	Vec4& saturate();
 };
 
-} // namespace Core
+} // namespace core

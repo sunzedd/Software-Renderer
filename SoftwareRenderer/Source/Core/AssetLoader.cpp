@@ -1,6 +1,6 @@
 #include "AssetLoader.h"
 
-namespace Core {
+namespace core {
 
 std::shared_ptr<Mesh> AssetLoader::loadMesh(const std::string& filepath)
 {
@@ -113,4 +113,4 @@ std::shared_ptr<sf::Image> AssetLoader::loadImage(const std::string& filepath)
 	return std::move(img);
 }
 
-} // namespace Core
+} // namespace core

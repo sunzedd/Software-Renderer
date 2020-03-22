@@ -7,7 +7,7 @@
 
 #define _CRT_SECURE_NO_WARNINGS
 
-namespace Core {
+namespace core {
 
 class AssetLoader
 {
@@ -16,4 +16,4 @@ public:
 	static std::shared_ptr<sf::Image> loadImage(const std::string& filepath);
 };
 
-} // namespace Core
+} // namespace core

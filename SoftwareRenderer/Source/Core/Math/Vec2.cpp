@@ -1,7 +1,7 @@
 #include "Vec2.h"
 #include "Vec2i.h"
 
-namespace Core {
+namespace core {
 
 Vec2::Vec2()
 	:
@@ -80,4 +80,4 @@ Vec2& Vec2::operator /= (float value)
 	return *this;
 }
 
-} // namespace Core
+} // namespace core

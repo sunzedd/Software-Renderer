@@ -3,7 +3,7 @@
 
 #define DEFAULT_DEPTH_BUFFER_VALUE -100000.0f
 
-namespace Core {
+namespace core {
 
 class DepthBuffer : public Buffer<float>
 {
@@ -32,4 +32,4 @@ public:
 	}
 };
 
-} // namespace Core
+} // namespace core

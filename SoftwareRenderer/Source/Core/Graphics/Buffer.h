@@ -2,7 +2,7 @@
 #include <memory>
 #include <assert.h>
 
-namespace Core {
+namespace core {
 
 template <typename T>
 class Buffer
@@ -26,7 +26,7 @@ protected:
 	int m_height;
 };
 
-} // namespace Core
+} // namespace core
 
 #include "Buffer.hpp"
 

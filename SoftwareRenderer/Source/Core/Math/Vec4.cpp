@@ -1,6 +1,6 @@
 #include "Vec4.h"
 
-namespace Core {
+namespace core {
 
 Vec4::Vec4() 
 	:
@@ -174,4 +174,4 @@ Vec4& Vec4::saturate()
 	return *this;
 }
 
-} // namespace Core
+} // namespace core

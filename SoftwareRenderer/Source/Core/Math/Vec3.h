@@ -4,11 +4,11 @@
 
 #include "Vec2.h"
 
-namespace Core {
+namespace core {
 	class Vec4;
 }
 
-namespace Core {
+namespace core {
 
 class  Vec3
 {
@@ -52,4 +52,4 @@ public:
 
 };
 
-} // namespace Core
+} // namespace core

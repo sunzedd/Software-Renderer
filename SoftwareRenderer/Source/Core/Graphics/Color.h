@@ -1,7 +1,7 @@
 #pragma once
 #include "../Math/Vec4.h"
 
-namespace Core {
+namespace core {
 
 class Color
 {
@@ -21,4 +21,4 @@ public:
 	Vec3 toVec3() const;
 };
 
-} // namespace Core
+} // namespace core

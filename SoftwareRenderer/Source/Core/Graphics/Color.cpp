@@ -1,6 +1,6 @@
 #include "Color.h"
 
-namespace Core {
+namespace core {
 
 Color::Color()
 	:
@@ -49,4 +49,4 @@ Vec3 Color::toVec3() const
 	};
 }
 
-} // namespace Core
+} // namespace core

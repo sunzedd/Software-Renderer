@@ -1,7 +1,7 @@
 #pragma once
 #include "Vec2.h"
 
-namespace Core {
+namespace core {
 
 class Vec2i
 {
@@ -22,4 +22,4 @@ public:
     Vec2i& operator *= (int value);
 };
 
-} // namespace Core
+} // namespace core

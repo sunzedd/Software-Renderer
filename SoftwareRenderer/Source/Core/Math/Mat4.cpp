@@ -3,7 +3,7 @@
 
 #include <iostream>
 
-namespace Core {
+namespace core {
 
 Mat4::Mat4()
 {
@@ -244,4 +244,4 @@ Mat4 Mat4::perspective(float fov, float aspectRatio, float near, float far)
 	return result;
 }
 
-} // namespace Core
+} // namespace core

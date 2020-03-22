@@ -1,10 +1,10 @@
 #pragma once
 
-namespace Core {
+namespace core {
 	class Vec2i;
 }
 
-namespace Core {
+namespace core {
 
 class  Vec2
 {
@@ -29,4 +29,4 @@ public:
 	Vec2& operator /= (float value);
 };
 
-} // namespace Core
+} // namespace core

@@ -5,7 +5,7 @@
 #include "IShaderProgram.h"
 #include "Triangle.h"
 
-namespace Core {
+namespace core {
 
 class Rasterizer
 {
@@ -36,4 +36,4 @@ protected:
 	std::shared_ptr<IShaderProgram> m_shader;
 };
 
-} // namespace Core
+} // namespace core

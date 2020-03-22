@@ -3,7 +3,7 @@
 #include "Vertex.h"
 #include "RenderPipeline.h"
 
-namespace Core {
+namespace core {
 
 class Mesh
 {
@@ -30,4 +30,4 @@ protected:
 	std::vector<unsigned short> m_indices;
 };
 
-} // namespace Core
+} // namespace core

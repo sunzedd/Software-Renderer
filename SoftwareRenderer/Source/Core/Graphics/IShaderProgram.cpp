@@ -1,6 +1,6 @@
 #include "IShaderProgram.h"
 
-namespace Core {
+namespace core {
 
 void IShaderProgram::bindModelMatrix(const Mat4& m)
 {
@@ -114,4 +114,4 @@ VSO operator / (const VSO& vso, float val)
 	return out;
 }
 
-} // namespace Core
+} // namespace core

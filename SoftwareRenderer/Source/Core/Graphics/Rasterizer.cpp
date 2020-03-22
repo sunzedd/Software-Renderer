@@ -1,6 +1,6 @@
 #include "Rasterizer.h"
 
-namespace Core {
+namespace core {
 
 Rasterizer::Rasterizer( FrameBuffer& frameBuf )
 	:
@@ -293,4 +293,4 @@ void Rasterizer::triangleFlat(const VSO& it0, const VSO& it1, const VSO& it2,
 	}
 }
 
-} // namespace Core
+} // namespace core
