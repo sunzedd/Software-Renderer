@@ -8,15 +8,15 @@ namespace core
 class CoreException : public std::exception
 {
 public:
-	CoreException()
-		:
-		exception("Core exception: unknown")
-	{}
-
-	CoreException(const std::string& message)
-		:
-		exception(("Core exception: " + message).c_str())
-	{}
+    CoreException()
+        :
+        exception("Core exception: unknown")
+    {}
+    
+    CoreException(const std::string& message)
+        :
+        exception(("Core exception: " + message).c_str())
+    {}
 };
 
 
@@ -24,15 +24,15 @@ public:
 class CouldNotLoadAssetException : public CoreException
 {
 public:
-	CouldNotLoadAssetException()
-		:
-		CoreException("Could not load asset")
-	{}
+    CouldNotLoadAssetException()
+        :
+        CoreException("Could not load asset")
+    {}
 
-	CouldNotLoadAssetException(const std::string& message)
-		:
-		CoreException(message)
-	{}
+    CouldNotLoadAssetException(const std::string& message)
+        :
+        CoreException(message)
+    {}
 };
 
 
@@ -40,25 +40,25 @@ public:
 class NoShaderBoundException : public CoreException
 {
 public:
-	NoShaderBoundException()
-		:
-		CoreException("No shader bound")
-	{}
-
-	NoShaderBoundException(const std::string& message)
-		:
-		CoreException(message)
-	{}
+    NoShaderBoundException()
+        :
+        CoreException("No shader bound")
+    {}
+    
+    NoShaderBoundException(const std::string& message)
+        :
+        CoreException(message)
+    {}
 };
 
 class RenderPipelineNotCreatedException : public CoreException
 {
 public:
-	RenderPipelineNotCreatedException()
-		:
-		CoreException("Render pipeline not initialized.\n Note: you shuld call "
-					  "RenderPipeline::create(Window& window) before.")
-	{}
+    RenderPipelineNotCreatedException()
+        :
+        CoreException("Render pipeline not initialized.\n Note: you shuld call "
+                      "RenderPipeline::create(Window& window) before.")
+    {}
 };
 
 }

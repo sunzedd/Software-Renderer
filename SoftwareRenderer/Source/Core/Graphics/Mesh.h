@@ -8,22 +8,22 @@ namespace core {
 class Mesh
 {
 public:
-	Mesh();
-	virtual ~Mesh();
+    Mesh();
+    virtual ~Mesh();
 
-	const std::vector<Vertex>& vertices() const { return m_vertices; }
-	const std::vector<unsigned short>& indices() const { return m_indices; }
+    const std::vector<Vertex>& vertices() const { return m_vertices; }
+    const std::vector<unsigned short>& indices() const { return m_indices; }
 
-	std::vector<LineV3> buildNormalIndicatorLinesList(float lineLength) const;
+    std::vector<LineV3> buildNormalIndicatorLinesList(float lineLength) const;
 
-	void setVertexBuffer(const std::vector<Vertex>& vertices);
-	void setIndexBuffer(const std::vector<unsigned short>& indices);
+    void setVertexBuffer(const std::vector<Vertex>& vertices);
+    void setIndexBuffer(const std::vector<unsigned short>& indices);
 
-	virtual void render() const;
+    virtual void render() const;
 
 protected:
-	std::vector<Vertex> m_vertices;
-	std::vector<unsigned short> m_indices;
+    std::vector<Vertex> m_vertices;
+    std::vector<unsigned short> m_indices;
 };
 
 } // namespace core

@@ -8,10 +8,10 @@ namespace core
 class Entity
 {
 public:
-	virtual void update(unsigned int deltaTime) = 0;
+    virtual void update(unsigned int deltaTime) = 0;
 
 protected:
-	bool m_isTransformed = true;
+    bool m_isTransformed = true;
 };
 
 }

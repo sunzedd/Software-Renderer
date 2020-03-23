@@ -4,120 +4,120 @@ namespace core {
 
 void ShaderProgram::bindModelMatrix(const Mat4& m)
 {
-	model = m;
+    model = m;
 }
 
 void ShaderProgram::bindViewMatrix(const Mat4& m)
 {
-	view = m;
+    view = m;
 }
 
 void ShaderProgram::bindProjectionMatrix(const Mat4& m)
 {
-	proj = m;
+    proj = m;
 }
 
 void ShaderProgram::bindTexture(std::shared_ptr<const sf::Image> texture)
 {
-	if (texture)
-		m_texture = texture;
+    if (texture)
+        m_texture = texture;
 }
 
 float ShaderProgram::calcIntesity(const Vec3& normal, const Vec3& lightDirection) const
 {
-	return normal.dot(-lightDirection.normalized());
+    return normal.dot(-lightDirection.normalized());
 }
 
 VSO::VSO(const Vertex& v)
 {
-	pos = v.pos;
-	n = v.n;
-	uv = v.uv;
-	color = v.color;
+    pos = v.pos;
+    n = v.n;
+    uv = v.uv;
+    color = v.color;
 }
 
 VSO& VSO::operator += (const VSO& rhs)
 {
-	pos += rhs.pos;
-	n += rhs.n;
-	uv += rhs.uv;
-	color += rhs.color;
-	posWorld += rhs.posWorld;
-	posView += rhs.posView;
-	intensity += rhs.intensity;
+    pos += rhs.pos;
+    n += rhs.n;
+    uv += rhs.uv;
+    color += rhs.color;
+    posWorld += rhs.posWorld;
+    posView += rhs.posView;
+    intensity += rhs.intensity;
 
-	return *this;
+    return *this;
 }
 
 VSO& VSO::operator -= (const VSO& rhs)
 {
-	pos -= rhs.pos;
-	n -= rhs.n;
-	uv -= rhs.uv;
-	color -= rhs.color;
-	posWorld -= rhs.posWorld;
-	posView -= rhs.posView;
-	intensity -= rhs.intensity;
+    pos -= rhs.pos;
+    n -= rhs.n;
+    uv -= rhs.uv;
+    color -= rhs.color;
+    posWorld -= rhs.posWorld;
+    posView -= rhs.posView;
+    intensity -= rhs.intensity;
 
-	return *this;
+    return *this;
 }
 
 VSO& VSO::operator *= (float val)
 {
-	pos *= val;
-	n *= val;
-	uv *= val;
-	color *= val;
-	posWorld *= val;
-	posView *= val;
-	intensity *= val;
+    pos *= val;
+    n *= val;
+    uv *= val;
+    color *= val;
+    posWorld *= val;
+    posView *= val;
+    intensity *= val;
 
-	return *this;
+    return *this;
 }
 
 VSO& VSO::operator /= (float val)
 {
-	pos /= val;
-	n /= val;
-	uv /= val;
-	color /= val;
-	posWorld /= val;
-	posView /= val;
-	intensity /= val;
+    pos /= val;
+    n /= val;
+    uv /= val;
+    color /= val;
+    posWorld /= val;
+    posView /= val;
+    intensity /= val;
 
-	return *this;
+    return *this;
 }
 
 VSO operator + (const VSO& lhs, const VSO& rhs)
 {
-	VSO out(lhs);
-	out += rhs;
+    VSO out(lhs);
+    out += rhs;
 
-	return out;
+    return out;
 }
 
 VSO operator - (const VSO& lhs, const VSO& rhs)
 {
-	VSO out(lhs);
-	out -= rhs;
+    VSO out(lhs);
+    out -= rhs;
 
-	return out;
+    return out;
 }
 
 VSO operator * (const VSO& vso, float val)
 {
-	VSO out(vso);
-	out *= val;
+    VSO out(vso);
+    out *= val;
 
-	return out;
+    return out;
 }
 
 VSO operator / (const VSO& vso, float val)
 {
-	VSO out(vso);
-	out /= val;
+    VSO out(vso);
+    out /= val;
 
-	return out;
+    return out;
 }
 
 } // namespace core

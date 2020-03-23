@@ -8,28 +8,28 @@ namespace core {
 class DepthBuffer : public Buffer<float>
 {
 public:
-	DepthBuffer( int width, int height )
-		:
-		Buffer( width,height )
-	{
-		clear();
-	}
+    DepthBuffer(int width, int height)
+        :
+        Buffer(width,height)
+    {
+        clear();
+    }
 
-	void clear() override
-	{
-		fill( DEFAULT_DEPTH_BUFFER_VALUE );
-	}
+    void clear() override
+    {
+        fill( DEFAULT_DEPTH_BUFFER_VALUE );
+    }
 
-	bool testAndSet( int x, int y, float z )
-	{
-		if( get( x, y ) < z )
-		{
-			set( x, y, z );
-			return true;
-		}
+    bool testAndSet(int x, int y, float z)
+    {
+        if(get(x, y) < z)
+        {
+            set(x, y, z);
+            return true;
+        }
 
-		return false;
-	}
+        return false;
+    }
 };
 
 } // namespace core
