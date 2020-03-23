@@ -1,8 +1,6 @@
 #pragma once
 #include "../Math/Vec3.h"
 #include "../Math/Mat4.h"
-
-#include "../Graphics/IShaderProgram.h"
 #include "../Graphics/Mesh.h"
 
 #include "Entity.h"
@@ -29,21 +27,20 @@ class GameObject : public Entity
 
 public:
 	GameObject();
-	GameObject(const Vec3& position, const Vec3& rotation, const Vec3& scale);
+	GameObject(const Vec3& position,
+			   const Vec3& rotation,
+		       const Vec3& scale = Vec3(1.0f, 1.0f, 1.0f));
 
-	void setShader(std::shared_ptr<IShaderProgram> shader);
 	Transform& getTransform();
 
 	virtual void update(unsigned int deltaTime) = 0;
-	virtual void render() = 0;
 
-private:
+protected:
 	void recalculateModelMatrix();
 
 protected:
 	Transform m_transform;
 	_TransformMatrices m_transformMatrices;
-	std::shared_ptr<IShaderProgram> m_shader;
 };
 
 }

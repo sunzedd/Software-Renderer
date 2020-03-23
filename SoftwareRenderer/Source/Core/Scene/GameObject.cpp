@@ -13,14 +13,9 @@ GameObject::GameObject(const Vec3& position, const Vec3& rotation, const Vec3& s
 	m_transform.scale;
 }
 
-void GameObject::setShader(std::shared_ptr<IShaderProgram> shader)
-{
-	if (shader) 
-		m_shader = shader;
-}
-
 Transform& GameObject::getTransform()
 {
+	m_isTransformed = true;
 	return m_transform;
 }
 

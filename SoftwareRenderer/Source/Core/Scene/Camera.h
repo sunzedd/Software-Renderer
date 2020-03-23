@@ -4,7 +4,7 @@
 #include "../Math/Mat4.h"
 #include "../Math/Vec3.h"
 
-#include "Entity.h"
+#include "CameraBase.h"
 
 
 #define CORE_CAMERA_VIEWFRUSTUM_FOVY  50.0f
@@ -25,7 +25,7 @@ enum class Direction
 	DOWN
 };
 
-class Camera : public Entity
+class Camera : public CameraBase
 {
 	struct _ViewFrustum
 	{
@@ -44,15 +44,19 @@ class Camera : public Entity
 
 public:
 	Camera(const Vec3& position = { 0, 0, 0 });
-	Camera(const Vec3& position, float fovy, float aspectRatio, float zNear, float zFar);
+	Camera(const Vec3& position,
+		   const Vec3& forward = { 0, 0, -1 },
+		   const Vec3& up = { 0, 1, 0 });
 
 	virtual void update(unsigned int deltaTime) override;
 
 	const Vec3& getPosition() const;
-	void setPosition(const Vec3& position);
 
-	const Mat4& getViewMatrix();
-	const Mat4& getProjMatrix();
+	void setPosition(const Vec3& position);
+	void setViewFrustum(float fovy, float aspectRatio, float zNear, float zFar);
+
+	const Mat4& getViewMatrix() override;
+	const Mat4& getProjMatrix() override;
 
 protected:
 	_Transform m_transform;
