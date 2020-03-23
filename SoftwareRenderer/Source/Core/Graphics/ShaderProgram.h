@@ -1,11 +1,14 @@
 #pragma once
+#include <memory>
+
+#include <SFML/Graphics/Image.hpp>
 #include "Vertex.h"
 
 namespace core {
 
 class VSO;
 
-class IShaderProgram
+class ShaderProgram
 {
 public:
 	virtual VSO vertexShader(const Vertex& v) = 0;
@@ -15,6 +18,8 @@ public:
 	void bindViewMatrix(const Mat4& m);
 	void bindProjectionMatrix(const Mat4& m);
 
+	void bindTexture(std::shared_ptr<const sf::Image> texture);
+
 protected:
 	float calcIntesity(const Vec3& normal, const Vec3& lightDirection) const;
 
@@ -22,6 +27,7 @@ protected:
 	Mat4 model;
 	Mat4 view;
 	Mat4 proj;
+	std::shared_ptr<const sf::Image> m_texture;
 };
 
 // Vertex shader output data structure.

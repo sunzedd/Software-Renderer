@@ -51,7 +51,7 @@ void RenderPipeline::setViewport(int topLeftX, int topLeftY, int width, int heig
 	};
 }
 
-void RenderPipeline::bindShaderProgram( std::shared_ptr<IShaderProgram> shader )
+void RenderPipeline::bindShaderProgram( std::shared_ptr<ShaderProgram> shader )
 {
 	m_shader = shader;
 	m_rasterizer.bindShaderProgram(shader);

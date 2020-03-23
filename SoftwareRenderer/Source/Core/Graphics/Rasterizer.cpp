@@ -14,7 +14,7 @@ void Rasterizer::clearBuffers()
 	m_frameBuf.clear();
 }
 
-void Rasterizer::bindShaderProgram( std::shared_ptr<IShaderProgram> shader )
+void Rasterizer::bindShaderProgram( std::shared_ptr<ShaderProgram> shader )
 {
 	m_shader = shader;
 }

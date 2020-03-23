@@ -2,7 +2,7 @@
 #include "DepthBuffer.h"
 #include "FrameBuffer.h"
 #include "Vertex.h"
-#include "IShaderProgram.h"
+#include "ShaderProgram.h"
 #include "Triangle.h"
 
 namespace core {
@@ -14,7 +14,7 @@ public:
 
 	void clearBuffers();
 
-	void bindShaderProgram( std::shared_ptr<IShaderProgram> shader );
+	void bindShaderProgram( std::shared_ptr<ShaderProgram> shader );
 
 	void line( const Vec2& p0, const Vec2& p1, const Vec4& color );
 	void line( const Vec3& p0, const Vec3& p1, const Vec4& color );
@@ -33,7 +33,7 @@ protected:
 protected:
 	FrameBuffer& m_frameBuf;
 	DepthBuffer m_depthBuf;
-	std::shared_ptr<IShaderProgram> m_shader;
+	std::shared_ptr<ShaderProgram> m_shader;
 };
 
 } // namespace core

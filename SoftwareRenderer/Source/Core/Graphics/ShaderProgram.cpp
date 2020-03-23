@@ -1,23 +1,29 @@
-#include "IShaderProgram.h"
+#include "ShaderProgram.h"
 
 namespace core {
 
-void IShaderProgram::bindModelMatrix(const Mat4& m)
+void ShaderProgram::bindModelMatrix(const Mat4& m)
 {
 	model = m;
 }
 
-void IShaderProgram::bindViewMatrix(const Mat4& m)
+void ShaderProgram::bindViewMatrix(const Mat4& m)
 {
 	view = m;
 }
 
-void IShaderProgram::bindProjectionMatrix(const Mat4& m)
+void ShaderProgram::bindProjectionMatrix(const Mat4& m)
 {
 	proj = m;
 }
 
-float IShaderProgram::calcIntesity(const Vec3& normal, const Vec3& lightDirection) const
+void ShaderProgram::bindTexture(std::shared_ptr<const sf::Image> texture)
+{
+	if (texture)
+		m_texture = texture;
+}
+
+float ShaderProgram::calcIntesity(const Vec3& normal, const Vec3& lightDirection) const
 {
 	return normal.dot(-lightDirection.normalized());
 }
