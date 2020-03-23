@@ -92,12 +92,13 @@
     <ClCompile Include="Source\Core\App.cpp" />
     <ClCompile Include="Source\Core\AssetLoader.cpp" />
     <ClCompile Include="Source\Core\Graphics\Color.cpp" />
-    <ClCompile Include="Source\Core\Graphics\IShaderProgram.cpp" />
+    <ClCompile Include="Source\Core\Graphics\ShaderProgram.cpp" />
     <ClCompile Include="Source\Core\Graphics\Mesh.cpp" />
     <ClCompile Include="Source\Core\Graphics\Rasterizer.cpp" />
     <ClCompile Include="Source\Core\Graphics\RenderPipeline.cpp" />
     <ClCompile Include="Source\Core\Graphics\Vertex.cpp" />
     <ClCompile Include="Source\Core\Scene\Camera.cpp" />
+    <ClCompile Include="Source\Core\Scene\DrawableGameObject.cpp" />
     <ClCompile Include="Source\Core\Scene\GameObject.cpp" />
     <ClCompile Include="Source\Core\Window.cpp" />
     <ClCompile Include="Source\Main.cpp" />
@@ -125,7 +126,7 @@
     <ClInclude Include="Source\Core\Graphics\Common.h" />
     <ClInclude Include="Source\Core\Graphics\DepthBuffer.h" />
     <ClInclude Include="Source\Core\Graphics\FrameBuffer.h" />
-    <ClInclude Include="Source\Core\Graphics\IShaderProgram.h" />
+    <ClInclude Include="Source\Core\Graphics\ShaderProgram.h" />
     <ClInclude Include="Source\Core\Graphics\Mesh.h" />
     <ClInclude Include="Source\Core\Graphics\Rasterizer.h" />
     <ClInclude Include="Source\Core\Graphics\RenderPipeline.h" />
@@ -138,10 +139,13 @@
     <ClInclude Include="Source\Core\Math\Vec3.h" />
     <ClInclude Include="Source\Core\Math\Vec4.h" />
     <ClInclude Include="Source\Core\Scene\Camera.h" />
+    <ClInclude Include="Source\Core\Scene\CameraBase.h" />
+    <ClInclude Include="Source\Core\Scene\DrawableGameObject.h" />
     <ClInclude Include="Source\Core\Scene\Entity.h" />
     <ClInclude Include="Source\Core\Scene\GameObject.h" />
     <ClInclude Include="Source\Core\Window.h" />
     <ClInclude Include="Source\Sandbox\Game.h" />
+    <ClInclude Include="Source\Sandbox\Shaders\TextureShader.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -1,9 +1,10 @@
 #include <iostream>
-
+#include "Sandbox/Game.h"
 
 int main()
 {
+    Game game;
+    game.run();
 
-	system("pause");
-	return 0;
+    return 0;
 }
