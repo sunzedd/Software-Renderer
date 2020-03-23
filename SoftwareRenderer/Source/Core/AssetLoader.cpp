@@ -83,6 +83,10 @@ std::shared_ptr<Mesh> AssetLoader::loadMesh(const std::string& filepath)
 			v2.n.w = 0.0f;
 			v3.n.w = 0.0f;
 
+			v1.color = Vec4(1.0f, 1.0f, 1.0f, 1.0f);
+			v2.color = Vec4(1.0f, 1.0f, 1.0f, 1.0f);
+			v3.color = Vec4(1.0f, 1.0f, 1.0f, 1.0f);
+
 			indices.push_back(i);
 			indices.push_back(i + 1);
 			indices.push_back(i + 2);
@@ -97,7 +101,6 @@ std::shared_ptr<Mesh> AssetLoader::loadMesh(const std::string& filepath)
 
 	mesh->setVertexBuffer(vertices);
 	mesh->setIndexBuffer(indices);
-	mesh->fillColor(Vec4(1.0f, 1.0f, 1.0f, 1.0f));
 
 	return std::move(mesh);
 }
