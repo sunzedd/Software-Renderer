@@ -187,4 +187,20 @@ Vec3& Vec3::getSaturated() const
 	return out;
 }
 
+
+Vec3 Vec3::forward()
+{
+	return Vec3(0.0f, 0.0f, -1.0f);
+}
+
+Vec3 Vec3::right()
+{
+	return Vec3(1.0f, 0.0f, 0.0f);
+}
+
+Vec3 Vec3::up()
+{
+	return Vec3(0.0f, 1.0f, 0.0f);
+}
+
 } // namespace core

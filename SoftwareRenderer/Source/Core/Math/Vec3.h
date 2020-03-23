@@ -50,6 +50,9 @@ public:
 	Vec3& saturate();
 	Vec3& getSaturated() const;
 
+	static Vec3 forward();
+	static Vec3 right();
+	static Vec3 up();
 };
 
 } // namespace core
