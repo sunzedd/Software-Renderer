@@ -12,6 +12,9 @@
 #define CORE_CAMERA_VIEWFRUSTUM_ZNEAR 0.0001f
 #define CORE_CAMERA_VIEWFRUSTUM_ZFAR  1000.0f
 
+#define CORE_CAMERA_MOVEMENT_SPEED    0.05f
+#define CORE_CAMERA_MOUSE_SENS        0.10f
+
 namespace core
 {
 
@@ -38,25 +41,38 @@ class Camera : public CameraBase
     struct _Transform
     {
         Vec3 position;
-        Vec3 forward;
+        Vec3 front;
         Vec3 up;
+        Vec3 right;
+
+        float yaw;
+        float pitch;
     };
 
 public:
     Camera(const Vec3& position = { 0, 0, 0 });
     Camera(const Vec3& position,
-           const Vec3& forward = { 0, 0, -1 },
+           const Vec3& front = { 0, 0, -1 },
            const Vec3& up = { 0, 1, 0 });
 
     virtual void update(unsigned int deltaTime) override;
 
     const Vec3& getPosition() const;
+    float getMovementSpeed() const;
+    
+    void move(Direction direction, float delta);
 
     void setPosition(const Vec3& position);
+    void setMovementSpeed(float speed);
+    void setMouseSensitivity(float sensitivity);
     void setViewFrustum(float fovy, float aspectRatio, float zNear, float zFar);
 
     const Mat4& getViewMatrix() override;
     const Mat4& getProjMatrix() override;
+
+private:
+    void handleMouse();
+    void handleKeyboard(float deltaMove);
 
 protected:
     _Transform m_transform;
@@ -66,6 +82,9 @@ protected:
     Mat4 m_projMatrix;
 
     bool m_hasProjMatrixModified = true;
+
+    float m_movementSpeed    = CORE_CAMERA_MOVEMENT_SPEED;
+    float m_mouseSensitivity = CORE_CAMERA_MOUSE_SENS;
 };
 
 }
