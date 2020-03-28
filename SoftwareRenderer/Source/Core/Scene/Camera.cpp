@@ -132,7 +132,6 @@ const Mat4& Camera::getProjMatrix()
 
 void Camera::handleMouse()
 {
-    //mouse movement
     static bool isMouseRightButtonPressed = false;
     static int lastMousePositionX = sf::Mouse::getPosition().x;
     static int lastMousePositionY = sf::Mouse::getPosition().y;
