@@ -56,7 +56,7 @@ class RenderPipelineNotCreatedException : public CoreException
 public:
     RenderPipelineNotCreatedException()
         :
-        CoreException("Render pipeline not initialized.\n Note: you shuld call "
+        CoreException("Render pipeline not initialized.\n Note: you should call "
                       "RenderPipeline::create(Window& window) before.")
     {}
 };
