@@ -1,8 +1,13 @@
 #pragma once
 #include "../../Core/Graphics/ShaderProgram.h"
+#include "../../Core/Scene/PointLight.h"
 
 class TextureShader : public core::ShaderProgram
 {
+public:
+    core::Vec4 ambient = { 0.1f, 0.1f, 0.1f, 1.0f };
+    std::shared_ptr<core::PointLight> m_pointLight;
+
 public:
     core::VSO vertexShader(const core::Vertex& v) override
     {
@@ -15,7 +20,19 @@ public:
         out.pos = out.posView * proj;
 
         out.n = v.n * model;
-        out.intensity = calcIntesity(out.n, Vec3(0, 0, -1));
+
+        Vec3 lightDirection = Vec3(out.posWorld) - m_pointLight->getTransform().position;
+        float distanceToLight = lightDirection.length();
+        lightDirection.normalize();
+
+        float attenuationFactor = 1.0f / (
+            m_pointLight->getAttenuation().constant +
+            m_pointLight->getAttenuation().linear * distanceToLight +
+            m_pointLight->getAttenuation().quadratic * distanceToLight * distanceToLight
+            );
+
+        out.intensity = calcIntesity(out.n, lightDirection);
+        out.intensity *= attenuationFactor;
 
         return out;
     }
@@ -42,7 +59,7 @@ public:
             (float)texel.a / 255.0f
         };
 
-        Vec4 out = (texel_v4 * interpolated.intensity).saturate();
+        Vec4 out = (texel_v4 * interpolated.intensity + ambient).saturate();
 
         return out;
     }
