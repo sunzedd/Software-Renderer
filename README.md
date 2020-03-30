@@ -1,21 +1,17 @@
 # Simple shader-based software renderer
 My BMSTU computer graphics course project 2019.
 
-Decomposed into two parts:
-
-Engine and demo application (scene editor).
-
-Supports textured meshes, loading OBJ models
+Supports texturing, loading .obj models
 
 ## Required dependencies:
-SFML-2.5.1
+* SFML-2.5.1
+* ImGui
+* ImGui-SFML (https://github.com/eliasdaler/imgui-sfml)
 
-ImGui
-
-ImGui-SFML (https://github.com/eliasdaler/imgui-sfml)
-
-## Examples: 
-
+## Examples 
+### Scene editor built with ImGui
 ![Screenshot1](/SoftwareRenderer/assets/DemoScr1.png)
 
 ![Screenshot2](/SoftwareRenderer/assets/DemoScr2.png)
+
+![Screenshot3](/SoftwareRenderer/assets/DemoScr3.png)
