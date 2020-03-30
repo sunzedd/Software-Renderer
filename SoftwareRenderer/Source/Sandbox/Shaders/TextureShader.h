@@ -6,7 +6,7 @@ class TextureShader : public core::ShaderProgram
 {
 public:
     core::Vec4 ambient = { 0.1f, 0.1f, 0.1f, 1.0f };
-    std::shared_ptr<core::PointLight> m_pointLight;
+    std::shared_ptr<core::PointLight> pointLight;
 
 public:
     core::VSO vertexShader(const core::Vertex& v) override
@@ -21,14 +21,14 @@ public:
 
         out.n = v.n * model;
 
-        Vec3 lightDirection = Vec3(out.posWorld) - m_pointLight->getTransform().position;
+        Vec3 lightDirection = Vec3(out.posWorld) - pointLight->getTransform().position;
         float distanceToLight = lightDirection.length();
         lightDirection.normalize();
 
         float attenuationFactor = 1.0f / (
-            m_pointLight->getAttenuation().constant +
-            m_pointLight->getAttenuation().linear * distanceToLight +
-            m_pointLight->getAttenuation().quadratic * distanceToLight * distanceToLight
+            pointLight->getAttenuation().constant +
+            pointLight->getAttenuation().linear * distanceToLight +
+            pointLight->getAttenuation().quadratic * distanceToLight * distanceToLight
             );
 
         out.intensity = calcIntesity(out.n, lightDirection);

@@ -21,7 +21,7 @@ void Game::update(unsigned int deltaTime)
 
     m_object->getTransform().rotation += Vec3::up() * deltaTime / 50.0f;
     
-    std::dynamic_pointer_cast<TextureShader>(m_object->getShader())->m_pointLight = m_light;
+    std::dynamic_pointer_cast<TextureShader>(m_object->getShader())->pointLight = m_light;
 }
 
 void Game::render()
