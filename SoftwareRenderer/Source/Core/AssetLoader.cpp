@@ -101,6 +101,7 @@ std::shared_ptr<Mesh> AssetLoader::loadMesh(const std::string& filepath)
     
     mesh->setVertexBuffer(vertices);
     mesh->setIndexBuffer(indices);
+    mesh->buildFaces();
     
     return std::move(mesh);
 }
