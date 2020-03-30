@@ -2,7 +2,7 @@
 #include "../../Core/Graphics/ShaderProgram.h"
 #include "../../Core/Scene/PointLight.h"
 
-class TextureShader : public core::ShaderProgram
+class GouraudShader : public core::ShaderProgram
 {
 public:
     core::Vec4 ambient = { 0.1f, 0.1f, 0.1f, 1.0f };
@@ -47,8 +47,8 @@ public:
         uv_x = std::min(uv_x, 1.0f);
         uv_y = std::min(uv_y, 1.0f);
 
-        const int texsel_x = m_texture->getSize().x * uv_x - 1;
-        const int texsel_y = m_texture->getSize().y * uv_y - 1;
+        const int texsel_x = m_texture->getSize().x * uv_x;
+        const int texsel_y = m_texture->getSize().y * uv_y;
 
         sf::Color texel = m_texture->getPixel(texsel_x, texsel_y);
         Vec4 texel_v4 =
