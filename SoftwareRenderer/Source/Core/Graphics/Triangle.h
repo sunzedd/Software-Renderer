@@ -17,4 +17,6 @@ public:
     { }
 };
 
+using Face = Triangle<Vertex>;
+
 } // namespace core
