@@ -1,10 +1,10 @@
 #include <iostream>
-#include "Sandbox/Game.h"
+#include "Sandbox/DemoApplication.h"
 
 int main()
 {
-    Game game;
-    game.run();
+    DemoApplication a;
+    a.run();
 
     return 0;
 }
