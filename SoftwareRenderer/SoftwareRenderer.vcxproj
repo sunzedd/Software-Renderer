@@ -100,6 +100,7 @@
     <ClCompile Include="Source\Core\Scene\Camera.cpp" />
     <ClCompile Include="Source\Core\Scene\DrawableGameObject.cpp" />
     <ClCompile Include="Source\Core\Scene\GameObject.cpp" />
+    <ClCompile Include="Source\Core\Scene\PointLight.cpp" />
     <ClCompile Include="Source\Core\Window.cpp" />
     <ClCompile Include="Source\Main.cpp" />
     <ClCompile Include="Source\Core\Math\Mat4.cpp" />
@@ -143,6 +144,7 @@
     <ClInclude Include="Source\Core\Scene\DrawableGameObject.h" />
     <ClInclude Include="Source\Core\Scene\Entity.h" />
     <ClInclude Include="Source\Core\Scene\GameObject.h" />
+    <ClInclude Include="Source\Core\Scene\PointLight.h" />
     <ClInclude Include="Source\Core\Window.h" />
     <ClInclude Include="Source\Sandbox\Game.h" />
     <ClInclude Include="Source\Sandbox\Shaders\TextureShader.h" />

@@ -25,6 +25,7 @@
     <ClCompile Include="Source\Sandbox\Game.cpp" />
     <ClCompile Include="Source\Core\Scene\DrawableGameObject.cpp" />
     <ClCompile Include="Source\Core\Graphics\ShaderProgram.cpp" />
+    <ClCompile Include="Source\Core\Scene\PointLight.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Core\Graphics\Buffer.h" />
@@ -58,5 +59,6 @@
     <ClInclude Include="Source\Core\Graphics\ShaderProgram.h" />
     <ClInclude Include="Source\Core\Scene\CameraBase.h" />
     <ClInclude Include="Source\Sandbox\Shaders\TextureShader.h" />
+    <ClInclude Include="Source\Core\Scene\PointLight.h" />
   </ItemGroup>
 </Project>
