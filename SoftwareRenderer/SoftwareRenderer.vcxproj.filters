@@ -22,10 +22,10 @@
     <ClCompile Include="Source\Core\Math\Math.cpp" />
     <ClCompile Include="Source\Core\Scene\Camera.cpp" />
     <ClCompile Include="Source\Core\Scene\GameObject.cpp" />
-    <ClCompile Include="Source\Sandbox\Game.cpp" />
     <ClCompile Include="Source\Core\Scene\DrawableGameObject.cpp" />
     <ClCompile Include="Source\Core\Graphics\ShaderProgram.cpp" />
     <ClCompile Include="Source\Core\Scene\PointLight.cpp" />
+    <ClCompile Include="Source\Sandbox\DemoApplication.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Core\Graphics\Buffer.h" />
@@ -54,11 +54,11 @@
     <ClInclude Include="Source\Core\Scene\Camera.h" />
     <ClInclude Include="Source\Core\Scene\Entity.h" />
     <ClInclude Include="Source\Core\Scene\GameObject.h" />
-    <ClInclude Include="Source\Sandbox\Game.h" />
     <ClInclude Include="Source\Core\Scene\DrawableGameObject.h" />
     <ClInclude Include="Source\Core\Graphics\ShaderProgram.h" />
     <ClInclude Include="Source\Core\Scene\CameraBase.h" />
-    <ClInclude Include="Source\Sandbox\Shaders\TextureShader.h" />
     <ClInclude Include="Source\Core\Scene\PointLight.h" />
+    <ClInclude Include="Source\Sandbox\Shaders\GouraudShader.h" />
+    <ClInclude Include="Source\Sandbox\DemoApplication.h" />
   </ItemGroup>
 </Project>

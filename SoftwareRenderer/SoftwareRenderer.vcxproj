@@ -109,7 +109,7 @@
     <ClCompile Include="Source\Core\Math\Vec2i.cpp" />
     <ClCompile Include="Source\Core\Math\Vec3.cpp" />
     <ClCompile Include="Source\Core\Math\Vec4.cpp" />
-    <ClCompile Include="Source\Sandbox\Game.cpp" />
+    <ClCompile Include="Source\Sandbox\DemoApplication.cpp" />
     <ClCompile Include="Vendor\imgui-SFML.cpp" />
     <ClCompile Include="Vendor\imgui.cpp" />
     <ClCompile Include="Vendor\imgui_draw.cpp" />
@@ -146,8 +146,8 @@
     <ClInclude Include="Source\Core\Scene\GameObject.h" />
     <ClInclude Include="Source\Core\Scene\PointLight.h" />
     <ClInclude Include="Source\Core\Window.h" />
-    <ClInclude Include="Source\Sandbox\Game.h" />
-    <ClInclude Include="Source\Sandbox\Shaders\TextureShader.h" />
+    <ClInclude Include="Source\Sandbox\DemoApplication.h" />
+    <ClInclude Include="Source\Sandbox\Shaders\GouraudShader.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
