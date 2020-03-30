@@ -21,7 +21,9 @@ public:
     void setTexture(std::shared_ptr<const sf::Image> texture);
     void setMesh(std::shared_ptr<const Mesh> mesh);
 
-    void update(unsigned int deltaTime) override;
+    std::shared_ptr<ShaderProgram> getShader();
+
+    virtual void update(unsigned int deltaTime) override;
     virtual void render(CameraBase& camera);
 
 protected:
@@ -30,4 +32,4 @@ protected:
     std::shared_ptr<const sf::Image> m_texture;
 };
 
-}
+} // namespace core

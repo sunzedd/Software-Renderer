@@ -37,6 +37,11 @@ void DrawableGameObject::setMesh(std::shared_ptr<const Mesh> mesh)
     m_mesh = mesh;
 }
 
+std::shared_ptr<ShaderProgram> DrawableGameObject::getShader()
+{
+    return m_shader;
+}
+
 void DrawableGameObject::update(unsigned int deltaTime)
 {
     if (m_isTransformed)
