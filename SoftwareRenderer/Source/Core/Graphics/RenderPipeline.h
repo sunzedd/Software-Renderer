@@ -45,9 +45,9 @@ public:
     // Renderer entry point
     void beginFrame();
     
+    void drawFaces(const std::vector<Face>& faces);
     void drawIndexedTriangles(const std::vector<Vertex>& vertexBuf,
                               const std::vector<unsigned short>& indexBuf);
-    
     void drawLines(const std::vector<LineV3>& lineBuf, const Vec4& color);
 
 private:

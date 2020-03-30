@@ -63,6 +63,24 @@ void RenderPipeline::beginFrame()
 }
 
 // Renderer entry point
+void RenderPipeline::drawFaces(const std::vector<Face>& faces)
+{
+    if (!m_shader) throw NoShaderBoundException();
+
+    for (auto& f : faces)
+    {
+        Triangle<VSO> polygon(
+            m_shader->vertexShader(f.v0),
+            m_shader->vertexShader(f.v1),
+            m_shader->vertexShader(f.v2)
+        );
+
+        if (backFaceTest(polygon))
+            clip(polygon);
+    }
+}
+
+
 void RenderPipeline::drawIndexedTriangles(const std::vector<Vertex>& vertexBuf,
     const std::vector<unsigned short>& indexBuf)
 {
@@ -74,17 +92,14 @@ void RenderPipeline::drawIndexedTriangles(const std::vector<Vertex>& vertexBuf,
         const Vertex& v1 = vertexBuf[indexBuf[i + 1]];
         const Vertex& v2 = vertexBuf[indexBuf[i + 2]];
 
-        Triangle<VSO> polygon
-        (
+        Triangle<VSO> polygon(
             m_shader->vertexShader( v0 ),
             m_shader->vertexShader( v1 ),
             m_shader->vertexShader( v2 )
         );
 
         if (backFaceTest(polygon))
-        {
             clip(polygon);
-        }
     }
 }
 
