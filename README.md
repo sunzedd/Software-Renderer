@@ -3,7 +3,7 @@ My BMSTU computer graphics course project 2019.
 
 Supports texturing, loading .obj models
 
-## Required dependencies:
+## Required dependencies
 * SFML-2.5.1
 * ImGui
 * ImGui-SFML (https://github.com/eliasdaler/imgui-sfml)
