@@ -61,10 +61,19 @@ void Transform3D::setScale(const Vec3& scale)
 {
     if (scale.x <= 0.0f)
         m_scale.x = 0.0001f;
+    else
+        m_scale.x = scale.x;
+
     if (scale.y <= 0.0f)
         m_scale.y = 0.0001f;
+    else
+        m_scale.y = scale.y;
+
     if (scale.z <= 0.0f)
         m_scale.z = 0.0001f;
+    else
+        m_scale.z = scale.z;
+
     registerTransformation(TransformationType::SCALE);
 }
 
