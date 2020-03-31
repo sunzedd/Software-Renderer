@@ -22,8 +22,8 @@ public:
 
 protected:
     Transform3D m_transform;
-    RenderMode m_renderMode;
     bool m_rejectBackFaces;
+    RenderMode m_renderMode = RenderMode::FILLED;
 };
 
 } // namespace core
