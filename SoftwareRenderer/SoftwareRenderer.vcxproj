@@ -151,6 +151,7 @@
     <ClInclude Include="Source\Core\Window.h" />
     <ClInclude Include="Source\Sandbox\DemoApplication.h" />
     <ClInclude Include="Source\Sandbox\Shaders\GouraudShader.h" />
+    <ClInclude Include="Source\Sandbox\Shaders\GouraudTextureShader.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
