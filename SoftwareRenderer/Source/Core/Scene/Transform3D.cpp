@@ -5,7 +5,7 @@ namespace core {
 Transform3D::Transform3D()
     :
     m_scale(1.0f, 1.0f, 1.0f),
-    m_isTransformed(false)
+    m_isTransformed(true)
 {
     update();
 }
@@ -105,7 +105,7 @@ void Transform3D::registerTransformation(TransformationType type)
     switch (type)
     {
     case TransformationType::TRANSLATION:
-        m_isTransformed = true;
+        m_isTranslated = true;
         break;
     case TransformationType::ROTATION:
         m_isRotated = true;
