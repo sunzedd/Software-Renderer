@@ -40,6 +40,8 @@ VSO ShaderProgram::Default::vertexShader(const Vertex& v)
     VSO out(v);
     out.pos = out.pos * model * view * proj;
     out.intensity = 1.0f;
+
+    return out;
 }
 
 Vec4 ShaderProgram::Default::pixelShader(const VSO& interpolated)
