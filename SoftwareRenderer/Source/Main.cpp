@@ -3,8 +3,15 @@
 
 int main()
 {
-    DemoApplication a;
-    a.run();
+    try {
+        DemoApplication a;
+        a.run();
+    }
+    catch (std::exception & e)
+    {
+        std::cout << e.what() << std::endl;
+        std::cin.get();
+    }
 
     return 0;
 }

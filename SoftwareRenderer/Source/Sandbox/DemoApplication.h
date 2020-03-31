@@ -15,6 +15,5 @@ public:
 
 private:
     core::Camera m_camera;
-    std::vector<std::shared_ptr<core::DrawableGameObject>> m_objects;
-    std::shared_ptr<core::PointLight> m_light;
+    std::shared_ptr<core::Object3D> m_object;
 };

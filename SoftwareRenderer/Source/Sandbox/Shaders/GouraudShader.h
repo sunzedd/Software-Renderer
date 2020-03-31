@@ -1,6 +1,6 @@
 #pragma once
+#if 0
 #include "../../Core/Graphics/ShaderProgram.h"
-#include "../../Core/Scene/PointLight.h"
 
 class GouraudShader : public core::ShaderProgram
 {
@@ -64,3 +64,4 @@ public:
         return out;
     }
 };
+#endif
