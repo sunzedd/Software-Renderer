@@ -63,5 +63,6 @@
     <ClInclude Include="Source\Core\Scene\Transform3D.h" />
     <ClInclude Include="Source\Core\Scene\Object3DBuilder.h" />
     <ClInclude Include="Source\Core\Scene\Scene.h" />
+    <ClInclude Include="Source\Sandbox\Shaders\GouraudTextureShader.h" />
   </ItemGroup>
 </Project>

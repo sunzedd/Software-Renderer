@@ -1,6 +1,6 @@
 #pragma once
 #include "../Core/Engine.h"
-#include "Shaders/GouraudShader.h"
+#include "Shaders/GouraudTextureShader.h"
 
 #define DEMO_WIDTH 1024
 #define DEMO_HEIGHT 724
@@ -15,5 +15,6 @@ public:
 
 private:
     core::Camera m_camera;
-    std::shared_ptr<core::Object3D> m_object;
+    std::vector<std::shared_ptr<core::Object3D>> m_objects;
+    std::shared_ptr<core::Object3D> m_lighter;
 };
