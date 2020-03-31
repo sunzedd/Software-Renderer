@@ -2,6 +2,10 @@
 
 namespace core {
 
+
+// --------------------------------------------------------------------------------------
+//                            class ShaderProgram
+//---------------------------------------------------------------------------------------
 void ShaderProgram::bindModelMatrix(const Mat4& m)
 {
     model = m;
@@ -28,6 +32,24 @@ float ShaderProgram::calcIntesity(const Vec3& normal, const Vec3& lightDirection
     return normal.dot(-lightDirection.normalized());
 }
 
+// --------------------------------------------------------------------------------------
+//                            class ShaderProgram::Default
+//---------------------------------------------------------------------------------------
+VSO ShaderProgram::Default::vertexShader(const Vertex& v)
+{
+    VSO out(v);
+    out.pos = out.pos * model * view * proj;
+    out.intensity = 1.0f;
+}
+
+Vec4 ShaderProgram::Default::pixelShader(const VSO& interpolated)
+{
+    return m_defaultColor;
+}
+
+// --------------------------------------------------------------------------------------
+//                            class VSO
+//---------------------------------------------------------------------------------------
 VSO::VSO(const Vertex& v)
 {
     pos = v.pos;

@@ -11,6 +11,14 @@ class VSO;
 class ShaderProgram
 {
 public:
+    class Default;
+
+public:
+    static std::shared_ptr<Default> createDefaultShader()
+    {
+        return std::make_shared<Default>();
+    }
+
     virtual VSO vertexShader(const Vertex& v) = 0;
     virtual Vec4 pixelShader(const VSO& interpolated) = 0;
 
@@ -28,6 +36,15 @@ protected:
     Mat4 view;
     Mat4 proj;
     std::shared_ptr<const sf::Image> m_texture;
+};
+
+class ShaderProgram::Default : public ShaderProgram
+{
+public:
+    virtual VSO vertexShader(const Vertex& v) override;
+    virtual Vec4 pixelShader(const VSO& interpolated) override;
+private:
+    const Vec4 m_defaultColor = { 1.0f, 1.0f, 1.0f, 1.0f };
 };
 
 // Vertex shader output data structure.
