@@ -47,6 +47,8 @@ class Camera : public ICamera
 
         float yaw;
         float pitch;
+
+        bool isTransformed;
     };
 
 public:

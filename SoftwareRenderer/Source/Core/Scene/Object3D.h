@@ -9,7 +9,7 @@ namespace core {
 class Object3D : public Drawable3D
 {
 public:
-    virtual void render(const ICamera& camera) override;
+    virtual void render(ICamera& camera) override;
     virtual void update(unsigned int deltaTime) override;
 
     std::shared_ptr<ShaderProgram> getShader();

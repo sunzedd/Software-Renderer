@@ -14,7 +14,7 @@ enum class RenderMode
 class Drawable3D : public IObject
 {
 public:
-    virtual void render(const ICamera& camera) = 0;
+    virtual void render(ICamera& camera) = 0;
 
     Transform3D& getTransform();
     void setRenderMode(RenderMode mode);

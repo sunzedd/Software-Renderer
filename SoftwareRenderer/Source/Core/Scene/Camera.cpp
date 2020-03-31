@@ -77,7 +77,7 @@ void Camera::move(Direction direction, float delta)
         break;
     }
 
-    m_isTransformed = true;
+    m_transform.isTransformed = true;
 }
 
 void Camera::setPosition(const Vec3& position)
@@ -107,12 +107,12 @@ void Camera::setViewFrustum(float fovy, float aspectRatio, float zNear, float zF
 
 const Mat4& Camera::getViewMatrix()
 {
-    if (m_isTransformed)
+    if (m_transform.isTransformed)
     {
         m_viewMatrix = Mat4::lookAt(m_transform.position,
                                     m_transform.position + m_transform.front,
                                     m_transform.up);
-        m_isTransformed = false;
+        m_transform.isTransformed = false;
     }
 
     return m_viewMatrix;
@@ -181,6 +181,6 @@ void Camera::handleKeyboard(float deltaMove)
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) move(Direction::FORWARD,  deltaMove);
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) move(Direction::BACKWARD, deltaMove);
 
-    m_isTransformed = true;
+    m_transform.isTransformed = true;
 }
 }

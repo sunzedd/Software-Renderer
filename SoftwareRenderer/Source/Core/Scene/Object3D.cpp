@@ -3,15 +3,20 @@
 
 namespace core {
 
-void Object3D::render(const ICamera& camera)
+void Object3D::render(ICamera& camera)
 {
     auto& renderer = RenderPipeline::instance();
 
-    if (m_renderMode == RenderMode::WIREFRAME)
+    if (m_renderMode == RenderMode::WIREFRAME) 
         renderer.toogleWireframeRendering(true);
-    if (m_rejectBackFaces)
-        renderer.toogleBackFaceCulling(m_rejectBackFaces);
     
+    if (m_rejectBackFaces)                     
+        renderer.toogleBackFaceCulling(m_rejectBackFaces);
+
+    m_shader->bindModelMatrix(m_transform.getModelMatrix());
+    m_shader->bindViewMatrix(camera.getViewMatrix());
+    m_shader->bindProjectionMatrix(camera.getProjMatrix());
+
     renderer.bindShaderProgram(m_shader);
     renderer.drawFaces(m_mesh->faces());
     renderer.toogleWireframeRendering(false);
