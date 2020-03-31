@@ -2,8 +2,8 @@
 
 namespace core {
 
-const char* const AssetLoader::DEFAULT_IMAGE_FILEPATH = "Resourses\\textures\\default.jpg";
-const char* const AssetLoader::DEFAULT_MESH_FILEPATH = "Resourses\\meshes\\default.obj";
+const char* const AssetLoader::DEFAULT_IMAGE_FILEPATH = "Resources\\textures\\default.jpg";
+const char* const AssetLoader::DEFAULT_MESH_FILEPATH = "Resources\\meshes\\default.obj";
 
 std::shared_ptr<Mesh> AssetLoader::loadMesh(const std::string& filepath)
 {
