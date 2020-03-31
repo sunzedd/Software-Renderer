@@ -2,6 +2,9 @@
 
 namespace core {
 
+const char* const AssetLoader::DEFAULT_IMAGE_FILEPATH = "Resourses\\textures\\default.jpg";
+const char* const AssetLoader::DEFAULT_MESH_FILEPATH = "Resourses\\meshes\\default.obj";
+
 std::shared_ptr<Mesh> AssetLoader::loadMesh(const std::string& filepath)
 {
     int i = 0;
@@ -106,6 +109,11 @@ std::shared_ptr<Mesh> AssetLoader::loadMesh(const std::string& filepath)
     return std::move(mesh);
 }
 
+std::shared_ptr<Mesh> AssetLoader::loadDefaultMesh()
+{
+    return loadMesh(DEFAULT_MESH_FILEPATH);
+}
+
 std::shared_ptr<sf::Image> AssetLoader::loadImage(const std::string& filepath)
 {
     auto img = std::make_shared<sf::Image>();
@@ -115,6 +123,11 @@ std::shared_ptr<sf::Image> AssetLoader::loadImage(const std::string& filepath)
         throw CouldNotLoadAssetException("Could not load image: " + filepath);
 
     return std::move(img);
+}
+
+std::shared_ptr<sf::Image> AssetLoader::loadDefaultImage()
+{
+    return loadImage(DEFAULT_IMAGE_FILEPATH);
 }
 
 } // namespace core
