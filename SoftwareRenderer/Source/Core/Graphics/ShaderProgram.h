@@ -8,6 +8,8 @@ namespace core {
 
 class VSO;
 
+
+
 class ShaderProgram
 {
 public:
@@ -30,6 +32,8 @@ public:
 
 protected:
     float calcIntesity(const Vec3& normal, const Vec3& lightDirection) const;
+    Vec2 clampUV(const Vec2& uv);
+    Vec2i getTexelCoordinates(const Vec2& uv);
 
 protected:
     Mat4 model;
@@ -37,6 +41,9 @@ protected:
     Mat4 proj;
     std::shared_ptr<const sf::Image> m_texture;
 };
+
+
+
 
 class ShaderProgram::Default : public ShaderProgram
 {
@@ -46,6 +53,9 @@ public:
 private:
     const Vec4 m_defaultColor = { 1.0f, 1.0f, 1.0f, 1.0f };
 };
+
+
+
 
 // Vertex shader output data structure.
 class VSO

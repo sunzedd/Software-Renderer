@@ -29,8 +29,39 @@ void ShaderProgram::bindTexture(std::shared_ptr<const sf::Image> texture)
 
 float ShaderProgram::calcIntesity(const Vec3& normal, const Vec3& lightDirection) const
 {
-    return normal.dot(-lightDirection.normalized());
+    return std::max(0.0f, normal.dot(-lightDirection.normalized()));
 }
+
+Vec2 ShaderProgram::clampUV(const Vec2& uv)
+{
+    Vec2 clamped;
+
+    clamped.x = std::max(0.0f, uv.x);
+    clamped.x = std::min(uv.x, 1.0f);
+
+    clamped.y = std::max(0.0f, uv.y);
+    clamped.y = std::min(uv.y, 1.0f);
+
+    return clamped;
+}
+
+Vec2i ShaderProgram::getTexelCoordinates(const Vec2& uv)
+{
+    Vec2i texel;
+    const int textureWidth = m_texture->getSize().x;
+    const int textureHeight = m_texture->getSize().y;
+
+    texel.x = uv.x * textureWidth;
+    texel.y = uv.y * textureHeight;
+
+    if (texel.x == textureWidth)  texel.x--;
+    if (texel.y == textureHeight) texel.y--;
+
+    return texel;
+}
+
+
+
 
 // --------------------------------------------------------------------------------------
 //                            class ShaderProgram::Default
@@ -48,6 +79,9 @@ Vec4 ShaderProgram::Default::pixelShader(const VSO& interpolated)
 {
     return m_defaultColor;
 }
+
+
+
 
 // --------------------------------------------------------------------------------------
 //                            class VSO
