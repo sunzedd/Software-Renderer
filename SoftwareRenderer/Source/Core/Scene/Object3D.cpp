@@ -56,8 +56,13 @@ void Object3D::setMesh(std::shared_ptr<Mesh> mesh)
 
 void Object3D::setTexture(std::shared_ptr<sf::Image> texture)
 {
+    if (!m_shader)
+        throw IncorrectOperationOrder("Set shader before setting a texture.");
+
     if (texture)
         m_texture = texture;
+
+    m_shader->bindTexture(m_texture);
 }
 
 } // namespace core
