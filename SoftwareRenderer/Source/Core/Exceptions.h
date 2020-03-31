@@ -35,6 +35,20 @@ public:
     {}
 };
 
+class IncorrectOperationOrder : public CoreException
+{
+public:
+    IncorrectOperationOrder()
+        :
+        CoreException("Incorrect operation order")
+    {}
+
+    IncorrectOperationOrder(const std::string& message)
+        :
+        CoreException(message)
+    {}
+};
+
 
 // RenderPipeline exceptions
 class NoShaderBoundException : public CoreException
