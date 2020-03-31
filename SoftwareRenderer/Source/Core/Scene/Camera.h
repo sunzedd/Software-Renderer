@@ -4,7 +4,7 @@
 #include "../Math/Mat4.h"
 #include "../Math/Vec3.h"
 
-#include "CameraBase.h"
+#include "ICamera.h"
 
 
 #define CORE_CAMERA_VIEWFRUSTUM_FOVY  50.0f
@@ -28,7 +28,7 @@ enum class Direction
     DOWN
 };
 
-class Camera : public CameraBase
+class Camera : public ICamera
 {
     struct _ViewFrustum
     {
