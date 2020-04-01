@@ -9,6 +9,9 @@ namespace core {
 class Object3D : public Drawable3D
 {
 public:
+    Object3D();
+    Object3D(const Object3D& other);
+
     virtual void render(ICamera& camera) override;
     virtual void update(unsigned int deltaTime) override;
 

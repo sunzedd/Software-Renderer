@@ -3,6 +3,21 @@
 
 namespace core {
 
+Object3D::Object3D()
+{
+}
+
+Object3D::Object3D(const Object3D& other)
+{
+    m_mesh = other.m_mesh;
+    m_texture = other.m_texture;
+    m_shader.reset();
+    m_isVisible = other.m_isVisible;
+    m_rejectBackFaces = other.m_rejectBackFaces;
+    m_renderMode = other.m_renderMode;
+    m_transform = other.m_transform;
+}
+
 void Object3D::render(ICamera& camera)
 {
     auto& renderer = RenderPipeline::instance();
