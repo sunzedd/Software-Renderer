@@ -1,7 +1,7 @@
 #pragma once
 #include <unordered_map>
 #include "../Core/Engine.h"
-#include "Shaders/GouraudTextureShader.h"
+#include "Shaders/PhongShader.h"
 
 #define DEMO_WIDTH 1024
 #define DEMO_HEIGHT 724
