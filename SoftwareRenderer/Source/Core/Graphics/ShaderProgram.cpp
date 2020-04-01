@@ -35,12 +35,8 @@ float ShaderProgram::calcIntesity(const Vec3& normal, const Vec3& lightDirection
 Vec2 ShaderProgram::clampUV(const Vec2& uv)
 {
     Vec2 clamped;
-
-    clamped.x = std::max(0.0f, uv.x);
-    clamped.x = std::min(uv.x, 1.0f);
-
-    clamped.y = std::max(0.0f, uv.y);
-    clamped.y = std::min(uv.y, 1.0f);
+    clamped.x = clampNormalize(uv.x);
+    clamped.y = clampNormalize(uv.y);
 
     return clamped;
 }
@@ -92,6 +88,8 @@ VSO::VSO(const Vertex& v)
     n = v.n;
     uv = v.uv;
     color = v.color;
+
+    intensity = 0.0f;
 }
 
 VSO& VSO::operator += (const VSO& rhs)

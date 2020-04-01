@@ -1,7 +1,8 @@
 #pragma once
 #include <memory>
-
 #include <SFML/Graphics/Image.hpp>
+
+#include "../Utils.h"
 #include "Vertex.h"
 
 namespace core {
