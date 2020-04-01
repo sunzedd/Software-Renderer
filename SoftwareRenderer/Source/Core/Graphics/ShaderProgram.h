@@ -35,6 +35,7 @@ protected:
     float calcIntesity(const Vec3& normal, const Vec3& lightDirection) const;
     Vec2 clampUV(const Vec2& uv);
     Vec2i getTexelCoordinates(const Vec2& uv);
+    Vec4 getTexelColor(const Vec2i& uv);
 
 protected:
     Mat4 model;

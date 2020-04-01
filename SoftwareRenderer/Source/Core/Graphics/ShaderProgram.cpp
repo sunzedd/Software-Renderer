@@ -56,7 +56,21 @@ Vec2i ShaderProgram::getTexelCoordinates(const Vec2& uv)
     return texel;
 }
 
+Vec4 ShaderProgram::getTexelColor(const Vec2i& uv)
+{
+    sf::Color texel = m_texture->getPixel(uv.x, uv.y);
 
+    Vec4 texel_v4 = { 
+        (float)texel.r,
+        (float)texel.g,
+        (float)texel.b,
+        (float)texel.a 
+    };
+
+    texel_v4 /= 255.0f;
+
+    return texel_v4;
+}
 
 
 // --------------------------------------------------------------------------------------
