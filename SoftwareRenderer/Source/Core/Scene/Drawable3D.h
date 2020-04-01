@@ -19,11 +19,15 @@ public:
     Transform3D& getTransform();
     void setRenderMode(RenderMode mode);
     void rejectBackFaces(bool enable);
+    void toogleVisibility(bool enable);
+    bool isVisible() const;
 
 protected:
     Transform3D m_transform;
-    bool m_rejectBackFaces;
     RenderMode m_renderMode = RenderMode::FILLED;
+
+    bool m_rejectBackFaces = true;
+    bool m_isVisible       = true;
 };
 
 } // namespace core
