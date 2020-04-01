@@ -1,4 +1,5 @@
 #pragma once
+#include <unordered_map>
 #include "../Core/Engine.h"
 #include "Shaders/GouraudTextureShader.h"
 
@@ -14,7 +15,11 @@ public:
     void render() override;
 
 private:
+    void _initScene();
+    void _updateSceneLogic(unsigned int deltaTime);
+
+private:
     core::Camera m_camera;
-    std::vector<std::shared_ptr<core::Object3D>> m_objects;
+    std::unordered_map<std::string, std::shared_ptr<core::Object3D>> m_objects;
     std::shared_ptr<core::Object3D> m_lighter;
 };

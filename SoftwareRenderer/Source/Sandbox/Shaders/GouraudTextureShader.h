@@ -14,26 +14,28 @@ public:
     struct Attenuation
     {
         float constant = 1.0f;
-        float linear = 2.619f;
+        float linear = 0.019f;
         float quadratic = 0.382f;
     };
 
 public:
     Attenuation attenuation;
+    float basicIntencity = 0.15f;
     v4 ambient = { 0.25f, 0.25f, 0.25f, 0.25f };
     v3 pointLightPosition = { 0.0f, 2.0f, 0.0f };
-    v3 directionLightPosition = { -1.0f, -1.0f, -1.0f };
+    v3 directionLightDirection = { -1.0f, -1.0f, -1.0f };
 
 public:
     inline vs_output vertexShader(const vertex& v) override
     {
         vs_output out(v);
+        out.intensity = basicIntencity;
 
         // vertex transformations
         out.posWorld = v4(v.pos) * model;
         out.posView = out.posWorld * view;
         out.pos = out.posView * proj;
-        out.n = v.n * model;
+        out.n = (v.n * model).getNormalized();
 
         // lighting calculation
         v3 lightDirection = v3(out.posWorld) - pointLightPosition;
@@ -45,8 +47,8 @@ public:
             attenuation.linear * distanceToLight +
             attenuation.quadratic * distanceToLight * distanceToLight);
 
-        out.intensity = calcIntesity(out.n, directionLightPosition);
-        out.intensity += calcIntesity(out.n, lightDirection);// * attenuationFactor;
+        out.intensity += calcIntesity(out.n, lightDirection) * attenuationFactor;
+        out.intensity = core::clampNormalize(out.intensity);
 
         return out;
     }
