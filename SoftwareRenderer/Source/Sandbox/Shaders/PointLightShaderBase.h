@@ -6,7 +6,7 @@ struct PointLightShaderBase : public core::ShaderProgram
 {
     struct Attenuation
     {
-        float constant = 1.0f;
+        float constant = 0.5f;
         float linear = 0.019f;
         float quadratic = 0.082f;
     };
