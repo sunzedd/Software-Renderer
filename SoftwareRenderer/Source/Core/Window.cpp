@@ -63,8 +63,8 @@ void Window::createGraphics(bool fullscreen)
     m_frameBufferTexture.create(m_properties.width, m_properties.height);
     m_frameBufferSprite = sf::Sprite(m_frameBufferTexture);
 
-    if (!m_font.loadFromFile("Assets\\font.ttf"))
-        throw std::exception("Could not load font");
+    if (!m_font.loadFromFile("Resources\\font.ttf"))
+        throw std::exception("Could not find font file 'font.ttf' in Resources folder");
     m_fpsLabel.setFont(m_font);
 
     ImGui::SFML::Init(m_nativeWindow);
