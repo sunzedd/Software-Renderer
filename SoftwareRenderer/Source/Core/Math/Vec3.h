@@ -34,6 +34,7 @@ public:
     Vec3& operator -= (const Vec3& rhs);
     Vec3& operator *= (float value);
     Vec3& operator /= (float value);
+    bool friend operator == (const Vec3& lhs, const Vec3& rhs);
 
     Vec3& rotate(const Vec3& axis, float angle);
 

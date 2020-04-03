@@ -108,6 +108,12 @@ Vec3& Vec3::operator /= (float value)
     return *this;
 }
 
+bool operator == (const Vec3& lhs, const Vec3& rhs)
+{
+    return (lhs.x == rhs.x &&
+            lhs.y == rhs.y &&
+            lhs.z == rhs.z);
+}
 Vec3& Vec3::rotate(const Vec3& axis, float angle) 
 {
     const float sinAngle = (float)sin(-angle);
