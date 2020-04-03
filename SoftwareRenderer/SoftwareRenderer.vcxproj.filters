@@ -27,6 +27,7 @@
     <ClCompile Include="Source\Core\Scene\Drawable3D.cpp" />
     <ClCompile Include="Source\Core\Scene\Transform3D.cpp" />
     <ClCompile Include="Source\Core\Scene\Object3DBuilder.cpp" />
+    <ClCompile Include="Source\Core\Scene\Group3D.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Core\Graphics\Buffer.h" />
@@ -54,7 +55,6 @@
     <ClInclude Include="Source\Core\Exceptions.h" />
     <ClInclude Include="Source\Core\Scene\Camera.h" />
     <ClInclude Include="Source\Core\Graphics\ShaderProgram.h" />
-    <ClInclude Include="Source\Sandbox\Shaders\GouraudShader.h" />
     <ClInclude Include="Source\Sandbox\DemoApplication.h" />
     <ClInclude Include="Source\Core\Scene\IObject.h" />
     <ClInclude Include="Source\Core\Scene\Drawable3D.h" />
@@ -63,6 +63,10 @@
     <ClInclude Include="Source\Core\Scene\Transform3D.h" />
     <ClInclude Include="Source\Core\Scene\Object3DBuilder.h" />
     <ClInclude Include="Source\Core\Scene\Scene.h" />
-    <ClInclude Include="Source\Sandbox\Shaders\GouraudTextureShader.h" />
+    <ClInclude Include="Source\Core\Utils.h" />
+    <ClInclude Include="Source\Sandbox\Shaders\PointLightShaderBase.h" />
+    <ClInclude Include="Source\Sandbox\Shaders\Aliases.h" />
+    <ClInclude Include="Source\Sandbox\Shaders\PhongShader.h" />
+    <ClInclude Include="Source\Core\Scene\Group3D.h" />
   </ItemGroup>
 </Project>
