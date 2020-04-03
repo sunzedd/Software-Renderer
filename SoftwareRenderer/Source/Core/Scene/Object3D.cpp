@@ -2,6 +2,13 @@
 
 namespace core {
 
+Object3D::Object3D()
+{
+    m_mesh = AssetLoader::loadDefaultMesh();
+    m_texture = AssetLoader::loadDefaultImage();
+    m_shader = std::make_shared<ShaderProgram::Default>();
+}
+
 void Object3D::render(const ICamera& camera) const
 {
     auto& renderer = RenderPipeline::instance();

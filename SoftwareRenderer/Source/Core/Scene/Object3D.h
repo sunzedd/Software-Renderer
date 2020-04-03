@@ -2,7 +2,7 @@
 #include "../Graphics/RenderPipeline.h"
 #include "../Graphics/Mesh.h"
 #include "../Graphics/ShaderProgram.h"
-
+#include "../AssetLoader.h"
 #include "Object3DBase.h"
 
 namespace core {
@@ -10,6 +10,8 @@ namespace core {
 class Object3D : public Object3DBase
 {
 public:
+    Object3D();
+
     void render(const ICamera& camera) const override;
     void update(unsigned int deltaTime) override;
 
