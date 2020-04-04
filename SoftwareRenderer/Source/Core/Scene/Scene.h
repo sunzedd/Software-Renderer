@@ -1,3 +1,5 @@
 #pragma once
+
 #include "Camera.h"
-#include "Object3DBuilder.h"
+#include "CompositeObject3D.h"
+#include "Object3D.h"

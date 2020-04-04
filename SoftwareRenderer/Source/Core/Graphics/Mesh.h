@@ -12,6 +12,8 @@ public:
     Mesh();
     virtual ~Mesh();
 
+    static std::shared_ptr<Mesh> createDefaultMesh();
+
     const std::vector<Vertex>& vertices() const { return m_vertices; }
     const std::vector<unsigned short>& indices() const { return m_indices; }
     const std::vector<Face>& faces() const { return m_faces; }

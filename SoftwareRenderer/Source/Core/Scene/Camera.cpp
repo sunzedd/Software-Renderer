@@ -12,9 +12,9 @@ Camera::Camera(const Vec3& position)
     m_transform.yaw = -90.0f;
     m_transform.pitch = 0.0f;
 
-    m_viewMatrix = Mat4::lookAt(m_transform.position, 
-                                m_transform.front,
-                                m_transform.up);
+    m_viewMatrix = Mat4::lookAt(m_transform.position,
+        m_transform.front,
+        m_transform.up);
 }
 
 Camera::Camera(const Vec3& position, const Vec3& forward, const Vec3& up)
@@ -28,8 +28,8 @@ Camera::Camera(const Vec3& position, const Vec3& forward, const Vec3& up)
     m_transform.pitch = 0.0f;
 
     m_viewMatrix = Mat4::lookAt(m_transform.position,
-                                m_transform.front,
-                                m_transform.up);
+        m_transform.front,
+        m_transform.up);
 }
 
 void Camera::update(unsigned int deltaTime)
@@ -38,6 +38,7 @@ void Camera::update(unsigned int deltaTime)
 
     handleKeyboard(deltaMove);
     handleMouse();
+    updateMatrices();
 }
 
 const Vec3& Camera::getPosition() const
@@ -105,20 +106,17 @@ void Camera::setViewFrustum(float fovy, float aspectRatio, float zNear, float zF
     m_hasProjMatrixModified = true;
 }
 
-const Mat4& Camera::getViewMatrix()
+const Mat4& Camera::getViewMatrix() const
 {
-    if (m_transform.isTransformed)
-    {
-        m_viewMatrix = Mat4::lookAt(m_transform.position,
-                                    m_transform.position + m_transform.front,
-                                    m_transform.up);
-        m_transform.isTransformed = false;
-    }
-
     return m_viewMatrix;
 }
 
-const Mat4& Camera::getProjMatrix()
+const Mat4& Camera::getProjMatrix() const
+{
+    return m_projMatrix;
+}
+
+void Camera::updateMatrices()
 {
     if (m_hasProjMatrixModified)
     {
@@ -126,8 +124,16 @@ const Mat4& Camera::getProjMatrix()
                                          m_viewFrustum.aspectRatio,
                                          m_viewFrustum.zNear,
                                          m_viewFrustum.zFar);
+        m_hasProjMatrixModified = false;
     }
-    return m_projMatrix;
+
+    if (m_transform.isTransformed)
+    {
+        m_viewMatrix = Mat4::lookAt(m_transform.position,
+                                    m_transform.position + m_transform.front,
+                                    m_transform.up);
+        m_transform.isTransformed = false;
+    }
 }
 
 void Camera::handleMouse()

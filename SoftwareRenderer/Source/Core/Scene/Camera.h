@@ -57,7 +57,7 @@ public:
            const Vec3& front = { 0, 0, -1 },
            const Vec3& up = { 0, 1, 0 });
 
-    virtual void update(unsigned int deltaTime) override;
+    virtual void update(unsigned int deltaTime);
 
     const Vec3& getPosition() const;
     float getMovementSpeed() const;
@@ -69,10 +69,11 @@ public:
     void setMouseSensitivity(float sensitivity);
     void setViewFrustum(float fovy, float aspectRatio, float zNear, float zFar);
 
-    const Mat4& getViewMatrix() override;
-    const Mat4& getProjMatrix() override;
+    const Mat4& getViewMatrix() const override;
+    const Mat4& getProjMatrix() const override;
 
 private:
+    void updateMatrices();
     void handleMouse();
     void handleKeyboard(float deltaMove);
 

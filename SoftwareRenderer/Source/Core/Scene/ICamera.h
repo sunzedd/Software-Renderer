@@ -1,15 +1,14 @@
 #pragma once
 #include "../Math/Mat4.h"
-#include "IObject.h"
 
 namespace core
 {
 
-class ICamera : public IObject
+class ICamera
 {
 public:
-    virtual const Mat4& getViewMatrix() = 0;
-    virtual const Mat4& getProjMatrix() = 0;
+    virtual const Mat4& getViewMatrix() const = 0;
+    virtual const Mat4& getProjMatrix() const = 0;
 };
 
 } // namespace core
