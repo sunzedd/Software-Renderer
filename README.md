@@ -10,8 +10,6 @@ Supports texturing, loading .obj models
 
 ## Examples 
 ### Scene editor built with ImGui
-![Screenshot1](/SoftwareRenderer/assets/DemoScr1.png)
-
-![Screenshot2](/SoftwareRenderer/assets/DemoScr2.png)
-
-![Screenshot3](/SoftwareRenderer/assets/DemoScr3.png)
+![Screenshot1](/SoftwareRenderer/assets/demo_scr_01.png)
+![Screenshot2](/SoftwareRenderer/assets/demo_scr_03.png)
+![Screenshot3](/SoftwareRenderer/assets/demo_scr_02.png)
