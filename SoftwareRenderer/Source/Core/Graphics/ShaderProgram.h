@@ -9,8 +9,6 @@ namespace core {
 
 class VSO;
 
-
-
 class ShaderProgram
 {
 public:
@@ -45,8 +43,6 @@ protected:
 };
 
 
-
-
 class ShaderProgram::Default : public ShaderProgram
 {
 public:
@@ -56,9 +52,7 @@ private:
     const Vec4 m_defaultColor = { 1.0f, 1.0f, 1.0f, 1.0f };
 };
 
-
-
-
+    
 // Vertex shader output data structure.
 class VSO
 {
