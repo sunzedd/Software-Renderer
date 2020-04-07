@@ -5,7 +5,7 @@
 #include "../Exceptions.h"
 #include "../Window.h"
 
-#include "ShaderProgram.h"
+#include "Shader.h"
 #include "FrameBuffer.h"
 #include "Rasterizer.h"
 #include "Triangle.h"
@@ -13,9 +13,9 @@
 
 namespace core {
 
-class RenderPipeline final
+class Renderer final
 {
-    static RenderPipeline* s_instance;
+    static Renderer* s_instance;
 
     struct _Properties
     {
@@ -34,13 +34,13 @@ class RenderPipeline final
 public:
     static void create(Window& window);
     static void destroy();
-    static RenderPipeline& instance();
+    static Renderer* getRendererInstance();
 
     void toogleBackFaceCulling(bool enable);
     void toogleWireframeRendering(bool enable);
     void setViewport(int topLeftX, int topLeftY, int width, int height);
 
-    void bindShaderProgram(std::shared_ptr<ShaderProgram> shader);
+    void bindShader(std::shared_ptr<Shader> shader);
 
     // Renderer entry point
     void beginFrame();
@@ -51,18 +51,18 @@ public:
     void drawLines(const std::vector<LineV3>& lineBuf, const Vec4& color);
 
 private:
-    RenderPipeline(FrameBuffer& frameBuf);
-    ~RenderPipeline();
+    Renderer(FrameBuffer& frameBuf);
+    ~Renderer();
 
-    bool backFaceTest(Triangle<VSO>& polygon) const;
-    void clip(Triangle<VSO>& polygon);
-    void renderClippedPolygon(Triangle<VSO>& polygon);
-    void perspectiveDivide(VSO& vso) const;
-    void viewport(VSO& vso) const;
+    bool backFaceTest(Triangle<VertexShaderOut>& polygon) const;
+    void clip(Triangle<VertexShaderOut>& polygon);
+    void renderClippedPolygon(Triangle<VertexShaderOut>& polygon);
+    void perspectiveDivide(VertexShaderOut& vso) const;
+    void viewport(VertexShaderOut& vso) const;
 
 private:
     Rasterizer m_rasterizer;
-    std::shared_ptr<ShaderProgram> m_shader;
+    std::shared_ptr<Shader> m_shader;
 
     _Properties m_properties;
     _Viewport m_viewport;

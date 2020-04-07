@@ -6,7 +6,7 @@
 #include <imgui.h>
 #include <imgui-SFML.h>
 
-#include "Graphics/RenderPipeline.h"
+#include "Graphics/Renderer.h"
 #include "Window.h"
 
 namespace core {
@@ -18,7 +18,7 @@ public:
     App(int width, int height, const std::string& title, bool fullscreen);
     virtual ~App();
 
-void run();
+    void run();
 
 protected:
     virtual void update(unsigned int dtime) = 0;

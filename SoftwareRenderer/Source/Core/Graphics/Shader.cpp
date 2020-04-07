@@ -1,38 +1,38 @@
-#include "ShaderProgram.h"
+#include "Shader.h"
 
 namespace core {
 
 
 // --------------------------------------------------------------------------------------
-//                            class ShaderProgram
+//                            class Shader
 //---------------------------------------------------------------------------------------
-void ShaderProgram::bindModelMatrix(const Mat4& m)
+void Shader::bindModelMatrix(const Mat4& m)
 {
     model = m;
 }
 
-void ShaderProgram::bindViewMatrix(const Mat4& m)
+void Shader::bindViewMatrix(const Mat4& m)
 {
     view = m;
 }
 
-void ShaderProgram::bindProjectionMatrix(const Mat4& m)
+void Shader::bindProjectionMatrix(const Mat4& m)
 {
     proj = m;
 }
 
-void ShaderProgram::bindTexture(std::shared_ptr<const sf::Image> texture)
+void Shader::bindTexture(std::shared_ptr<const sf::Image> texture)
 {
     if (texture)
         m_texture = texture;
 }
 
-float ShaderProgram::calcIntesity(const Vec3& normal, const Vec3& lightDirection) const
+float Shader::calcIntesity(const Vec3& normal, const Vec3& lightDirection) const
 {
     return std::max(0.0f, normal.dot(-lightDirection.normalized()));
 }
 
-Vec2 ShaderProgram::clampUV(const Vec2& uv)
+Vec2 Shader::clampUV(const Vec2& uv)
 {
     Vec2 clamped;
     clamped.x = clampNormalize(uv.x);
@@ -41,7 +41,7 @@ Vec2 ShaderProgram::clampUV(const Vec2& uv)
     return clamped;
 }
 
-Vec2i ShaderProgram::getTexelCoordinates(const Vec2& uv)
+Vec2i Shader::getTexelCoordinates(const Vec2& uv)
 {
     Vec2i texel;
     const int textureWidth = m_texture->getSize().x;
@@ -56,7 +56,7 @@ Vec2i ShaderProgram::getTexelCoordinates(const Vec2& uv)
     return texel;
 }
 
-Vec4 ShaderProgram::getTexelColor(const Vec2i& uv)
+Vec4 Shader::getTexelColor(const Vec2i& uv)
 {
     sf::Color texel = m_texture->getPixel(uv.x, uv.y);
 
@@ -74,18 +74,18 @@ Vec4 ShaderProgram::getTexelColor(const Vec2i& uv)
 
 
 // --------------------------------------------------------------------------------------
-//                            class ShaderProgram::Default
+//                            class Shader::Default
 //---------------------------------------------------------------------------------------
-VSO ShaderProgram::Default::vertexShader(const Vertex& v)
+VertexShaderOut Shader::Default::vertexShader(const Vertex& v)
 {
-    VSO out(v);
+    VertexShaderOut out(v);
     out.pos = out.pos * model * view * proj;
     out.intensity = 1.0f;
 
     return out;
 }
 
-Vec4 ShaderProgram::Default::pixelShader(const VSO& interpolated)
+Color Shader::Default::pixelShader(const VertexShaderOut& interpolated)
 {
     return m_defaultColor;
 }
@@ -94,9 +94,9 @@ Vec4 ShaderProgram::Default::pixelShader(const VSO& interpolated)
 
 
 // --------------------------------------------------------------------------------------
-//                            class VSO
+//                            class VertexShaderOut
 //---------------------------------------------------------------------------------------
-VSO::VSO(const Vertex& v)
+VertexShaderOut::VertexShaderOut(const Vertex& v)
 {
     pos = v.pos;
     n = v.n;
@@ -106,7 +106,7 @@ VSO::VSO(const Vertex& v)
     intensity = 0.0f;
 }
 
-VSO& VSO::operator += (const VSO& rhs)
+VertexShaderOut& VertexShaderOut::operator += (const VertexShaderOut& rhs)
 {
     pos += rhs.pos;
     n += rhs.n;
@@ -119,7 +119,7 @@ VSO& VSO::operator += (const VSO& rhs)
     return *this;
 }
 
-VSO& VSO::operator -= (const VSO& rhs)
+VertexShaderOut& VertexShaderOut::operator -= (const VertexShaderOut& rhs)
 {
     pos -= rhs.pos;
     n -= rhs.n;
@@ -132,7 +132,7 @@ VSO& VSO::operator -= (const VSO& rhs)
     return *this;
 }
 
-VSO& VSO::operator *= (float val)
+VertexShaderOut& VertexShaderOut::operator *= (float val)
 {
     pos *= val;
     n *= val;
@@ -145,7 +145,7 @@ VSO& VSO::operator *= (float val)
     return *this;
 }
 
-VSO& VSO::operator /= (float val)
+VertexShaderOut& VertexShaderOut::operator /= (float val)
 {
     pos /= val;
     n /= val;
@@ -158,33 +158,33 @@ VSO& VSO::operator /= (float val)
     return *this;
 }
 
-VSO operator + (const VSO& lhs, const VSO& rhs)
+VertexShaderOut operator + (const VertexShaderOut& lhs, const VertexShaderOut& rhs)
 {
-    VSO out(lhs);
+    VertexShaderOut out(lhs);
     out += rhs;
 
     return out;
 }
 
-VSO operator - (const VSO& lhs, const VSO& rhs)
+VertexShaderOut operator - (const VertexShaderOut& lhs, const VertexShaderOut& rhs)
 {
-    VSO out(lhs);
+    VertexShaderOut out(lhs);
     out -= rhs;
 
     return out;
 }
 
-VSO operator * (const VSO& vso, float val)
+VertexShaderOut operator * (const VertexShaderOut& vso, float val)
 {
-    VSO out(vso);
+    VertexShaderOut out(vso);
     out *= val;
 
     return out;
 }
 
-VSO operator / (const VSO& vso, float val)
+VertexShaderOut operator / (const VertexShaderOut& vso, float val)
 {
-    VSO out(vso);
+    VertexShaderOut out(vso);
     out /= val;
 
     return out;

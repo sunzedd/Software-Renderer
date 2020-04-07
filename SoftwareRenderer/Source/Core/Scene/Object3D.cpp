@@ -6,25 +6,28 @@ Object3D::Object3D()
 {
     m_mesh = AssetLoader::loadDefaultMesh();
     m_texture = AssetLoader::loadDefaultImage();
-    m_shader = std::make_shared<ShaderProgram::Default>();
+    m_shader = std::make_shared<Shader::Default>();
 }
 
 void Object3D::render(const ICamera& camera) const
 {
-    auto& renderer = RenderPipeline::instance();
+    auto* renderer = Renderer::getRendererInstance();
 
     m_shader->bindModelMatrix(m_transform.getModelMatrix());
     m_shader->bindTexture(m_texture);
     m_shader->bindViewMatrix(camera.getViewMatrix());
     m_shader->bindProjectionMatrix(camera.getProjMatrix());
 
-    renderer.bindShaderProgram(m_shader);
+    renderer->bindShader(m_shader);
     m_mesh->render();
 }
 
 void Object3D::update(unsigned int deltaTime)
 {
     m_transform.update();
+
+    if (m_script)
+        m_script->update(deltaTime);
 }
 
 void Object3D::move(const Vec3& delta) 
@@ -57,7 +60,7 @@ void Object3D::setScale(const Vec3& scale)
     m_transform.setScale(scale);
 }
 
-void Object3D::setShader(std::shared_ptr<ShaderProgram> shader)
+void Object3D::setShader(std::shared_ptr<Shader> shader)
 {
     if (shader)
         m_shader = shader;
@@ -73,6 +76,22 @@ void Object3D::setTexture(std::shared_ptr<const sf::Image> texture)
 {
     if (texture)
         m_texture = texture;
+}
+
+void Object3D::setAttributes(std::shared_ptr<Shader> shader,
+                             std::shared_ptr<const Mesh> mesh,
+                             std::shared_ptr<const sf::Image> texture)
+{
+    setShader(shader);
+    setMesh(mesh);
+    setTexture(texture);
+}
+
+void Object3D::setAttributes(std::shared_ptr<Shader> shader,
+                             std::shared_ptr<const Mesh> mesh)
+{
+    setShader(shader);
+    setMesh(mesh);
 }
 
 } // namespace core

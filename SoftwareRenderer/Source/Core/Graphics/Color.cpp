@@ -3,50 +3,115 @@
 namespace core {
 
 Color::Color()
-    :
-    r(255), g(255), b(255), a(255)
-{ }
+    : r(1.0f), g(1.0f), b(1.0f), a(1.0f)
+{}
 
-Color::Color(unsigned char r, unsigned char g, unsigned char b, unsigned char a /* = 255 */)
-    :
-    r(r), g(g), b(b), a(a) 
-{ }
+Color::Color(float r, float g, float b)
+    : r(r), g(g), b(b), a(1.0f)
+{}
 
-Color::Color( const Vec4& color ) 
+Color::Color(float r, float g, float b, float a)
+    : r(r), g(g), b(b), a(a)
+{}
+
+Color::Color(const Vec3& color)
+    : r(color.x), g(color.y), b(color.z), a(1.0f)
+{}
+
+Color::Color(const Vec4& color)
+    : r(color.x), g(color.y), b(color.z), a(color.w)
+{}
+
+Color& Color::operator += (const Color& rhs)
 {
-    r = static_cast<unsigned char>(color.x * 255);
-    g = static_cast<unsigned char>(color.y * 255);
-    b = static_cast<unsigned char>(color.z * 255);
-    a = static_cast<unsigned char>(color.w * 255);
+    r += rhs.r;
+    g += rhs.g;
+    b += rhs.b;
+    a += rhs.a;
+
+    return *this;
 }
 
-Color::Color( const Vec3& color )
+Color& Color::operator -= (const Color& rhs)
 {
-    r = static_cast<unsigned char>(color.x * 255);
-    g = static_cast<unsigned char>(color.y * 255);
-    b = static_cast<unsigned char>(color.z * 255);
-    a = 255;
+    r -= rhs.r;
+    g -= rhs.g;
+    b -= rhs.b;
+    a -= rhs.a;
+
+    return *this;
 }
 
-Vec4 Color::toVec4() const
+Color& Color::operator *= (float val)
 {
-    return
-    {
-        static_cast<float>(r) / 255.0f,
-        static_cast<float>(g) / 255.0f,
-        static_cast<float>(b) / 255.0f,
-        static_cast<float>(a) / 255.0f
-    };
+    r *= val;
+    g *= val;
+    b *= val;
+    a *= val;
+
+    return *this;
 }
 
-Vec3 Color::toVec3() const 
+Color& Color::operator /= (float val)
 {
-    return
-    {
-        static_cast<float>(r) / 255.0f,
-        static_cast<float>(g) / 255.0f,
-        static_cast<float>(b) / 255.0f
-    };
+    r /= val;
+    g /= val;
+    b /= val;
+    a /= val;
+
+    return *this;
+}
+
+Color operator + (const Color& lhs, const Color& rhs)
+{
+    return Color(
+        lhs.r + rhs.r,
+        lhs.g + rhs.g,
+        lhs.b + rhs.b,
+        lhs.a + rhs.a
+    );
+}
+
+Color operator - (const Color& lhs, const Color& rhs)
+{
+    return Color(
+        lhs.r - rhs.r,
+        lhs.g - rhs.g,
+        lhs.b - rhs.b,
+        lhs.a - rhs.a
+    );
+}
+
+Color operator * (const Color& c, float val)
+{
+    return Color(
+        c.r * val,
+        c.g * val,
+        c.b * val,
+        c.a * val
+    );
+}
+
+
+Color operator / (const Color& c, float val)
+{
+    return Color(
+        c.r / val,
+        c.g / val,
+        c.b / val,
+        c.a / val
+    );
+}
+
+sf::Color Color::toSFMLColor() const
+{
+    sf::Color color;
+    color.r = static_cast<sf::Uint8>(r * 255);
+    color.g = static_cast<sf::Uint8>(g * 255);
+    color.b = static_cast<sf::Uint8>(b * 255);
+    color.a = static_cast<sf::Uint8>(a * 255);
+
+    return color;
 }
 
 } // namespace core

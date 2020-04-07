@@ -19,6 +19,20 @@ public:
     {}
 };
 
+class ApplicationAlreadyCreatedException : public CoreException
+{
+public:
+    ApplicationAlreadyCreatedException()
+        :
+        CoreException("Application already created")
+    {}
+
+    ApplicationAlreadyCreatedException(const std::string& message)
+        :
+        CoreException(("Core exception: " + message).c_str())
+    {}
+};
+
 
 // AssetLoader exceptions
 class CouldNotLoadAssetException : public CoreException
@@ -50,7 +64,7 @@ public:
 };
 
 
-// RenderPipeline exceptions
+// Renderer exceptions
 class NoShaderBoundException : public CoreException
 {
 public:
@@ -65,13 +79,13 @@ public:
     {}
 };
 
-class RenderPipelineNotCreatedException : public CoreException
+class RendererNotCreatedException : public CoreException
 {
 public:
-    RenderPipelineNotCreatedException()
+    RendererNotCreatedException()
         :
         CoreException("Render pipeline not initialized.\n Note: you should call "
-                      "RenderPipeline::create(Window& window) before.")
+                      "Renderer::create(Window& window) before.")
     {}
 };
 
