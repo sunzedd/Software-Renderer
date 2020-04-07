@@ -15,7 +15,7 @@ struct PhongShader : public PointLightShaderBase
         return out;
     }
 
-    inline v4 pixelShader(const vs_output& interpolated) override
+    inline color pixelShader(const vs_output& interpolated) override
     {
         float intensity = calcIntensityOfPointLightSource(interpolated.posWorld,
                                                           interpolated.n);

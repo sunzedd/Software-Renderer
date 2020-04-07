@@ -2,7 +2,7 @@
 #include "../../Core/Utils.h"
 #include "Aliases.h"
 
-struct PointLightShaderBase : public core::ShaderProgram
+struct PointLightShaderBase : public core::Shader
 {
     struct Attenuation
     {
@@ -32,6 +32,6 @@ struct PointLightShaderBase : public core::ShaderProgram
     }
 
     virtual inline vs_output vertexShader(const vertex& v) = 0;
-    virtual inline v4 pixelShader(const vs_output& interpolated) = 0;
+    virtual inline color pixelShader(const vs_output& interpolated) = 0;
 };
 
