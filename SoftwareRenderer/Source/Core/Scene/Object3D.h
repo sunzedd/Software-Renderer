@@ -27,6 +27,13 @@ public:
     void setMesh(std::shared_ptr<const Mesh> mesh);
     void setTexture(std::shared_ptr<const sf::Image> texture);
 
+    void setAttributes(std::shared_ptr<Shader> shader,
+                       std::shared_ptr<const Mesh> mesh,
+                       std::shared_ptr<const sf::Image> texture);
+
+    void setAttributes(std::shared_ptr<Shader> shader,
+                       std::shared_ptr<const Mesh> mesh);
+
 protected:
     std::shared_ptr<const Mesh> m_mesh;
     std::shared_ptr<const sf::Image> m_texture;

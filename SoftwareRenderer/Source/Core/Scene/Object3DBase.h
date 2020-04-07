@@ -2,42 +2,28 @@
 #include "IDrawable3D.h"
 #include "ITransformable3D.h"
 #include "Transform3D.h"
+#include "Script.h"
 
 namespace core {
 
 class Object3DBase : public IDrawable3D, public ITransformable3D
 {
 public:
-    void toggleVisibility(bool enable) {
-        m_isVisible = enable;
-    }
+    void attachScript(Script* script);
+    void toggleVisibility(bool enable);
+    void toggleActivity(bool enable);
 
-    void toggleActivity(bool enable) {
-        m_isActive = enable;
-    }
+    bool isActive() const;
+    bool isVisible() const;
+    bool hasScript() const;
 
-    bool isActive() const {
-        return m_isActive;
-    }
-
-    bool isVisible() const {
-        return m_isVisible;
-    }
-
-    const Vec3& getPosition() const {
-        return m_transform.getPosition();
-    }
-
-    const Vec3& getRotation() const {
-        return m_transform.getRotation();
-    }
-
-    const Vec3& getScale() const {
-        return m_transform.getScale();
-    }
+    const Vec3& getPosition() const;
+    const Vec3& getRotation() const;
+    const Vec3& getScale() const;
 
 protected:
     Transform3D m_transform;
+    std::unique_ptr<Script> m_script;
 
 private:
     bool m_isVisible = true;

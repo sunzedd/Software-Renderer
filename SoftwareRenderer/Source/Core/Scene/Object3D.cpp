@@ -25,6 +25,9 @@ void Object3D::render(const ICamera& camera) const
 void Object3D::update(unsigned int deltaTime)
 {
     m_transform.update();
+
+    if (m_script)
+        m_script->update(deltaTime);
 }
 
 void Object3D::move(const Vec3& delta) 
@@ -73,6 +76,22 @@ void Object3D::setTexture(std::shared_ptr<const sf::Image> texture)
 {
     if (texture)
         m_texture = texture;
+}
+
+void Object3D::setAttributes(std::shared_ptr<Shader> shader,
+                             std::shared_ptr<const Mesh> mesh,
+                             std::shared_ptr<const sf::Image> texture)
+{
+    setShader(shader);
+    setMesh(mesh);
+    setTexture(texture);
+}
+
+void Object3D::setAttributes(std::shared_ptr<Shader> shader,
+                             std::shared_ptr<const Mesh> mesh)
+{
+    setShader(shader);
+    setMesh(mesh);
 }
 
 } // namespace core
