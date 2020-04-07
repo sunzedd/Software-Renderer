@@ -18,7 +18,7 @@ public:
     App(int width, int height, const std::string& title, bool fullscreen);
     virtual ~App();
 
-void run();
+    void run();
 
 protected:
     virtual void update(unsigned int dtime) = 0;
