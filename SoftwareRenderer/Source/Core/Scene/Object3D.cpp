@@ -6,7 +6,7 @@ Object3D::Object3D()
 {
     m_mesh = AssetLoader::loadDefaultMesh();
     m_texture = AssetLoader::loadDefaultImage();
-    m_shader = std::make_shared<ShaderProgram::Default>();
+    m_shader = std::make_shared<Shader::Default>();
 }
 
 void Object3D::render(const ICamera& camera) const
@@ -18,7 +18,7 @@ void Object3D::render(const ICamera& camera) const
     m_shader->bindViewMatrix(camera.getViewMatrix());
     m_shader->bindProjectionMatrix(camera.getProjMatrix());
 
-    renderer->bindShaderProgram(m_shader);
+    renderer->bindShader(m_shader);
     m_mesh->render();
 }
 
@@ -57,7 +57,7 @@ void Object3D::setScale(const Vec3& scale)
     m_transform.setScale(scale);
 }
 
-void Object3D::setShader(std::shared_ptr<ShaderProgram> shader)
+void Object3D::setShader(std::shared_ptr<Shader> shader)
 {
     if (shader)
         m_shader = shader;
