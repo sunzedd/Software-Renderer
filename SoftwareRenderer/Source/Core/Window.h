@@ -3,9 +3,10 @@
 #include <SFML/Graphics.hpp>
 #include <imgui.h>
 #include <imgui-SFML.h>
-#include "Graphics/FrameBuffer.h"
+
 #include "Defines.h"
 #include "Exceptions.h"
+#include "Graphics/FrameBuffer.h"
 
 namespace core {
 
