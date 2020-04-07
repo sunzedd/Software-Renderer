@@ -5,6 +5,7 @@
 #include <imgui-SFML.h>
 #include "Graphics/FrameBuffer.h"
 #include "Defines.h"
+#include "Exceptions.h"
 
 namespace core {
 
@@ -18,31 +19,39 @@ class Window
         std::string title;
     };
 
+    struct _GraphicContext
+    {
+        FrameBuffer       frameBufferObject;
+        sf::RenderWindow  nativeWindow;
+        sf::Texture       frameBufferTexture;
+        sf::Sprite        frameBufferSprite;
+        sf::Text          fpsLabel;
+
+        _GraphicContext(int width, int height);
+        void init(const _Properties& props);
+        void update(unsigned int fps);
+    };
+
 public:
     Window();
     Window(int width, int height, const std::string& title, bool fullscreen = false);
     ~Window();
-    FrameBuffer& getFrameBuffer() { return m_frameBuffer; }
-    bool isOpen() const { return m_nativeWindow.isOpen(); }
+
+    FrameBuffer& getFrameBuffer();
+    bool isOpen() const;
+
     void pollEvent(sf::Event& e);
     void update(sf::Time deltaTime);
 
 private:
-    void createGraphics(bool fullscreen);
+    void createGraphics();
 
 private:
     _Properties m_properties;
-
-    FrameBuffer m_frameBuffer;
-    
-    sf::RenderWindow m_nativeWindow;
-    sf::Texture m_frameBufferTexture;
-    sf::Sprite m_frameBufferSprite;
+    _GraphicContext m_graphics;
 
     sf::Event m_event;
-
     sf::Font m_font;
-    sf::Text m_fpsLabel;
 };
 
 } // namespace core

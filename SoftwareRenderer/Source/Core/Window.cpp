@@ -5,17 +5,17 @@ namespace core {
 Window::Window()
     :
     m_properties({ CORE_DEFAULT_WIDTH, CORE_DEFAULT_HEIGHT, false, "CoreApp" }),
-    m_frameBuffer(CORE_DEFAULT_WIDTH, CORE_DEFAULT_HEIGHT)
+    m_graphics(CORE_DEFAULT_WIDTH, CORE_DEFAULT_HEIGHT)
 {
-    createGraphics(m_properties.fullscreen);
+    createGraphics();
 }
 
 Window::Window(int width, int height, const std::string& title, bool fullscreen)
     :
     m_properties({width, height, fullscreen, title}),
-    m_frameBuffer(width, height)
+    m_graphics(width, height)
 {
-    createGraphics(m_properties.fullscreen);
+    createGraphics();
 }
 
 Window::~Window()
@@ -23,51 +23,81 @@ Window::~Window()
     ImGui::SFML::Shutdown();
 }
 
+FrameBuffer& Window::getFrameBuffer()
+{
+    return m_graphics.frameBufferObject;
+}
+
+bool Window::isOpen() const
+{
+    return m_graphics.nativeWindow.isOpen();
+}
+
 void Window::pollEvent(sf::Event& e)
 {
-    while (m_nativeWindow.pollEvent(m_event))
+    while (m_graphics.nativeWindow.pollEvent(m_event))
     {
-        if (m_event.type == sf::Event::Closed) m_nativeWindow.close();
+        if (m_event.type == sf::Event::Closed)
+            m_graphics.nativeWindow.close();
     }
 }
 
 void Window::update(sf::Time deltaTime)
 {
-    int fps = 1.0f / (static_cast<double>(deltaTime.asMilliseconds()) / 1000);
-
-    m_frameBufferTexture.update((sf::Uint8*)m_frameBuffer.pixels());
-    m_frameBufferSprite.setTexture(m_frameBufferTexture);
-
-    m_nativeWindow.clear();
-    m_nativeWindow.draw(m_frameBufferSprite);
-
-    m_fpsLabel.setString(std::to_string(fps));
-    m_nativeWindow.draw(m_fpsLabel);
-
-    m_nativeWindow.display();
+    int fps = 1000 / static_cast<float>(deltaTime.asMilliseconds());
+    m_graphics.update(fps);
 }
 
-void Window::createGraphics(bool fullscreen)
+
+void Window::createGraphics()
 {
-    if (fullscreen)
+    m_graphics.init(m_properties);
+
+    if (!m_font.loadFromFile("Resources\\font.ttf"))
     {
-        m_nativeWindow.create(sf::VideoMode(m_properties.width, m_properties.height),
-                              m_properties.title, sf::Style::Fullscreen);
+        throw CouldNotLoadAssetException("Could not find font file 'font.ttf' \
+                                          in Resources folder");
+    }
+    m_graphics.fpsLabel.setFont(m_font);
+
+    ImGui::SFML::Init(m_graphics.nativeWindow); 
+}
+
+
+
+// ****************************** Graphics Context **************************************
+Window::_GraphicContext::_GraphicContext(int width, int height)
+    :
+    frameBufferObject(width, height)
+{}
+
+void Window::_GraphicContext::init(const _Properties& props)
+{
+    if (props.fullscreen)
+    {
+        nativeWindow.create(sf::VideoMode(props.width, props.height),
+            props.title, sf::Style::Fullscreen);
     }
     else
     {
-        m_nativeWindow.create(sf::VideoMode(m_properties.width, m_properties.height),
-                              m_properties.title, sf::Style::Default);
+        nativeWindow.create(sf::VideoMode(props.width, props.height),
+            props.title, sf::Style::Default);
     }
 
-    m_frameBufferTexture.create(m_properties.width, m_properties.height);
-    m_frameBufferSprite = sf::Sprite(m_frameBufferTexture);
+    frameBufferTexture.create(props.width, props.height);
+    frameBufferSprite = sf::Sprite(frameBufferTexture);
+}
 
-    if (!m_font.loadFromFile("Resources\\font.ttf"))
-        throw std::exception("Could not find font file 'font.ttf' in Resources folder");
-    m_fpsLabel.setFont(m_font);
+void Window::_GraphicContext::update(unsigned int fps)
+{
+    frameBufferTexture.update((sf::Uint8*)frameBufferObject.pixels());
+    frameBufferSprite.setTexture(frameBufferTexture);
+    fpsLabel.setString(std::to_string(fps));
 
-    ImGui::SFML::Init(m_nativeWindow);
+    nativeWindow.clear();
+    nativeWindow.draw(frameBufferSprite);
+    nativeWindow.draw(fpsLabel);
+    nativeWindow.display();
 }
 
 } // namespace core
