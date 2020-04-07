@@ -11,14 +11,14 @@ Object3D::Object3D()
 
 void Object3D::render(const ICamera& camera) const
 {
-    auto& renderer = RenderPipeline::instance();
+    auto* renderer = Renderer::getRendererInstance();
 
     m_shader->bindModelMatrix(m_transform.getModelMatrix());
     m_shader->bindTexture(m_texture);
     m_shader->bindViewMatrix(camera.getViewMatrix());
     m_shader->bindProjectionMatrix(camera.getProjMatrix());
 
-    renderer.bindShaderProgram(m_shader);
+    renderer->bindShaderProgram(m_shader);
     m_mesh->render();
 }
 

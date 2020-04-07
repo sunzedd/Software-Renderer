@@ -1,5 +1,5 @@
-#pragma once
-#include "../Graphics/RenderPipeline.h"
+    #pragma once
+#include "../Graphics/Renderer.h"
 #include "../Graphics/Mesh.h"
 #include "../Graphics/ShaderProgram.h"
 #include "../AssetLoader.h"

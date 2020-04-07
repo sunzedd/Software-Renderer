@@ -6,19 +6,19 @@ App::App()
     :
     m_window()
 {
-    RenderPipeline::create(m_window);
+    Renderer::create(m_window);
 }
 
 App::App(int width, int height, const std::string& title, bool fullscreen)
     :
     m_window(width, height, title, fullscreen)
 {
-    RenderPipeline::create(m_window);
+    Renderer::create(m_window);
 }
 
 App::~App()
 {
-    RenderPipeline::destroy();
+    Renderer::destroy();
 }
 
 void App::run()

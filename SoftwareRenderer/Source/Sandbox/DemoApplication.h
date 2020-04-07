@@ -14,7 +14,7 @@ public:
 private:
     void update(unsigned int deltaTime) override;
     void render() override;
-
+    
     void _initScene();
 
     void _handleInput(unsigned int deltaTime);

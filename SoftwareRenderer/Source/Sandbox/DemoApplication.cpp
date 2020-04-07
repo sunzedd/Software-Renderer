@@ -20,7 +20,7 @@ void DemoApplication::_initScene()
     // Loading assets:
     // textures
     auto defaultTexture = AssetLoader::loadDefaultImage();
-    auto grassTexture   = AssetLoader::loadImage("Assets\\Textures\\grass_01.jpg");
+    auto grassTexture   = AssetLoader::loadImage("Assets\\Textures\\quads.jpg");
     auto boxTexture     = AssetLoader::loadImage("Assets\\Textures\\box.jpg");
     auto stoneTexture   = AssetLoader::loadImage("Assets\\Textures\\stone_03.jpg");
     auto earthTexture   = AssetLoader::loadImage("Assets\\Textures\\earth.jpg");
@@ -140,7 +140,7 @@ void DemoApplication::update(unsigned int deltaTime)
 
 void DemoApplication::render()
 {
-    RenderPipeline::instance().beginFrame();
+    Renderer::getRendererInstance()->beginFrame();
 
     for (auto& object : m_objects)
     {

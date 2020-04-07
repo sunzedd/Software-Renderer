@@ -6,7 +6,7 @@
 #include <imgui.h>
 #include <imgui-SFML.h>
 
-#include "Graphics/RenderPipeline.h"
+#include "Graphics/Renderer.h"
 #include "Window.h"
 
 namespace core {

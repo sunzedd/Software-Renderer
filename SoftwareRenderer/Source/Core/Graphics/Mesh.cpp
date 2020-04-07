@@ -28,7 +28,7 @@ std::vector<LineV3> Mesh::buildNormalIndicatorLinesList(float lineLength) const
 
 void Mesh::render() const
 {
-    RenderPipeline::instance().drawFaces(m_faces);
+    Renderer::getRendererInstance()->drawFaces(m_faces);
 }
 
 void Mesh::setVertexBuffer(const std::vector<Vertex>& vertices)

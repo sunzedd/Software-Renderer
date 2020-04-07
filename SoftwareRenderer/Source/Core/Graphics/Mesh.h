@@ -1,7 +1,7 @@
 #pragma once
 #include "Common.h"
 #include "Vertex.h"
-#include "RenderPipeline.h"
+#include "Renderer.h"
 #include "Triangle.h"
 
 namespace core {
@@ -11,8 +11,6 @@ class Mesh
 public:
     Mesh();
     virtual ~Mesh();
-
-    static std::shared_ptr<Mesh> createDefaultMesh();
 
     const std::vector<Vertex>& vertices() const { return m_vertices; }
     const std::vector<unsigned short>& indices() const { return m_indices; }

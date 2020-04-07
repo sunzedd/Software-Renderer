@@ -13,9 +13,9 @@
 
 namespace core {
 
-class RenderPipeline final
+class Renderer final
 {
-    static RenderPipeline* s_instance;
+    static Renderer* s_instance;
 
     struct _Properties
     {
@@ -34,7 +34,7 @@ class RenderPipeline final
 public:
     static void create(Window& window);
     static void destroy();
-    static RenderPipeline& instance();
+    static Renderer* getRendererInstance();
 
     void toogleBackFaceCulling(bool enable);
     void toogleWireframeRendering(bool enable);
@@ -51,8 +51,8 @@ public:
     void drawLines(const std::vector<LineV3>& lineBuf, const Vec4& color);
 
 private:
-    RenderPipeline(FrameBuffer& frameBuf);
-    ~RenderPipeline();
+    Renderer(FrameBuffer& frameBuf);
+    ~Renderer();
 
     bool backFaceTest(Triangle<VSO>& polygon) const;
     void clip(Triangle<VSO>& polygon);

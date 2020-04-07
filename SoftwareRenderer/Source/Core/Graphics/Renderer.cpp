@@ -1,46 +1,47 @@
-#include "RenderPipeline.h"
+#include "Renderer.h"
 
 namespace core {
 
-RenderPipeline* RenderPipeline::s_instance = nullptr;
+Renderer* Renderer::s_instance = nullptr;
 
-void RenderPipeline::create(Window& window)
+void Renderer::create(Window& window)
 {
-    s_instance = new RenderPipeline(window.getFrameBuffer());
+    s_instance = new Renderer(window.getFrameBuffer());
 }
 
-void RenderPipeline::destroy()
+void Renderer::destroy()
 {
     if (s_instance)
         delete s_instance;
 }
 
-RenderPipeline& RenderPipeline::instance()
+Renderer* Renderer::getRendererInstance()
 {
-    if (!s_instance) throw RenderPipelineNotCreatedException();
-    return *s_instance;
+    if (!s_instance) 
+        throw RendererNotCreatedException();
+    return s_instance;
 }
 
-RenderPipeline::RenderPipeline(FrameBuffer& frameBuf)
+Renderer::Renderer(FrameBuffer& frameBuf)
     :
     m_rasterizer(frameBuf),
     m_properties{ true, false },
     m_viewport{ 0, 0, frameBuf.width(), frameBuf.height() }
 { }
 
-RenderPipeline::~RenderPipeline()
+Renderer::~Renderer()
 {
 }
 
-void RenderPipeline::toogleBackFaceCulling(bool enabled)
+void Renderer::toogleBackFaceCulling(bool enabled)
 {
     m_properties.backFaceCullingFlag = enabled;
 }
-void RenderPipeline::toogleWireframeRendering(bool enabled)
+void Renderer::toogleWireframeRendering(bool enabled)
 {
     m_properties.wireframeFlag = enabled;
 }
-void RenderPipeline::setViewport(int topLeftX, int topLeftY, int width, int height)
+void Renderer::setViewport(int topLeftX, int topLeftY, int width, int height)
 {
     m_viewport =
     {
@@ -51,19 +52,19 @@ void RenderPipeline::setViewport(int topLeftX, int topLeftY, int width, int heig
     };
 }
 
-void RenderPipeline::bindShaderProgram( std::shared_ptr<ShaderProgram> shader )
+void Renderer::bindShaderProgram( std::shared_ptr<ShaderProgram> shader )
 {
     m_shader = shader;
     m_rasterizer.bindShaderProgram(shader);
 }
 
-void RenderPipeline::beginFrame()
+void Renderer::beginFrame()
 {
     m_rasterizer.clearBuffers();
 }
 
 // Renderer entry point
-void RenderPipeline::drawFaces(const std::vector<Face>& faces)
+void Renderer::drawFaces(const std::vector<Face>& faces)
 {
     if (!m_shader) throw NoShaderBoundException();
 
@@ -81,7 +82,7 @@ void RenderPipeline::drawFaces(const std::vector<Face>& faces)
 }
 
 
-void RenderPipeline::drawIndexedTriangles(const std::vector<Vertex>& vertexBuf,
+void Renderer::drawIndexedTriangles(const std::vector<Vertex>& vertexBuf,
     const std::vector<unsigned short>& indexBuf)
 {
     if(!m_shader) throw NoShaderBoundException();
@@ -103,7 +104,7 @@ void RenderPipeline::drawIndexedTriangles(const std::vector<Vertex>& vertexBuf,
     }
 }
 
-void RenderPipeline::drawLines(const std::vector<LineV3>& lineBuf, const Vec4& color)
+void Renderer::drawLines(const std::vector<LineV3>& lineBuf, const Vec4& color)
 {
     for (const auto& l : lineBuf)
     {
@@ -139,7 +140,7 @@ void RenderPipeline::drawLines(const std::vector<LineV3>& lineBuf, const Vec4& c
     }
 }
 
-bool RenderPipeline::backFaceTest(Triangle<VSO>& polygon) const
+bool Renderer::backFaceTest(Triangle<VSO>& polygon) const
 {
     if ( !m_properties.backFaceCullingFlag )
         return true;
@@ -157,7 +158,7 @@ bool RenderPipeline::backFaceTest(Triangle<VSO>& polygon) const
     return ( d <= 0 );
 }
 
-void RenderPipeline::clip(Triangle<VSO>& polygon)
+void Renderer::clip(Triangle<VSO>& polygon)
 {
     // cull tests
     if (polygon.v0.pos.x > polygon.v0.pos.w&&
@@ -262,7 +263,7 @@ void RenderPipeline::clip(Triangle<VSO>& polygon)
     }
 }
 
-void RenderPipeline::renderClippedPolygon( Triangle<VSO>& polygon ) 
+void Renderer::renderClippedPolygon( Triangle<VSO>& polygon ) 
 {
     perspectiveDivide(polygon.v0);
     perspectiveDivide(polygon.v1);
@@ -281,7 +282,7 @@ void RenderPipeline::renderClippedPolygon( Triangle<VSO>& polygon )
         m_rasterizer.triangle( polygon );
 }
 
-void RenderPipeline::perspectiveDivide( VSO& vso ) const
+void Renderer::perspectiveDivide( VSO& vso ) const
 {
     const float wInv = 1 / vso.pos.w;
 
@@ -295,7 +296,7 @@ void RenderPipeline::perspectiveDivide( VSO& vso ) const
     vso.intensity *= wInv;
 }
 
-void RenderPipeline::viewport( VSO& vso ) const
+void Renderer::viewport( VSO& vso ) const
 {
     vso.pos.x = ( vso.pos.x + 1 ) * m_viewport.width * 0.5f + m_viewport.topLeftX;
     vso.pos.y = ( 1 - vso.pos.y ) * m_viewport.height * 0.5f + m_viewport.topLeftY;
