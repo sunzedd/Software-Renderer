@@ -8,7 +8,6 @@
     <ClCompile Include="Vendor\imgui-SFML.cpp" />
     <ClCompile Include="Source\Core\Graphics\Color.cpp" />
     <ClCompile Include="Source\Core\Graphics\Rasterizer.cpp" />
-    <ClCompile Include="Source\Core\Graphics\RenderPipeline.cpp" />
     <ClCompile Include="Source\Core\Graphics\Vertex.cpp" />
     <ClCompile Include="Source\Core\Math\Mat4.cpp" />
     <ClCompile Include="Source\Core\Math\Vec2.cpp" />
@@ -21,11 +20,13 @@
     <ClCompile Include="Source\Core\Window.cpp" />
     <ClCompile Include="Source\Core\Math\Math.cpp" />
     <ClCompile Include="Source\Core\Scene\Camera.cpp" />
-    <ClCompile Include="Source\Core\Graphics\ShaderProgram.cpp" />
     <ClCompile Include="Source\Sandbox\DemoApplication.cpp" />
     <ClCompile Include="Source\Core\Scene\Transform3D.cpp" />
     <ClCompile Include="Source\Core\Scene\Object3D.cpp" />
     <ClCompile Include="Source\Core\Scene\CompositeObject3D.cpp" />
+    <ClCompile Include="Source\Core\Graphics\Renderer.cpp" />
+    <ClCompile Include="Source\Core\Graphics\Shader.cpp" />
+    <ClCompile Include="Source\Core\Scene\Object3DBase.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Core\Graphics\Buffer.h" />
@@ -34,7 +35,6 @@
     <ClInclude Include="Source\Core\Graphics\DepthBuffer.h" />
     <ClInclude Include="Source\Core\Graphics\FrameBuffer.h" />
     <ClInclude Include="Source\Core\Graphics\Rasterizer.h" />
-    <ClInclude Include="Source\Core\Graphics\RenderPipeline.h" />
     <ClInclude Include="Source\Core\Graphics\Triangle.h" />
     <ClInclude Include="Source\Core\Graphics\Vertex.h" />
     <ClInclude Include="Source\Core\Math\Mat4.h" />
@@ -52,7 +52,6 @@
     <ClInclude Include="Source\Core\Defines.h" />
     <ClInclude Include="Source\Core\Exceptions.h" />
     <ClInclude Include="Source\Core\Scene\Camera.h" />
-    <ClInclude Include="Source\Core\Graphics\ShaderProgram.h" />
     <ClInclude Include="Source\Sandbox\DemoApplication.h" />
     <ClInclude Include="Source\Core\Scene\ICamera.h" />
     <ClInclude Include="Source\Core\Scene\Scene.h" />
@@ -66,5 +65,12 @@
     <ClInclude Include="Source\Core\Scene\Object3D.h" />
     <ClInclude Include="Source\Core\Scene\Transform3D.h" />
     <ClInclude Include="Source\Core\Scene\Object3DBase.h" />
+    <ClInclude Include="Source\Core\Graphics\Renderer.h" />
+    <ClInclude Include="Source\Core\Graphics\Shader.h" />
+    <ClInclude Include="Source\Core\Scene\Script.h" />
+    <ClInclude Include="Source\Sandbox\Scripts\LightSourceScript.h" />
+    <ClInclude Include="Source\Sandbox\Scripts\CubeScript.h" />
+    <ClInclude Include="Source\Sandbox\Scripts\EarthScript.h" />
+    <ClInclude Include="Source\Sandbox\DemoAssets.h" />
   </ItemGroup>
 </Project>
