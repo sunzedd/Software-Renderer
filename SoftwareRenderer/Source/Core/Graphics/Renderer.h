@@ -5,7 +5,7 @@
 #include "../Exceptions.h"
 #include "../Window.h"
 
-#include "ShaderProgram.h"
+#include "Shader.h"
 #include "FrameBuffer.h"
 #include "Rasterizer.h"
 #include "Triangle.h"
@@ -40,7 +40,7 @@ public:
     void toogleWireframeRendering(bool enable);
     void setViewport(int topLeftX, int topLeftY, int width, int height);
 
-    void bindShaderProgram(std::shared_ptr<ShaderProgram> shader);
+    void bindShader(std::shared_ptr<Shader> shader);
 
     // Renderer entry point
     void beginFrame();
@@ -54,15 +54,15 @@ private:
     Renderer(FrameBuffer& frameBuf);
     ~Renderer();
 
-    bool backFaceTest(Triangle<VSO>& polygon) const;
-    void clip(Triangle<VSO>& polygon);
-    void renderClippedPolygon(Triangle<VSO>& polygon);
-    void perspectiveDivide(VSO& vso) const;
-    void viewport(VSO& vso) const;
+    bool backFaceTest(Triangle<VertexShaderOut>& polygon) const;
+    void clip(Triangle<VertexShaderOut>& polygon);
+    void renderClippedPolygon(Triangle<VertexShaderOut>& polygon);
+    void perspectiveDivide(VertexShaderOut& vso) const;
+    void viewport(VertexShaderOut& vso) const;
 
 private:
     Rasterizer m_rasterizer;
-    std::shared_ptr<ShaderProgram> m_shader;
+    std::shared_ptr<Shader> m_shader;
 
     _Properties m_properties;
     _Viewport m_viewport;

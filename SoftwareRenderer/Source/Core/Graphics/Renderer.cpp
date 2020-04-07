@@ -52,10 +52,10 @@ void Renderer::setViewport(int topLeftX, int topLeftY, int width, int height)
     };
 }
 
-void Renderer::bindShaderProgram( std::shared_ptr<ShaderProgram> shader )
+void Renderer::bindShader( std::shared_ptr<Shader> shader )
 {
     m_shader = shader;
-    m_rasterizer.bindShaderProgram(shader);
+    m_rasterizer.bindShader(shader);
 }
 
 void Renderer::beginFrame()
@@ -70,7 +70,7 @@ void Renderer::drawFaces(const std::vector<Face>& faces)
 
     for (auto& f : faces)
     {
-        Triangle<VSO> polygon(
+        Triangle<VertexShaderOut> polygon(
             m_shader->vertexShader(f.v0),
             m_shader->vertexShader(f.v1),
             m_shader->vertexShader(f.v2)
@@ -93,7 +93,7 @@ void Renderer::drawIndexedTriangles(const std::vector<Vertex>& vertexBuf,
         const Vertex& v1 = vertexBuf[indexBuf[i + 1]];
         const Vertex& v2 = vertexBuf[indexBuf[i + 2]];
 
-        Triangle<VSO> polygon(
+        Triangle<VertexShaderOut> polygon(
             m_shader->vertexShader( v0 ),
             m_shader->vertexShader( v1 ),
             m_shader->vertexShader( v2 )
@@ -113,7 +113,7 @@ void Renderer::drawLines(const std::vector<LineV3>& lineBuf, const Vec4& color)
         line.first.pos = l.first;
         line.second.pos = l.second;
 
-        Line<VSO> lineVso =
+        Line<VertexShaderOut> lineVso =
         {
             m_shader->vertexShader(line.first),
             m_shader->vertexShader(line.second)
@@ -140,7 +140,7 @@ void Renderer::drawLines(const std::vector<LineV3>& lineBuf, const Vec4& color)
     }
 }
 
-bool Renderer::backFaceTest(Triangle<VSO>& polygon) const
+bool Renderer::backFaceTest(Triangle<VertexShaderOut>& polygon) const
 {
     if ( !m_properties.backFaceCullingFlag )
         return true;
@@ -158,7 +158,7 @@ bool Renderer::backFaceTest(Triangle<VSO>& polygon) const
     return ( d <= 0 );
 }
 
-void Renderer::clip(Triangle<VSO>& polygon)
+void Renderer::clip(Triangle<VertexShaderOut>& polygon)
 {
     // cull tests
     if (polygon.v0.pos.x > polygon.v0.pos.w&&
@@ -198,7 +198,7 @@ void Renderer::clip(Triangle<VSO>& polygon)
         return;
     }
 
-    const auto Clip1 = [this](VSO& v0, VSO& v1, VSO& v2)
+    const auto Clip1 = [this](VertexShaderOut& v0, VertexShaderOut& v1, VertexShaderOut& v2)
     {
         const float alphaA = (-v0.pos.z) / (v1.pos.z - v0.pos.z);
         const float alphaB = (-v0.pos.z) / (v2.pos.z - v0.pos.z);
@@ -206,14 +206,14 @@ void Renderer::clip(Triangle<VSO>& polygon)
         const auto v0a = Math::linearInterpolation(v0, v1, alphaA);
         const auto v0b = Math::linearInterpolation(v0, v2, alphaB);
 
-        Triangle<VSO> clippedTri1( v0a, v1, v2 );
-        Triangle<VSO> clippedTri2( v0b, v0a, v2 );
+        Triangle<VertexShaderOut> clippedTri1( v0a, v1, v2 );
+        Triangle<VertexShaderOut> clippedTri2( v0b, v0a, v2 );
 
         renderClippedPolygon(clippedTri1);
         renderClippedPolygon(clippedTri2);
     };
 
-    const auto Clip2 = [this](VSO& v0, VSO& v1, VSO& v2)
+    const auto Clip2 = [this](VertexShaderOut& v0, VertexShaderOut& v1, VertexShaderOut& v2)
     {
         const float alpha0 = (-v0.pos.z) / (v2.pos.z - v0.pos.z);
         const float alpha1 = (-v1.pos.z) / (v2.pos.z - v1.pos.z);
@@ -221,7 +221,7 @@ void Renderer::clip(Triangle<VSO>& polygon)
         v0 = Math::linearInterpolation(v0, v2, alpha0);
         v1 = Math::linearInterpolation(v1, v2, alpha1);
 
-        Triangle<VSO> clippedTri( v0, v1, v2 );
+        Triangle<VertexShaderOut> clippedTri( v0, v1, v2 );
 
         renderClippedPolygon(clippedTri);
     };
@@ -263,7 +263,7 @@ void Renderer::clip(Triangle<VSO>& polygon)
     }
 }
 
-void Renderer::renderClippedPolygon( Triangle<VSO>& polygon ) 
+void Renderer::renderClippedPolygon( Triangle<VertexShaderOut>& polygon ) 
 {
     perspectiveDivide(polygon.v0);
     perspectiveDivide(polygon.v1);
@@ -282,7 +282,7 @@ void Renderer::renderClippedPolygon( Triangle<VSO>& polygon )
         m_rasterizer.triangle( polygon );
 }
 
-void Renderer::perspectiveDivide( VSO& vso ) const
+void Renderer::perspectiveDivide( VertexShaderOut& vso ) const
 {
     const float wInv = 1 / vso.pos.w;
 
@@ -296,7 +296,7 @@ void Renderer::perspectiveDivide( VSO& vso ) const
     vso.intensity *= wInv;
 }
 
-void Renderer::viewport( VSO& vso ) const
+void Renderer::viewport( VertexShaderOut& vso ) const
 {
     vso.pos.x = ( vso.pos.x + 1 ) * m_viewport.width * 0.5f + m_viewport.topLeftX;
     vso.pos.y = ( 1 - vso.pos.y ) * m_viewport.height * 0.5f + m_viewport.topLeftY;

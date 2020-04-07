@@ -22,6 +22,87 @@ Color::Color(const Vec4& color)
     : r(color.x), g(color.y), b(color.z), a(color.w)
 {}
 
+Color& Color::operator += (const Color& rhs)
+{
+    r += rhs.r;
+    g += rhs.g;
+    b += rhs.b;
+    a += rhs.a;
+
+    return *this;
+}
+
+Color& Color::operator -= (const Color& rhs)
+{
+    r -= rhs.r;
+    g -= rhs.g;
+    b -= rhs.b;
+    a -= rhs.a;
+
+    return *this;
+}
+
+Color& Color::operator *= (float val)
+{
+    r *= val;
+    g *= val;
+    b *= val;
+    a *= val;
+
+    return *this;
+}
+
+Color& Color::operator /= (float val)
+{
+    r /= val;
+    g /= val;
+    b /= val;
+    a /= val;
+
+    return *this;
+}
+
+Color operator + (const Color& lhs, const Color& rhs)
+{
+    return Color(
+        lhs.r + rhs.r,
+        lhs.g + rhs.g,
+        lhs.b + rhs.b,
+        lhs.a + rhs.a
+    );
+}
+
+Color operator - (const Color& lhs, const Color& rhs)
+{
+    return Color(
+        lhs.r - rhs.r,
+        lhs.g - rhs.g,
+        lhs.b - rhs.b,
+        lhs.a - rhs.a
+    );
+}
+
+Color operator * (const Color& c, float val)
+{
+    return Color(
+        c.r * val,
+        c.g * val,
+        c.b * val,
+        c.a * val
+    );
+}
+
+
+Color operator / (const Color& c, float val)
+{
+    return Color(
+        c.r / val,
+        c.g / val,
+        c.b / val,
+        c.a / val
+    );
+}
+
 sf::Color Color::toSFMLColor() const
 {
     sf::Color color;

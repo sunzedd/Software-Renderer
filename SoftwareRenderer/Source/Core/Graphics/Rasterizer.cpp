@@ -14,7 +14,7 @@ void Rasterizer::clearBuffers()
     m_frameBuf.clear();
 }
 
-void Rasterizer::bindShaderProgram(std::shared_ptr<ShaderProgram> shader)
+void Rasterizer::bindShader(std::shared_ptr<Shader> shader)
 {
     m_shader = shader;
 }
@@ -109,7 +109,7 @@ void Rasterizer::line(const Vec3& p0, const Vec3& p1, const Color& color)
     }
 }
 
-void Rasterizer::line(VSO& v0, VSO& v1, const Color& color)
+void Rasterizer::line(VertexShaderOut& v0, VertexShaderOut& v1, const Color& color)
 {
     const auto& x0 = v0.pos.x;
     const auto& x1 = v1.pos.x;
@@ -174,12 +174,12 @@ void Rasterizer::triangleWireframe(const Vec3& p0, const Vec3& p1, const Vec3& p
     line(p2, p0, color);
 }
 
-void Rasterizer::triangle(const Triangle<VSO>& triangle)
+void Rasterizer::triangle(const Triangle<VertexShaderOut>& triangle)
 {
     // using pointers so we can swap (for sorting purposes)
-    const VSO* pv0 = &triangle.v0;
-    const VSO* pv1 = &triangle.v1;
-    const VSO* pv2 = &triangle.v2;
+    const VertexShaderOut* pv0 = &triangle.v0;
+    const VertexShaderOut* pv1 = &triangle.v1;
+    const VertexShaderOut* pv2 = &triangle.v2;
 
     // sorting vertices by y
     if (pv1->pos.y < pv0->pos.y) std::swap(pv0, pv1);
@@ -222,7 +222,7 @@ void Rasterizer::triangle(const Triangle<VSO>& triangle)
     }
 }
 
-void Rasterizer::triangleFlatTop(const VSO& it0, const VSO& it1, const VSO& it2)
+void Rasterizer::triangleFlatTop(const VertexShaderOut& it0, const VertexShaderOut& it1, const VertexShaderOut& it2)
 {
     // calulcate dVertex / dy
     // change in interpolant for every 1 change in y
@@ -237,7 +237,7 @@ void Rasterizer::triangleFlatTop(const VSO& it0, const VSO& it1, const VSO& it2)
     triangleFlat(it0, it1, it2, dit0, dit1, itEdge1);
 }
 
-void Rasterizer::triangleFlatBottom(const VSO& it0, const VSO& it1, const VSO& it2)
+void Rasterizer::triangleFlatBottom(const VertexShaderOut& it0, const VertexShaderOut& it1, const VertexShaderOut& it2)
 {
     // calulcate dVertex / dy
     // change in interpolant for every 1 change in y
@@ -252,8 +252,8 @@ void Rasterizer::triangleFlatBottom(const VSO& it0, const VSO& it1, const VSO& i
     triangleFlat(it0, it1, it2, dit0, dit1, itEdge1);
 }
 
-void Rasterizer::triangleFlat(const VSO& it0, const VSO& it1, const VSO& it2,
-                              const VSO& dv0, const VSO& dv1, VSO itEdge1)
+void Rasterizer::triangleFlat(const VertexShaderOut& it0, const VertexShaderOut& it1, const VertexShaderOut& it2,
+                              const VertexShaderOut& dv0, const VertexShaderOut& dv1, VertexShaderOut itEdge1)
 {
     auto itEdge0 = it0;
 
@@ -282,7 +282,7 @@ void Rasterizer::triangleFlat(const VSO& it0, const VSO& it1, const VSO& it2,
                 // recover interpolated z from interpolated 1/z
                 const float w = 1.0f / iLine.pos.w;
 
-                VSO interpolated = iLine;
+                VertexShaderOut interpolated = iLine;
                 interpolated.uv *= w;
                 interpolated.color *= w;
                 interpolated.intensity *= w;
