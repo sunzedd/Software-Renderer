@@ -3,6 +3,23 @@
 
 namespace core {
 
+struct Color
+{
+    float r;
+    float g;
+    float b;
+    float a;
+
+    Color();
+    Color(float r, float g, float b);
+    Color(float r, float g, float b, float a);
+    Color(const Vec3& color);
+    Color(const Vec4& color);
+
+    sf::Color toSFMLColor() const;
+};
+
+#if 0
 class Color
 {
 public:
@@ -20,5 +37,6 @@ public:
     Vec4 toVec4() const;
     Vec3 toVec3() const;
 };
+#endif
 
 } // namespace core

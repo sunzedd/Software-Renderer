@@ -16,12 +16,12 @@ public:
 
     void bindShaderProgram(std::shared_ptr<ShaderProgram> shader);
 
-    void line(const Vec2& p0, const Vec2& p1, const Vec4& color);
-    void line(const Vec3& p0, const Vec3& p1, const Vec4& color);
-    void line(VSO& v0, VSO& v1, const Vec4& color );
+    void line(const Vec2& p0, const Vec2& p1, const Color& color);
+    void line(const Vec3& p0, const Vec3& p1, const Color& color);
+    void line(VSO& v0, VSO& v1, const Color& color);
 
     void triangleWireframe(const Vec3& p0, const Vec3& p1, const Vec3& p2,
-                           const Vec4& color);
+                           const Color& color);
 
     void triangle(const Triangle<VSO>& triangle);
 protected:

@@ -19,7 +19,7 @@ void Rasterizer::bindShaderProgram(std::shared_ptr<ShaderProgram> shader)
     m_shader = shader;
 }
 
-void Rasterizer::line(const Vec2& p0, const Vec2& p1, const Vec4& color)
+void Rasterizer::line(const Vec2& p0, const Vec2& p1, const Color& color)
 {
     int x1 = static_cast<int>( p0.x );
     int y1 = static_cast<int>( p0.y );
@@ -50,10 +50,10 @@ void Rasterizer::line(const Vec2& p0, const Vec2& p1, const Vec4& color)
     {
         if ( steep )
         {
-            m_frameBuf.set( y, x, color );
+            m_frameBuf.setPixel( y, x, color);
         }
         else
-            m_frameBuf.set( x, y, color );
+            m_frameBuf.setPixel( x, y, color);
 
         error2 += derror2;
         if( error2 > dx )
@@ -64,7 +64,7 @@ void Rasterizer::line(const Vec2& p0, const Vec2& p1, const Vec4& color)
     }
 }
 
-void Rasterizer::line(const Vec3& p0, const Vec3& p1, const Vec4& color)
+void Rasterizer::line(const Vec3& p0, const Vec3& p1, const Color& color)
 {
     int x1 = static_cast<int>(p0.x);
     int y1 = static_cast<int>(p0.y);
@@ -95,10 +95,10 @@ void Rasterizer::line(const Vec3& p0, const Vec3& p1, const Vec4& color)
     {
         if (steep)
         {
-            m_frameBuf.set(y, x, color);
+            m_frameBuf.setPixel(y, x, color);
         }
         else
-            m_frameBuf.set(x, y, color);
+            m_frameBuf.setPixel(x, y, color);
 
         error2 += derror2;
         if (error2 > dx)
@@ -109,7 +109,7 @@ void Rasterizer::line(const Vec3& p0, const Vec3& p1, const Vec4& color)
     }
 }
 
-void Rasterizer::line(VSO& v0, VSO& v1, const Vec4& color)
+void Rasterizer::line(VSO& v0, VSO& v1, const Color& color)
 {
     const auto& x0 = v0.pos.x;
     const auto& x1 = v1.pos.x;
@@ -145,13 +145,13 @@ void Rasterizer::line(VSO& v0, VSO& v1, const Vec4& color)
         if (steep)
         {
             //if (m_depthBuf.testAndSet(y, x, z)) {
-                m_frameBuf.set(y, x, color);
+                m_frameBuf.setPixel(y, x, color);
             //}
         }
         else
         {
             //if (m_depthBuf.testAndSet(x, y, z)) {
-                m_frameBuf.set(x, y, color);
+                m_frameBuf.setPixel(x, y, color);
             //}
         }
 
@@ -167,7 +167,7 @@ void Rasterizer::line(VSO& v0, VSO& v1, const Vec4& color)
 }
 
 void Rasterizer::triangleWireframe(const Vec3& p0, const Vec3& p1, const Vec3& p2,
-                                   const Vec4& color)
+                                   const Color& color)
 {
     line(p0, p1, color);
     line(p1, p2, color);
