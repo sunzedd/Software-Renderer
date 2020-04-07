@@ -1,7 +1,7 @@
-# Simple shader-based software renderer
+# Simple shader-based 3D software renderer
 My BMSTU computer graphics course project 2019.
 
-Supports texturing, loading .obj models
+Supports texturing, loading .obj models, simple c++ scripting.
 
 ## Required dependencies
 * SFML-2.5.1
