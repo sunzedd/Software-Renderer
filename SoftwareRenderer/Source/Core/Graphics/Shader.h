@@ -70,11 +70,11 @@ struct VertexShaderOut
     VertexShaderOut& operator -= (const VertexShaderOut& rhs);
     VertexShaderOut& operator *= (float val);
     VertexShaderOut& operator /= (float val);
-
-    friend VertexShaderOut operator + (const VertexShaderOut& lhs, const VertexShaderOut& rhs);
-    friend VertexShaderOut operator - (const VertexShaderOut& lhs, const VertexShaderOut& rhs);
-    friend VertexShaderOut operator * (const VertexShaderOut& vso, float val);
-    friend VertexShaderOut operator / (const VertexShaderOut& vso, float val);
 };
+
+VertexShaderOut operator + (const VertexShaderOut& lhs, const VertexShaderOut& rhs);
+VertexShaderOut operator - (const VertexShaderOut& lhs, const VertexShaderOut& rhs);
+VertexShaderOut operator * (const VertexShaderOut& vso, float val);
+VertexShaderOut operator / (const VertexShaderOut& vso, float val);
 
 } // namespace core
