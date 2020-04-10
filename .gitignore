@@ -4,6 +4,7 @@ bin/
 obj/
 Deps/
 build/
+.vscode/
 
 # Files
 *.user
