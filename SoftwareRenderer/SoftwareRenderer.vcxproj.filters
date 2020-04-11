@@ -27,6 +27,7 @@
     <ClCompile Include="Source\Core\Graphics\Renderer.cpp" />
     <ClCompile Include="Source\Core\Graphics\Shader.cpp" />
     <ClCompile Include="Source\Core\Scene\Object3DBase.cpp" />
+    <ClCompile Include="Source\Core\Timer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Core\Graphics\Buffer.h" />
@@ -72,5 +73,6 @@
     <ClInclude Include="Source\Sandbox\Scripts\CubeScript.h" />
     <ClInclude Include="Source\Sandbox\Scripts\EarthScript.h" />
     <ClInclude Include="Source\Sandbox\DemoAssets.h" />
+    <ClInclude Include="Source\Core\Timer.h" />
   </ItemGroup>
 </Project>

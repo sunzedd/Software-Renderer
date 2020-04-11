@@ -102,6 +102,7 @@
     <ClCompile Include="Source\Core\Scene\Object3D.cpp" />
     <ClCompile Include="Source\Core\Scene\Object3DBase.cpp" />
     <ClCompile Include="Source\Core\Scene\Transform3D.cpp" />
+    <ClCompile Include="Source\Core\Timer.cpp" />
     <ClCompile Include="Source\Core\Window.cpp" />
     <ClCompile Include="Source\Main.cpp" />
     <ClCompile Include="Source\Core\Math\Mat4.cpp" />
@@ -150,6 +151,7 @@
     <ClInclude Include="Source\Core\Scene\Script.h" />
     <ClInclude Include="Source\Core\Scene\Transform3D.h" />
     <ClInclude Include="Source\Core\Scene\Scene.h" />
+    <ClInclude Include="Source\Core\Timer.h" />
     <ClInclude Include="Source\Core\Utils.h" />
     <ClInclude Include="Source\Core\Window.h" />
     <ClInclude Include="Source\Sandbox\DemoApplication.h" />
