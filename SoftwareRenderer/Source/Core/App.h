@@ -6,8 +6,9 @@
 #include <imgui.h>
 #include <imgui-SFML.h>
 
-#include "Graphics/Renderer.h"
 #include "Window.h"
+#include "Timer.h"
+#include "Graphics/Renderer.h"
 
 namespace core {
 
@@ -26,8 +27,8 @@ protected:
 
 protected:
     Window m_window;
+    std::unique_ptr<Timer> m_timer;
     sf::Event m_event;
-    sf::Clock m_timer;
 };
 
 } // namespace core

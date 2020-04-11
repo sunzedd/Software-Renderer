@@ -7,6 +7,7 @@ App::App()
     m_window()
 {
     Renderer::create(m_window);
+    m_timer.reset(Timer::getInstance());
 }
 
 App::App(int width, int height, const std::string& title, bool fullscreen)
@@ -14,6 +15,7 @@ App::App(int width, int height, const std::string& title, bool fullscreen)
     m_window(width, height, title, fullscreen)
 {
     Renderer::create(m_window);
+    m_timer.reset(Timer::getInstance());
 }
 
 App::~App()
@@ -25,13 +27,13 @@ void App::run()
 {
     while (m_window.isOpen())
     {
-        sf::Time dtime = m_timer.restart();
-        m_event = sf::Event();
+        m_timer->restart();
+        m_event = sf::Event(); // refresh event
 
-        update(dtime.asMilliseconds());
+        update(m_timer->deltaTimeMiliseconds());
         render();
         m_window.pollEvent(m_event);
-        m_window.update(dtime);
+        m_window.update(m_timer->deltaTimeMiliseconds());
     }
 }
 
