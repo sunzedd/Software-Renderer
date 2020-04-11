@@ -9,7 +9,7 @@ namespace core {
 class Object3DBase : public IDrawable3D, public ITransformable3D
 {
 public:
-    void attachScript(Script* script);
+    void attachScript(std::shared_ptr<Script> script);
     void toggleVisibility(bool enable);
     void toggleActivity(bool enable);
 
@@ -23,7 +23,7 @@ public:
 
 protected:
     Transform3D m_transform;
-    std::unique_ptr<Script> m_script;
+    std::shared_ptr<Script> m_script;
 
 private:
     bool m_isVisible = true;

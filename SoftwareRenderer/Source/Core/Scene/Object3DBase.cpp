@@ -2,9 +2,9 @@
 
 namespace core {
 
-void Object3DBase::attachScript(Script* script)
+void Object3DBase::attachScript(std::shared_ptr<Script> script)
 {
-    m_script.reset(script);
+    m_script = script;
     m_script->init(this);
 }
 

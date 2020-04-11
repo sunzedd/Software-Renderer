@@ -65,7 +65,7 @@ void DemoApplication::createScene()
     // ********************************* Objects creation *************************
     // Light source (SCRIPTED)
     m_lighter = make_shared<Object3D>();
-    Script* lighterScript = new LigthSourceScript();
+    auto lighterScript = make_shared<LigthSourceScript>();
     m_lighter->setAttributes(defaultShader, sphereMesh);
     m_lighter->attachScript(lighterScript);
 
@@ -117,7 +117,7 @@ void DemoApplication::createScene()
     // stone cube (SCRIPTED)
     auto stoneCube = make_shared<Object3D>();
     auto stoneCubeShader = make_shared<PhongShader>();
-    Script* stoneCubeScript = new CubeScript();
+    auto stoneCubeScript = make_shared<CubeScript>();
     stoneCube->setTexture(stoneTexture);
     stoneCube->setShader(stoneCubeShader);
     stoneCube->attachScript(stoneCubeScript);
@@ -127,7 +127,7 @@ void DemoApplication::createScene()
     // earth sphere (SCRIPTED)
     auto earth = make_shared<Object3D>();
     auto earthShader = make_shared<PhongShader>();
-    Script* earthScript = new EarthScript();
+    auto earthScript = make_shared<EarthScript>();
     earth->setAttributes(earthShader, sphereMesh, earthTexture);
     earth->attachScript(earthScript);
     m_objects.push_back(earth);
@@ -141,3 +141,4 @@ void DemoApplication::initCamera()
     m_camera.setPosition(Vec3(0.0f, 3.0f, 10.0f));
     m_camera.update(0);
 }
+
