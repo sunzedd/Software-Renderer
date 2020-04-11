@@ -25,7 +25,7 @@ public:
     FrameBuffer& getFrameBuffer() { return m_frameBuffer; }
     bool isOpen() const { return m_nativeWindow.isOpen(); }
     void pollEvent(sf::Event& e);
-    void update(sf::Time deltaTime);
+    void update(unsigned int deltaTime);
 
 private:
     void createGraphics(bool fullscreen);

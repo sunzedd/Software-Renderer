@@ -31,9 +31,9 @@ void Window::pollEvent(sf::Event& e)
     }
 }
 
-void Window::update(sf::Time deltaTime)
+void Window::update(unsigned int deltaTime)
 {
-    int fps = 1.0f / (static_cast<double>(deltaTime.asMilliseconds()) / 1000);
+    int fps = 1.0f / (static_cast<double>(deltaTime) / 1000);
 
     m_frameBufferTexture.update((sf::Uint8*)m_frameBuffer.pixels());
     m_frameBufferSprite.setTexture(m_frameBufferTexture);
