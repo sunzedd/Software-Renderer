@@ -29,10 +29,10 @@ void App::run()
     {
         m_timer->restart();
         m_event = sf::Event(); // refresh event
+        m_window.pollEvent(m_event);
 
         update(m_timer->deltaTimeMiliseconds());
         render();
-        m_window.pollEvent(m_event);
         m_window.update(m_timer->deltaTimeMiliseconds());
     }
 }
