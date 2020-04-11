@@ -22,8 +22,10 @@ public:
     Window();
     Window(int width, int height, const std::string& title, bool fullscreen = false);
     ~Window();
-    FrameBuffer& getFrameBuffer() { return m_frameBuffer; }
-    bool isOpen() const { return m_nativeWindow.isOpen(); }
+
+    FrameBuffer& getFrameBuffer();
+
+    bool isOpen() const;
     void pollEvent(sf::Event& e);
     void update(unsigned int deltaTime);
 

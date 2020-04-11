@@ -23,6 +23,16 @@ Window::~Window()
     ImGui::SFML::Shutdown();
 }
 
+FrameBuffer& Window::getFrameBuffer()
+{
+    return m_frameBuffer;
+}
+
+bool Window::isOpen() const
+{
+    return m_nativeWindow.isOpen();
+}
+
 void Window::pollEvent(sf::Event& e)
 {
     while (m_nativeWindow.pollEvent(m_event))
