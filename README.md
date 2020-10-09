@@ -1,4 +1,6 @@
-# Simple shader-based 3D software renderer (BMSTU Computer Graphics Course Project 2019)
+# Simple shader-based 3D software renderer
+
+My BMSTU Computer Graphics Course Project 2019
 
 Supports texturing, loading .obj models, simple c++ scripting.
 
