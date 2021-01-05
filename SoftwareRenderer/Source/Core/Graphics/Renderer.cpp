@@ -63,7 +63,6 @@ void Renderer::beginFrame()
     m_rasterizer.clearBuffers();
 }
 
-// Renderer entry point
 void Renderer::drawFaces(const std::vector<Face>& faces)
 {
     if (!m_shader) throw NoShaderBoundException();
