@@ -1,8 +1,8 @@
-# Simple shader-based 3D software renderer
+# Simple shader-style 3D software renderer
 
 My BMSTU Computer Graphics Course Project 2019
 
-Supports texturing, loading .obj models, simple c++ scripting.
+Supports texturing, loading Wawefront .obj file format, simple c++ scripting.
 
 ## Required dependencies
 * SFML-2.5.1
