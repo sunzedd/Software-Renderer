@@ -20,7 +20,7 @@ class Window
         std::string title;
     };
 
-    struct _GraphicContext
+    struct _GraphicsContext
     {
         FrameBuffer       frameBufferObject;
         sf::RenderWindow  nativeWindow;
@@ -28,7 +28,7 @@ class Window
         sf::Sprite        frameBufferSprite;
         sf::Text          fpsLabel;
 
-        _GraphicContext(int width, int height);
+        _GraphicsContext(int width, int height);
         void init(const _Properties& props);
         void update(unsigned int fps);
     };
@@ -49,7 +49,7 @@ private:
 
 private:
     _Properties m_properties;
-    _GraphicContext m_graphics;
+    _GraphicsContext m_graphics;
 
     sf::Event m_event;
     sf::Font m_font;

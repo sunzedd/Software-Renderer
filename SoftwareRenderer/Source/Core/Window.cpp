@@ -66,12 +66,12 @@ void Window::createGraphics()
 
 
 // ****************************** Graphics Context **************************************
-Window::_GraphicContext::_GraphicContext(int width, int height)
+Window::_GraphicsContext::_GraphicsContext(int width, int height)
     :
     frameBufferObject(width, height)
 {}
 
-void Window::_GraphicContext::init(const _Properties& props)
+void Window::_GraphicsContext::init(const _Properties& props)
 {
     if (props.fullscreen)
     {
@@ -88,7 +88,7 @@ void Window::_GraphicContext::init(const _Properties& props)
     frameBufferSprite = sf::Sprite(frameBufferTexture);
 }
 
-void Window::_GraphicContext::update(unsigned int fps)
+void Window::_GraphicsContext::update(unsigned int fps)
 {
     frameBufferTexture.update((sf::Uint8*)frameBufferObject.pixels());
     frameBufferSprite.setTexture(frameBufferTexture);
