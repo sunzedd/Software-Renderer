@@ -2,8 +2,8 @@
 #include <string>
 #include <exception>
 
-namespace core
-{
+namespace core {
+
 
 class CoreException : public std::exception
 {
@@ -49,15 +49,15 @@ public:
     {}
 };
 
-class IncorrectOperationOrder : public CoreException
+class IncorrectOperationOrderException : public CoreException
 {
 public:
-    IncorrectOperationOrder()
+    IncorrectOperationOrderException()
         :
         CoreException("Incorrect operation order")
     {}
 
-    IncorrectOperationOrder(const std::string& message)
+    IncorrectOperationOrderException(const std::string& message)
         :
         CoreException(message)
     {}
@@ -89,4 +89,5 @@ public:
     {}
 };
 
-}
+
+} // namespace core
