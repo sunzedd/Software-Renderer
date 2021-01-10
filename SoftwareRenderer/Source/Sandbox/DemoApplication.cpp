@@ -49,15 +49,15 @@ void DemoApplication::createScene()
 {
     // ***************************** Loading assets *******************************
     auto defaultTexture = AssetLoader::loadDefaultImage();
-    auto grassTexture = AssetLoader::loadImage("Assets\\Textures\\quads.jpg");
-    auto boxTexture = AssetLoader::loadImage("Assets\\Textures\\box.jpg");
-    auto stoneTexture = AssetLoader::loadImage("Assets\\Textures\\stone_03.jpg");
-    auto earthTexture = AssetLoader::loadImage("Assets\\Textures\\earth.jpg");
+    auto grassTexture = AssetLoader::loadImage("Assets-Demo\\Textures\\quads.jpg");
+    auto boxTexture = AssetLoader::loadImage("Assets-Demo\\Textures\\box.jpg");
+    auto stoneTexture = AssetLoader::loadImage("Assets-Demo\\Textures\\stone_03.jpg");
+    auto earthTexture = AssetLoader::loadImage("Assets-Demo\\Textures\\earth.jpg");
 
     auto defaultMesh = AssetLoader::loadDefaultMesh();
-    auto sphereMesh = AssetLoader::loadMesh("Assets\\Meshes\\sphere.obj");
-    auto groundMesh = AssetLoader::loadMesh("Assets\\Meshes\\grid.obj");
-    auto humanMesh = AssetLoader::loadMesh("Assets\\Meshes\\human.obj");
+    auto sphereMesh = AssetLoader::loadMesh("Assets-Demo\\Meshes\\sphere.obj");
+    auto groundMesh = AssetLoader::loadMesh("Assets-Demo\\Meshes\\grid.obj");
+    auto humanMesh = AssetLoader::loadMesh("Assets-Demo\\Meshes\\human.obj");
 
     // default shader
     auto defaultShader = make_shared<Shader::Default>();
