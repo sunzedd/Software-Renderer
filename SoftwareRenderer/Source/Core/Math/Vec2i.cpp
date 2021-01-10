@@ -36,7 +36,7 @@ Vec2i operator * (const Vec2i& vec, int value)
 
 Vec2 operator / (const Vec2i& vec, float value)
 {
-    return Vec2i(vec.x / value, vec.y / value);
+    return Vec2i( (int)((float)vec.x / value), (int)((float)vec.y / value));
 }
 
 
