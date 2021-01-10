@@ -3,11 +3,12 @@
 
 int main()
 {
-    try {
+    try
+    {
         DemoApplication a;
         a.run();
     }
-    catch (std::exception & e)
+    catch (std::exception& e)
     {
         std::cout << e.what() << std::endl;
         std::cin.get();
