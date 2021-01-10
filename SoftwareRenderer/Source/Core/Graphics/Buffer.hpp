@@ -6,7 +6,8 @@ namespace core {
 template <typename T>
 Buffer<T>::Buffer(int width, int height)
     :
-    m_pData(std::make_unique<T[]>(width * height)),
+    m_pData(std::make_unique<T[]>(static_cast<size_t>(width) *
+                                  static_cast<size_t>(height)) ),
     m_width(width),
     m_height(height)
 {
@@ -53,8 +54,13 @@ void Buffer<T>::fill(T value)
 {
     T* const pDataRaw = m_pData.get();
 
-    for (T* cur = pDataRaw; cur < pDataRaw + m_width * m_height; cur++)
+    for (T* cur = pDataRaw;
+        cur < pDataRaw + static_cast<size_t>(m_width) * static_cast<size_t>(m_height);
+        cur++)
+    {
         *cur = value;
+    }
 }
 
 } // namespace core
+
