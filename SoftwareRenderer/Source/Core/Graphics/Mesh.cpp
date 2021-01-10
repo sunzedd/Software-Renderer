@@ -2,11 +2,10 @@
 
 namespace core {
 
-Mesh::Mesh()
-{
-}
+Mesh::Mesh() 
+{ }
 
-Mesh::~Mesh()
+Mesh::~Mesh() 
 { }
 
 std::vector<LineV3> Mesh::buildNormalIndicatorLinesList(float lineLength) const

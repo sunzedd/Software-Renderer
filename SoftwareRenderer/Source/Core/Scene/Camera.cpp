@@ -1,7 +1,8 @@
 #include "Camera.h"
 
-namespace core
-{
+namespace core {
+
+
 Camera::Camera(const Vec3& position)
 {
     m_transform.position = position;
@@ -189,4 +190,6 @@ void Camera::handleKeyboard(float deltaMove)
 
     m_transform.isTransformed = true;
 }
-}
+
+
+} // namespace core

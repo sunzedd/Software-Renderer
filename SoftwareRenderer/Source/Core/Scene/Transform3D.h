@@ -2,8 +2,8 @@
 #include "../Math/Vec3.h"
 #include "../Math/Mat4.h"
 
-namespace core
-{
+namespace core {
+
 
 class Transform3D
 {
@@ -57,5 +57,6 @@ private:
     bool m_isTranslated  = true;
     bool m_isScaled      = true;
 };
+
 
 } // namespace core

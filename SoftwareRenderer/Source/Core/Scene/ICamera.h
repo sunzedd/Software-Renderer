@@ -1,8 +1,7 @@
 #pragma once
 #include "../Math/Mat4.h"
 
-namespace core
-{
+namespace core {
 
 class ICamera
 {

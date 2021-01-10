@@ -15,8 +15,8 @@
 #define CORE_CAMERA_MOVEMENT_SPEED    0.05f
 #define CORE_CAMERA_MOUSE_SENS        0.10f
 
-namespace core
-{
+namespace core {
+
 
 enum class Direction
 {

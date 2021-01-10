@@ -2,6 +2,8 @@
 #include <vector>
 
 namespace core {
+
+
 class Vec3;
 class Vec2i;
 class Vertex;
@@ -12,4 +14,6 @@ using Line = std::pair<T, T>;
 typedef Line<Vec2i>  LineV2i;
 typedef Line<Vec3>   LineV3;
 typedef Line<Vertex> LineVtx;
-}
+
+
+} // namespace core
