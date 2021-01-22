@@ -1,4 +1,4 @@
-# Simple shader-style 3D software renderer
+# Simple 3D Software Renderer in Style of Shaders Programming
 
 My BMSTU Computer Graphics Course Project 2019
 
