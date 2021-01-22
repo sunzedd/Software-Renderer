@@ -7,7 +7,7 @@ My BMSTU Computer Graphics Course Project 2019
 * Loading Wawefront .obj files
 * Simple c++ object scripting
 
-### Showcase 
+## Showcase 
 ![DemoGif](/SoftwareRenderer/Assets-Demo/demo.gif)
 
 ## Dependencies
