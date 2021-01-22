@@ -20,7 +20,9 @@ Window::Window(int width, int height, const std::string& title, bool fullscreen)
 
 Window::~Window()
 {
+#ifdef IMGUI
     ImGui::SFML::Shutdown();
+#endif
 }
 
 FrameBuffer& Window::getFrameBuffer()
@@ -58,9 +60,13 @@ void Window::createGraphics()
         throw CouldNotLoadAssetException("Could not find font file 'font.ttf' \
                                           in Resources folder");
     }
+
+    m_graphics.fpsLabel.setCharacterSize(20);
     m_graphics.fpsLabel.setFont(m_font);
 
-    ImGui::SFML::Init(m_graphics.nativeWindow); 
+#ifdef IMGUI
+    ImGui::SFML::Init(m_graphics.nativeWindow);
+#endif
 }
 
 

@@ -7,7 +7,7 @@
 #define DEMO_WIDTH  940
 #define DEMO_HEIGHT 560
 
-class DemoApplication : public core::App
+class DemoApplication : public core::App 
 {
 public:
     DemoApplication();

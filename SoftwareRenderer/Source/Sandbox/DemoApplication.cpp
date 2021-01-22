@@ -49,7 +49,7 @@ void DemoApplication::createScene()
 {
     // ***************************** Loading assets *******************************
     auto defaultTexture = AssetLoader::loadDefaultImage();
-    auto grassTexture = AssetLoader::loadImage("Assets-Demo\\Textures\\quads.jpg");
+    auto grassTexture = AssetLoader::loadImage("Assets-Demo\\Textures\\grass_01.jpg");
     auto boxTexture = AssetLoader::loadImage("Assets-Demo\\Textures\\box.jpg");
     auto stoneTexture = AssetLoader::loadImage("Assets-Demo\\Textures\\stone_03.jpg");
     auto earthTexture = AssetLoader::loadImage("Assets-Demo\\Textures\\earth.jpg");
