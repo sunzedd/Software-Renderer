@@ -4,8 +4,8 @@
 #include "../Core/Engine.h"
 #include "DemoAssets.h"
 
-#define DEMO_WIDTH  940
-#define DEMO_HEIGHT 560
+#define DEMO_WIDTH  800
+#define DEMO_HEIGHT 600
 
 class DemoApplication : public core::App 
 {

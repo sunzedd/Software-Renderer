@@ -136,8 +136,8 @@ void DemoApplication::createScene()
 
 void DemoApplication::initCamera()
 {
-    m_camera.setViewFrustum(45.0, (float)16 / (float)9, 0.001, 50.0);
-    m_camera.setMovementSpeed(0.03f);
+    m_camera.setViewFrustum(45.0, (float)4 / (float)3, 0.001, 50.0);
+    m_camera.setMovementSpeed(0.005f);
     m_camera.setPosition(Vec3(0.0f, 3.0f, 10.0f));
     m_camera.update(0);
 }
