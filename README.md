@@ -1,6 +1,6 @@
 # Simple 3D Software Renderer With Programmable Shaders
 
-My BMSTU Computer Graphics Course Project 2019
+My BMSTU ICS-7 Computer Graphics Course Project 2019
 
 ## Features
 * Texturing
